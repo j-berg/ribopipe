@@ -144,7 +144,7 @@ Install brew if not already installed, then download and install Virtualbox and 
       ribopipe --help
       ```
 5)  After the pipeline is finished processing, the data (in the case of the RIBOSEQ option) can be accessed along the following path tree:   
-<img src="https://github.com/j-berg/ribopipe/blob/master/ribopipe_overview.png" class="center">
+<img src="https://github.com/j-berg/ribopipe/blob/master/ribopipe_overview.png" align="center">
 
 
 <b><u>INTERPRETING THE OUTPUT:</u></b>   
