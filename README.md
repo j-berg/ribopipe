@@ -12,7 +12,7 @@ Please cite the following any publications where this software was used to proce
 ```
 Berg, JA, ..., Rutter, JP. (XXXX) RiboPipe: A Flexible Sequence Assembly and Analysis Pipeline. Coming soon.
 ```
-
+<br />
 <b><u>WHAT IS RIBOPIPE?</u></b>   
 <i><a href="https://en.wikipedia.org/wiki/Ribosome_profiling">Ribosome profiling</a></i> utilizes Next Generation Sequencing to provide a detailed picture of the protein translation landscape within cells. Cells are lysed, translating ribosomes are isolated, and the ribosome protected mRNA fragments are integrated into a sequencing library. The library is then sequenced and raw data (often in the form of <i><a href="http://support.illumina.com/content/dam/illumina-support/help/BaseSpaceHelp_v2/Content/Vault/Informatics/Sequencing_Analysis/BS/swSEQ_mBS_FASTQFiles.htm">.fastq</a></i> or <i>.txt</i> files) is generated. This pipeline is flexibly designed to be able to process and perform preliminary analyses on SE (single-end) short (<= 100 bp) read raw sequence data.   
 
