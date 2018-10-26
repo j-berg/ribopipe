@@ -145,7 +145,7 @@ Install brew if not already installed, then download and install Virtualbox and 
 
 <b><u>INTERPRETING THE OUTPUT:</u></b>   
 <i>Highlighted meta analyses will be output to the "highlights" folder in your indicated output directory.</i>   
-<b>RPF vs RNA</b>: This summary plots the RPF counts vs mRNA counts for each gene in the samples. One would expect these metrics to be well-correlated between samples as translation is dependent on mRNA abundance. Super=translated genes are unusual. An R<sup>2</sup> value > 0.70 generally indicates a good library preparation.   
+<b>RPF vs RNA</b>: This summary plots the RPF counts vs mRNA counts for each gene in the samples. One would expect these metrics to be well-correlated between samples as translation is dependent on mRNA abundance. Super=translated genes are unusual. An r<sup>2</sup> value > 0.70 generally indicates a good library preparation.   
 <b>Periodicity</b>: As ribosomes take 3 nt/1 codon steps down the transcript, a periodicity in read location is expected for a good library. The X axis in these figures indicates the start codon region of all transcripts in the organism and the Y axis is relative abundance of reads at that position.   
 <b>metaORF</b>: This plot takes a meta view of all transcripts normalized to create a representative transcript (relative distance down the transcript, X axis). The Y axis indicates relative abundance of reads at that position down the representative transcript.   
 
