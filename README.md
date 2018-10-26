@@ -1,7 +1,7 @@
 <p><img src="https://github.com/j-berg/ribopipe/blob/master/ribopipe_logo_v4.png" class="center" width="20%" height="20%" align="right">
 
 <b><u>RiboPipe v0.1.4-beta</u></b>   
-<i>A Flexible Assembly and Analysis Pipeline for Sequence Data Tuned for Ribosome Profiling</i>  
+<i>A Flexible Sequence Assembly and Analysis Pipeline</i>  
 
 Author: Jordan A Berg, Department of Biochemistry, University of Utah, Salt Lake City, Utah, USA  
 Contact: jordan \<dot\> berg \<at\> biochem \<dot\> utah \<dot\> edu </p>
