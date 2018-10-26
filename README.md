@@ -5,9 +5,7 @@
 
 Author: Jordan A Berg, Department of Biochemistry, University of Utah, Salt Lake City, Utah, USA  
 Contact: jordan \<dot\> berg \<at\> biochem \<dot\> utah \<dot\> edu </p>
-\n   
-\n 
-\n 
+<br /> <br /> <br /> 
 Please cite the following any publications where this software was used to process or analyze data:   
 ```
 Berg, JA, ..., Rutter, JP. (XXXX) RiboPipe: A Flexible Sequence Assembly and Analysis Pipeline. Coming soon.
