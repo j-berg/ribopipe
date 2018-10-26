@@ -56,7 +56,7 @@ Watch this <a href=""><b>video</b></a> for a walkthrough of how to use Ribopipe.
      ```
      flag with each run of the pipeline.  
 
-<b><u>CONDA INSTALLATION:</u></b>   
+<b><u>CONDA INSTALLATION (feature coming soon):</u></b>   
 1) Download <a href="https://www.anaconda.com/download/#macos">Conda</a>   
 2) Download RiboPipe from Conda:
      ```linux
@@ -67,7 +67,7 @@ Watch this <a href=""><b>video</b></a> for a walkthrough of how to use Ribopipe.
      $PATH
      ```
 
-<b><u>RUN SINGULARITY:</u></b>  
+<b><u>RUN SINGULARITY (feature coming soon):</u></b>  
 1) <a href="https://www.sylabs.io/guides/3.0/user-guide/quick_start.html#quick-installation-steps"><b>Install Singularity</b></a>.   
 If using an OS other than Linux, you can download a Vagrant Linux Virtual Box in Command Line by doing the following:   
 Install brew if not already installed, then download and install Virtualbox and Vagrant Linux machine:   
