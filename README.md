@@ -1,4 +1,4 @@
-<b><u>RiboPipe v0.1.2</u></b>   
+<b><u>RiboPipe v0.1.4</u></b>   
 <i>A Ribosome Profiling Data Handling Pipeline</i>  
 
 Author: Jordan A Berg, Department of Biochemistry, University of Utah, Salt Lake City, Utah, USA  
