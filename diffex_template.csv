@@ -1,0 +1,13 @@
+,condition,type
+W303_CCCP_00m_FP.csv,00m,b_riboseq
+W303_CCCP_00m_RNA.csv,00m,a_rnaseq
+W303_CCCP_05m_FP.csv,05m,b_riboseq
+W303_CCCP_05m_RNA.csv,05m,a_rnaseq
+W303_CCCP_10m_FP.csv,10m,b_riboseq
+W303_CCCP_10m_RNA.csv,10m,a_rnaseq
+W303_CCCP_15m_FP.csv,15m,b_riboseq
+W303_CCCP_15m_RNA.csv,15m,a_rnaseq
+W303_CCCP_30m_FP.csv,30m,b_riboseq
+W303_CCCP_30m_RNA.csv,30m,a_rnaseq
+W303_CCCP_60m_FP.csv,60m,b_riboseq
+W303_CCCP_60m_RNA.csv,60m,a_rnaseq
