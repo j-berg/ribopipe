@@ -3,7 +3,9 @@
 <b><u>RiboPipe v0.1.4-beta</u></b>   
 <i>A Flexible Sequence Assembly and Analysis Pipeline</i>  
 
-Author: Jordan A Berg, Department of Biochemistry, University of Utah, Salt Lake City, Utah, USA  
+Author: Jordan A Berg   
+Affiliation: Department of Biochemistry, University of Utah, Salt Lake City, Utah, USA  
+
 Contact: jordan \<dot\> berg \<at\> biochem \<dot\> utah \<dot\> edu </p>
 <br /> <br /> <br /> 
 Please cite the following any publications where this software was used to process or analyze data:   
