@@ -1,3 +1,5 @@
+<img src="https://github.com/j-berg/ribopipe/blob/master/ribopipe_logo_v4.png" class="center">
+
 <b><u>RiboPipe v0.1.4</u></b>   
 <i>A Ribosome Profiling Data Handling Pipeline</i>  
 
