@@ -1,10 +1,10 @@
-<img src="https://github.com/j-berg/ribopipe/blob/master/ribopipe_logo_v4.png" class="center" width="20%" height="20%">
+<p><img src="https://github.com/j-berg/ribopipe/blob/master/ribopipe_logo_v4.png" class="center" width="20%" height="20%" align="right">
 
 <b><u>RiboPipe v0.1.4</u></b>   
 <i>A Ribosome Profiling Data Handling Pipeline</i>  
 
 Author: Jordan A Berg, Department of Biochemistry, University of Utah, Salt Lake City, Utah, USA  
-Contact: jordan \<dot\> berg \<at\> biochem \<dot\> utah \<dot\> edu 
+Contact: jordan \<dot\> berg \<at\> biochem \<dot\> utah \<dot\> edu </p>
 
 Please cite the following any publications where this software was used to process or analyze data:   
 ```
