@@ -309,6 +309,15 @@ def get_arguments(args, __version__):
         metavar="<string>",
         required=True
         )
+    #options arguments
+    probe_parser.add_argument(
+        "--min_overlap",
+        help="Minimum number of bases that must match on a side to combine sequences",
+        metavar="<integer>",
+        type=int,
+        required=False,
+        default=5
+        )
 
     #GENE/LENGTH DICTIONARY subparser program
     dict_parser = subparser.add_parser('gene_dictionary', description='Gene name/RPKM conversion submodule')
