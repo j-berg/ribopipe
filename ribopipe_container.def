@@ -13,6 +13,7 @@ From: ubuntu:16.04
   rm Anaconda3-4.2.0-Linux-x86_64.sh
   . $HOME/.bashrc
   echo "Conda install retrieved"
+  echo "test"
 
   /opt/anaconda3/bin/conda install --yes -c bioconda \
     python3 \
