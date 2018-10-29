@@ -181,7 +181,7 @@ def main(args=None):
                 probe_list.append(x)
 
         #Run rrna_prober, output to outputDir
-        probe_out = rrna_prober(probe_list) #use inputDir to get FASTQC files and output to outputDir/analysis
+        probe_out = rrna_prober(probe_list, args_dict['min_overlap']) #use inputDir to get FASTQC files and output to outputDir/analysis
         print(probe_out)
 
     #Run gene name/RPKM conversion tool
