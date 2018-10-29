@@ -23,7 +23,6 @@ import re
 import sys
 from zipfile import ZipFile as zf
 
-#TODO remove parts that'll already be done
 def get_overrep_seqs(zipfile):
     with zf(zipfile) as folder:
         datafilename = ''
@@ -72,7 +71,7 @@ def getMatchRight(seq, freq, combined_seqs, min_ovlp):
         old_seq = combined_seqs[i][0]
         idx = old_seq.find(match_chars)
         if idx != -1:
-            poss_match_len = idx
+            poss_match_len = idx+min_ovlp
             if poss_match_len > len(seq):
                 poss_match_len = len(seq)
             if old_seq[:idx+min_ovlp] == seq[-poss_match_len:]:
@@ -86,19 +85,19 @@ def getMatchRight(seq, freq, combined_seqs, min_ovlp):
 
 
 def getMatchLeft(seq, freq, combined_seqs, min_ovlp):
+    #take the leftmost chars from the new seq
     match_chars = seq[:min_ovlp]
     found = False
     to_remove = -1
     to_add = []
     for i in range(len(combined_seqs)):
         old_seq = combined_seqs[i][0]
-        idx = old_seq.find(match_chars)
+        idx = old_seq.rfind(match_chars)
         if idx != -1:
             poss_match_end = 0
             poss_match_len = len(old_seq)-idx
             if poss_match_len > len(seq):
                 poss_match_len = len(seq)
-
             if old_seq[idx:poss_match_len+idx] == seq[:poss_match_len]:
                 to_add = [old_seq+seq[poss_match_len:], freq+combined_seqs[i][1]]
                 to_remove = i
@@ -161,12 +160,13 @@ def rrna_prober(files_list, min_overlap):
         combined_fp.append([seq,count])
     combined_fp = combineSeqs(combined_fp, min_overlap)
 
-    header = "##This file contains the most highly represented sequences in a ribosome footprint RNA-seq experiment\n" +\
-            "##The sequences included are combined from FASTQC output so that if multiple sequences reported there are exact-match substring of one another, they will be combined and their counts summed\n"+\
-            "##These sequences should be checked using a tool such as BLAST to ensure that the most represented sequences are not Illumina artifacts.\n" +\
-            "#SEQ\tCOUNT\n"
-    sorted_combined_fp = combined_fp.sort(key=lambda x: x[1], reverse=True)
+    combined_fp.sort(key=lambda x: x[1], reverse=True)
     results_list = []
     for entry in combined_fp:
         results_list.append("\t".join([str(x) for x in entry]))
+
+    header = "##This file contains the most highly represented sequences in a given ribosome footprint RNA-seq experiment\n" +\
+            "##The sequences included are combined from FASTQC output so that if multiple sequences reported there are exact-match substring of one another, they will be combined and their counts summed\n"+\
+            "##These sequences should be checked using a tool such as BLAST to ensure that the most represented sequences are not Illumina artifacts.\n" +\
+            "#SEQ\tCOUNT\n"
     return header + "\n".join(results_list)
