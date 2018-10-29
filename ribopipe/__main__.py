@@ -92,7 +92,7 @@ def main(args=None):
                 if x.endswith('.zip') and 'footprint' in x.lower() or 'fp' in x.lower():
                     probe_list.append(x)
 
-            probe_out = rrna_prober(probe_list) #use inputDir to get FASTQC files and output to outputDir/analysis
+            probe_out = rrna_prober(probe_list, args_dict['min_overlap']) #use inputDir to get FASTQC files and output to outputDir/analysis
             print(probe_out, file=open(dir_dict['highlights'] + args_dict['output']+ '.txt', 'w'))
 
         #Run ASSEMBLE
