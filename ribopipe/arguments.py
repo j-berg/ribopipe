@@ -303,6 +303,12 @@ def get_arguments(args, __version__):
         nargs="+",
         required=True
         )
+    probe_parser.add_argument(
+        "-o", "--output",
+        help="Output file name to write output to",
+        metavar="<string>",
+        required=True
+        )
     #options arguments
     probe_parser.add_argument(
         "--min_overlap",
@@ -312,6 +318,7 @@ def get_arguments(args, __version__):
         required=False,
         default=5
         )
+
     #GENE/LENGTH DICTIONARY subparser program
     dict_parser = subparser.add_parser('gene_dictionary', description='Gene name/RPKM conversion submodule')
     #required arguments
