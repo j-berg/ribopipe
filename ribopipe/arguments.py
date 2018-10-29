@@ -303,6 +303,12 @@ def get_arguments(args, __version__):
         nargs="+",
         required=True
         )
+    probe_parser.add_argument(
+        "-o", "--output",
+        help="Output file name to write output to",
+        metavar="<string>",
+        required=True
+        )
 
     #GENE/LENGTH DICTIONARY subparser program
     dict_parser = subparser.add_parser('gene_dictionary', description='Gene name/RPKM conversion submodule')

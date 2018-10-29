@@ -92,8 +92,8 @@ def main(args=None):
                 if x.endswith('.zip') and 'footprint' in x.lower() or 'fp' in x.lower():
                     probe_list.append(x)
 
-            output = rrna_prober(probe_list) #use inputDir to get FASTQC files and output to outputDir/analysis
-            print(output) #this needs to be changed to an output file
+            probe_out = rrna_prober(probe_list) #use inputDir to get FASTQC files and output to outputDir/analysis
+            print(probe_out, file=open(dir_dict['highlights'] + args_dict['output']+ '.txt', 'w'))
 
         #Run ASSEMBLE
         msg_align()
@@ -182,7 +182,7 @@ def main(args=None):
 
         #Run rrna_prober, output to outputDir
         probe_out = rrna_prober(probe_list) #use inputDir to get FASTQC files and output to outputDir/analysis
-        print(probe_out)
+        print(probe_out, file=open(args_dict['output']+ '.txt', 'w'))
 
     #Run gene name/RPKM conversion tool
     elif args.cmd == 'gene_dictionary':
