@@ -88,6 +88,8 @@ Install brew if not already installed, then download and install Virtualbox and 
      vagrant init ubuntu/trusty64
      vagrant up
      vagrant ssh (if password required, type "vagrant")
+     #if a postinstall file is provided
+     bash postinstall.sh
      ```
     
 2) Run RiboPipe singularity:   
