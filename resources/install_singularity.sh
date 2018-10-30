@@ -2,13 +2,10 @@ sudo apt-get update && sudo apt-get install -y \
     build-essential \
     libssl-dev \
     uuid-dev \
-    libgpgme11-dev
+    libgpgme11-dev \ 
+    mono-devel
 
-export VERSION=1.11 OS=linux ARCH=amd64
-cd /tmp
-wget https://dl.google.com/go/go$VERSION.$OS-$ARCH.tar.gz
-
-sudo tar -C /usr/local -xzf go$VERSION.$OS-$ARCH.tar.gz
+sudo apt-get install golang-go
 
 echo 'export GOPATH=${HOME}/go' >> ~/.bashrc
 echo 'export PATH=/usr/local/go/bin:${PATH}:${GOPATH}/bin' >> ~/.bashrc
@@ -25,3 +22,11 @@ cd $GOPATH/src/github.com/sylabs/singularity
 cd ./mconfig
 make
 sudo make install
+
+
+
+$ cd $GOPATH/src/github.com/sylabs/singularity
+$ ./mconfig
+$ cd ./builddir
+$ make
+$ sudo make install
