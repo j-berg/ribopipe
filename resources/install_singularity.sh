@@ -11,22 +11,14 @@ echo 'export GOPATH=${HOME}/go' >> ~/.bashrc
 echo 'export PATH=/usr/local/go/bin:${PATH}:${GOPATH}/bin' >> ~/.bashrc
 source ~/.bashrc
 
-mkdir -p $GOPATH/src/github.com/sylabs
+sudo mkdir -p $GOPATH/src/github.com/sylabs
 cd $GOPATH/src/github.com/sylabs
-git clone https://github.com/sylabs/singularity.git
+sudo git clone https://github.com/sylabs/singularity.git
 cd singularity
 
-go get -u -v github.com/golang/dep/cmd/dep
+sudo go get -u -v github.com/golang/dep/cmd/dep
 
 cd $GOPATH/src/github.com/sylabs/singularity
-cd ./mconfig
-make
-sudo make install
-
-
-
-$ cd $GOPATH/src/github.com/sylabs/singularity
-$ ./mconfig
-$ cd ./builddir
-$ make
-$ sudo make install
+sudo ./mconfig
+sudo make -C builddir
+sudo make -C builddir install
