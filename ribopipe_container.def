@@ -15,8 +15,16 @@ From: ubuntu:16.04
   echo "Conda install retrieved"
   echo "test"
 
-  /opt/anaconda3/bin/conda install --yes -c bioconda \
+  /opt/anaconda3/bin/conda install --yes -c anaconda \
     python=3.6 \
+    setuptools \
+    scipy \
+    pandas \
+    numpy \
+    matplotlib=3 \
+    seaborn=0.9.0
+
+  /opt/anaconda3/bin/conda install --yes -c bioconda \
     fastqc \
     fastx_toolkit \
     htseq \
@@ -25,16 +33,13 @@ From: ubuntu:16.04
     star \
     bedtools \
     deeptools=3 \
-    scipy \
-    plastid \
-    pandas \
-    numpy \
-    matplotlib \
-    seaborn=0.9.0
+    plastid
+
   echo "Conda installs complete"
 
   git clone https://github.com/j-berg/ribopipe.git
-  python3 /ribopipe/setup.py install
+  cd /ribopipe
+  python3 setup.py install
   echo "RiboPipe installed"
 
   # make /data and /scripts so we can mount it to access external resources
