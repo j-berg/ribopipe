@@ -39,4 +39,4 @@ def local():
 #Install dependencies on supercomputer using module loading
 def node():
     #INSTALL DEPENDENCIES, change if need to install in an environment for installation and operation
-    os.system("module load hisat2 samtools python3 fastx_toolkit fastqc picard plastid star bedtools deeptools scipy plastid pandas numpy matplotlib seaborn")
+    os.system("module load hisat2 samtools python3 fastx_toolkit fastqc picard plastid star bedtools deeptools plastid")
