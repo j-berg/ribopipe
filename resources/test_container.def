@@ -1,0 +1,36 @@
+BootStrap: library
+From: ubuntu:16.04
+
+%post
+  apt-get -y update
+  apt-get -y install git
+
+  apt-get -y install software-properties-common
+  add-apt-repository ppa:deadsnakes/ppa
+  apt-get -y update
+  apt-get -y install python3.6
+  #needs setuptools to run ribopipe
+  python3 --version
+
+  git clone https://github.com/j-berg/ribopipe.git
+  echo "1"
+  pwd
+  cd /ribopipe
+  echo "2"
+  pwd
+  python3 setup.py install
+
+  echo "RiboPipe installed"
+
+  # make /data and /scripts so we can mount it to access external resources
+  if [ ! -d /data ]; then mkdir /data; fi
+  if [ ! -d /scripts ]; then mkdir /scripts; fi
+
+%environment
+  export PATH="/ribopipe:$PATH"
+
+%runscript
+  ribopipe
+
+%labels
+  Author: Jordan A. Berg (j-berg)
