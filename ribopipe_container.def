@@ -16,7 +16,7 @@ From: ubuntu:16.04
   echo "test"
 
   /opt/anaconda3/bin/conda install --yes -c bioconda \
-    python3 \
+    python=3.6 \
     fastqc \
     fastx_toolkit \
     htseq \
