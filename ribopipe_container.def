@@ -24,13 +24,13 @@ From: ubuntu:16.04
     samtools \
     star \
     bedtools \
-    deeptools \
+    deeptools=3 \
     scipy \
     plastid \
     pandas \
     numpy \
     matplotlib \
-    seaborn
+    seaborn=0.9.0
   echo "Conda installs complete"
 
   git clone https://github.com/j-berg/ribopipe.git
