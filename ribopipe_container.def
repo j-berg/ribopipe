@@ -16,13 +16,13 @@ From: ubuntu:16.04
   echo "test"
 
   /opt/anaconda3/bin/conda install --yes -c anaconda \
-    python=3.6 \
+    python=3 \
     setuptools \
+    seaborn=0.9 \
+    matplotlib=3 \
     scipy \
     pandas \
-    numpy \
-    matplotlib=3 \
-    seaborn=0.9.0
+    numpy
 
   /opt/anaconda3/bin/conda install --yes -c bioconda \
     fastqc \
@@ -54,4 +54,4 @@ From: ubuntu:16.04
   ribopipe
 
 %labels
-  Author Jordan A. Berg (j-berg)
+  Author: Jordan A. Berg (j-berg)
