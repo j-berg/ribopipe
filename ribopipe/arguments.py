@@ -34,7 +34,7 @@ INITIALIZATION PARAMETERS
 """
 #Set default values for arguments
 DEFAULT_LINKER = 'AACTGTAGGCACCATCAAT' #set null linker sequence for use in ligation-free ribosome profiling
-DEFAULT_SEQ_TYPE = 'sanger'
+DEFAULT_PLATFORM = 'ILLUMINA'
 DEFAULT_PROGRAM = 'STAR'
 DEFAULT_READ_MIN = 11
 DEFAULT_READ_MAX = 50
@@ -198,6 +198,12 @@ def get_arguments(args, __version__):
         help="PHRED read quality threshold (default: %s)" % DEFAULT_READ_QUALITY,
         metavar="<int>",
         default=DEFAULT_READ_QUALITY
+        )
+    read_parser.add_argument(
+        "--platform",
+        help="Sequencing platform used (default: %s)" % DEFAULT_PLATFORM,
+        metavar="<SANGER>, <ILLUMINA>",
+        default=DEFAULT_PLATFORM
         )
 
     #Count information parameters

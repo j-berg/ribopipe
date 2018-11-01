@@ -101,14 +101,21 @@ def trim_adaptor(args):
 
     file, dir_dict, args_dict = args[0], args[1], args[2]
 
+    #Run initial quality control
     os.system("fastqc -q " + str(args_dict['input']) + file + " -o " + str(dir_dict['preqcdir']))
-    try:
+
+    #Trim files
+    if args_dict['platform'].upper() == 'SANGER':
         os.system("fastx_clipper -a " + str(args_dict['adaptor']) + " -l " + str(args_dict['read_length_min']) + " -i " + str(args_dict['input']) + file + " -o " + str(args_dict['output']) + "pre_" + file)
         os.system("fastq_quality_filter -q " + str(args_dict['read_quality']) + " -i " + str(args_dict['output']) + "pre_" + file + " -o " + str(args_dict['output']) + "trimmed_" + file)
-    except:
+    elif args_dict['platform'].upper() == 'ILLUMINA':
         #add -Q33 flag for illumina encoded quality scoring
         os.system("fastx_clipper -Q33 -a " + str(args_dict['adaptor']) + " -l " + str(args_dict['read_length_min']) + " -i " + str(args_dict['input']) + file + " -o " + str(args_dict['output']) + "pre_" + file)
         os.system("fastq_quality_filter -Q33 -q " + str(args_dict['read_quality']) + " -i " + str(args_dict['output']) + "pre_" + file + " -o " + str(args_dict['output']) + "trimmed_" + file)
+    else:
+        pass
+
+    #Run post-trim quality control
     os.system("fastqc -q " + str(args_dict['output']) + "trimmed_" + file + " -o " + str(dir_dict['postqcdir']))
     os.system("rm " + str(args_dict['output']) + "pre_" + file)
 
