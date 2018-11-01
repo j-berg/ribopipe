@@ -27,6 +27,7 @@ import pandas as pd
 import numpy as np
 import seaborn as sns
 import math
+matplotlib.use('agg') #remove need for -X server connect
 import matplotlib.pyplot as plt
 import scipy.stats as stats
 from scipy.stats import linregress
