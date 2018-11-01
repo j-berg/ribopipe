@@ -1,7 +1,7 @@
 """
 RiboPipe
 An assembly and analysis pipeline for sequencing data
-alias: ripopipe
+alias: ripopipe 
 
 Copyright (C) 2018  Jordan A. Berg
 jordan <dot> berg <at> biochem <dot> utah <dot> edu
