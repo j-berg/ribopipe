@@ -26,6 +26,7 @@ import os
 import sys
 import pandas as pd
 from math import ceil
+import matplotlib
 matplotlib.use('agg') #remove need for -X server connect
 import matplotlib.pyplot as plt
 from .utils import file_list
