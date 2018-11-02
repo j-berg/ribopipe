@@ -23,79 +23,85 @@ See this <a href="https://www.ncbi.nlm.nih.gov/pubmed/28579404">paper</a> for a 
 
 <b>RiboPipe</b> is a ribosome profiling raw data assembly and preliminary analysis pipeline intended to ease the process of analyzing ribosome profiling data. It alleviates the pain of having to manually pass each raw read file through the appropriate quality trimming and assembly software. Additionally, it mitigates any potential stress by outputting the necessary quality checking analysis so the user can verify the quality of their run. It also offers the benefit of multiprocessing to make full use of computational resources, as well as faster assemblers to speed up this assembly process.   
 
+Watch this <a href=""><b>video</b></a> for a walkthrough of how to use Ribopipe.
 
-<b><u>MANUAL INSTALLATION:</u></b>   
-Watch this <a href=""><b>video</b></a> for a walkthrough of how to use Ribopipe. 
-1)  Make sure Python3 is installed (we recommend version <a href='https://www.python.org/downloads/release/python-364/'>3.6.4</a>).   
+<b><u>LOCAL INSTALLATION:</u></b>   
+1)  Make sure Python3, git, and wget are installed (we recommend version <a href='https://www.python.org/downloads/release/python-364/'>3.5.0</a> or higher).   
 2)  Download <a href='https://www.anaconda.com/download/#macos'>Conda</a>, a package manager, for your operating system. Double click the ```.pkg``` file if on MacOS, the ```.exe``` file on Windows, or follow these <a href='https://conda.io/docs/user-guide/install/linux.html#install-linux-silent'>instructions</a> on Linux.    
-3) Download <a href="https://github.com/j-berg/ribopipe/releases/tag/0.1.2">RiboPipe repository</a> to location of choice and unzip if necessary.  
-4)  Download your <a href="https://sourceforge.net/projects/ribopipe/files/references/">reference</a> file to the <i>"references"</i> folder within the <b>RiboPipe</b> package. Unzip and delete the zipped file so only the unzipped folder remains. Make sure that the right alignment program folder is downloaded -- i.e. if -p HISAT2 is used, download the folder with suffix "_HISAT2"
-5)  Add path to software to bash profile.  
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Open <a href="https://www.imore.com/how-use-terminal-mac-when-you-have-no-idea-where-start">Terminal</a> (on Mac, open Spotlight and type 'Terminal')  
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In Terminal, type the following:  
-     ```linux
-     cd ~/  
-     vim ./bash_profile
-     ```
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scroll to the bottom of the file and type: 
-     ```linux
-     export PATH=path/to/ribopipe/directory:$PATH
-     <ESCAPE>:wq
-     ```     
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The '/path/to/ribopipe/directory' should be the parent ribopipe directory downloaded that contains the setup.py script. ```<ESCAPE>``` means press the escape key.      
-6.1) If on a personal computer, you next need to install RiboPipe and any software dependencies (FASTX-Toolkit, STAR, etc.)   
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In Terminal, navigate to the RiboPipe parent directory like below and type: 
-     ```linux
-     cd ~/scripts/ribopipe-#.#.#
-     python setup.py install
-     ribopipe local_install
-     ```
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enter your system password if necessary (this requires to to be admin on your computer)  
-6.2) If on a supercomputing node, these dependencies need to be loaded by the admin.  
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;When running the ribopipe program, include the 
-     ```linux
-     --cluster
-     ```
-     flag with each run of the pipeline.  
+3)  Execute the following lines of code in <a href="https://www.imore.com/how-use-terminal-mac-when-you-have-no-idea-where-start">Terminal</a> (on Mac, open Spotlight and type 'Terminal'):    
+      ```linux
+      #3.1a: to download current repository:
+      git clone https://github.com/j-berg/ribopipe.git
+      cd ribopipe/ribopipe/references
 
-<b><u>CONDA INSTALLATION (feature coming soon):</u></b>   
-1) Download <a href="https://www.anaconda.com/download/#macos">Conda</a>   
-2) Download RiboPipe from Conda:
-     ```linux
-     conda install -c bioconda ribopipe
-     ```
-3) Check that RiboPipe is in $PATH, add if needed    
-     ```linux
-     $PATH
-     ```
+      #3.1b: to download specific version
+      tag='v0.1.4-beta'
+      wget https://github.com/j-berg/ribopipe/archive/$tag.zip
+      unzip ribopipe-${tag:1}.zip
+      cd ribopipe-${tag:1}/ribopipe/references
 
-<b><u>RUN SINGULARITY (feature coming soon):</u></b>  
-1) <a href="https://www.sylabs.io/guides/3.0/user-guide/quick_start.html#quick-installation-steps"><b>Install Singularity</b></a>.   
-If using an OS other than Linux, you can download a Vagrant Linux Virtual Box in Command Line by doing the following:   
-Install brew if not already installed, then download and install Virtualbox and Vagrant Linux machine:   
-     ```linux
-     #install brew
-     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-     
-     #install virtualbox and vagrant
-     brew cask install virtualbox
-     brew cask install vagrant
-     brew cask install vagrant-manager
-     
-     #load Vagrant Linux environment (only the last two steps are required to login if logged out)
-     mkdir singularity-vm
-     cd singularity-vm
-     vagrant init ubuntu/trusty64
-     vagrant up
-     vagrant ssh (if password required, type "vagrant")
-     #if a postinstall file is provided
-     bash postinstall.sh
-     ```
-    
-2) Run RiboPipe singularity:   
-     ```linux
-     singularity exec ribopipe_latest.sif riboseq -i input_dir -o output_dir ...
-     ```
+      #3.2: get reference
+      model='yeast'
+      program='hisat2'
+      wget https://sourceforge.net/projects/ribopipe/files/${program}_references/${model}_reference_${program}.zip
+      unzip ${model}_reference_${program}.zip
+      rm ${model}_reference_${program}.zip
+      cd ../../
+      python3 setup.py install --prefix ~/.local
+
+      #3.3: add script installation location given near the end of the setup scripting output to ~/.bashrc or ~/.bash_profile
+      #add to .bashrc
+      echo "PATH='/path/to/scripts/:$PATH'" >> ~/.bashrc
+      #add to .bash_profile
+      echo "PATH='/path/to/scripts/:$PATH'" >> ~/.bash_profile
+
+      #3.4: Test by typing the following:
+      ribopipe --help
+
+      #3.5: Install conda dependencies:
+      ribopipe install
+      ```
+    See local_install.sh in the <a href="https://github.com/j-berg/ribopipe/">resources</a> folder for interactive script
+
+<b><u>HPC INSTALLATION:</u></b>   
+1)  Make sure Python3, git, and wget are installed (we recommend version <a href='https://www.python.org/downloads/release/python-364/'>3.5.0</a> or higher).   
+2)  Execute the following lines of code:   
+      ```linux
+      #3.1a: to download current repository:
+      git clone https://github.com/j-berg/ribopipe.git
+      cd ribopipe/ribopipe/references
+
+      #3.1b: to download specific version
+      tag='v0.1.4-beta'
+      wget https://github.com/j-berg/ribopipe/archive/$tag.zip
+      unzip ribopipe-${tag:1}.zip
+      cd ribopipe-${tag:1}/ribopipe/references
+
+      #3.2: get reference
+      model='yeast'
+      program='hisat2'
+      wget https://sourceforge.net/projects/ribopipe/files/${program}_references/${model}_reference_${program}.zip
+      unzip ${model}_reference_${program}.zip
+      rm ${model}_reference_${program}.zip
+      cd ../../
+      module load python3
+      python setup.py install --prefix ~/.local
+
+      #3.3: add script installation location given near the end of the setup scripting output to ~/.bashrc or ~/.bash_profile
+      #add to .bashrc
+      echo "PATH='/path/to/scripts/:$PATH'" >> ~/.bashrc
+      #add to .bash_profile
+      echo "PATH='/path/to/scripts/:$PATH'" >> ~/.bash_profile
+
+      #3.4: Test by typing the following:
+      ribopipe --help
+      ```
+    See hpc_install.sh in the <a href="https://github.com/j-berg/ribopipe/">resources</a> folder for interactive script
+3)  Modify hpc_run_template.sh in the <a href="https://github.com/j-berg/ribopipe/">resources</a> folder for an example script for submitting the pipeline job to the HPC and make sure dependencies listed in this script are on the HPC system, else they need to be locally installed    
+4)  Run the script by executing the following:
+      ```linux
+      sbatch hpc_run_template.sh
+      ```
 
 <b><u>RUNNING THE PROGRAM:</u></b>   
 1)  Download your raw sequence data and place in a folder -- this folder should contain all the sequence data and nothing else  
@@ -116,7 +122,7 @@ Install brew if not already installed, then download and install Virtualbox and 
       ExperimentName_b_exType_FP.fastq(.qz)  
       ExperimentName_b_exType_RNA.fastq(.qz)  
       ```
-    If you have replicates 
+    If you have replicates
       ```linux
       ExperimentName_a_WT_1_FP.fastq(.qz)  
       ExperimentName_a_WT_1_RNA.fastq(.qz)  
@@ -128,12 +134,12 @@ Install brew if not already installed, then download and install Virtualbox and 
       ExperimentName_b_exType_2_RNA.fastq(.qz)
       ```
     If you are just running RNAseq files through the pipeline, you only need the RNA samples in your input directory and specify the <i>rnaseq</i> module:
-    ```linux 
+    ```linux
     ExperimentName_a_WT_1_RNA.fastq(.qz)   
-    ExperimentName_a_WT_2_RNA.fastq(.qz) 
+    ExperimentName_a_WT_2_RNA.fastq(.qz)
     ExperimentName_b_exType_1_RNA.fastq(.qz)  
     ExperimentName_b_exType_2_RNA.fastq(.qz)
-      
+
     ribopipe rnaseq -i input_directory ...
       ```
 3)  Create a folder for pipeline output. This folder should be blank.  
