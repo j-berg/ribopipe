@@ -89,8 +89,9 @@ def main(args=None):
             zipfiles = file_list(dir_dict['postqcdir'])
 
             for x in zipfiles:
-                if x.endswith('.zip') and 'footprint' in x.lower() or 'fp' in x.lower():
-                    probe_list.append(x)
+                if x.endswith('.zip') == True:
+                    if 'footprint' in x.lower() or 'fp' in x.lower():
+                        probe_list.append(x)
 
             probe_out = rrna_prober(probe_list, args_dict['min_overlap']) #use inputDir to get FASTQC files and output to outputDir/analysis
             with open(dir_dict['highlights'] + args_dict['output']+ '.txt', "w") as text_file:
@@ -178,11 +179,11 @@ def main(args=None):
         #CHECK ARGUMENTS FOR EXCEPTIONS AND FORMATTING
         probe_list = []
         for x in args_dict['input']:
-            if x.endswith('.zip') and 'footprint' in x.lower() or 'fp' in x.lower():
-                probe_list.append(x)
+            if x.endswith('.zip') == True:
+                if 'footprint' in x.lower() or 'fp' in x.lower():
+                    probe_list.append(x)
 
         #Run rrna_prober, output to outputDir
-
         probe_out = rrna_prober(probe_list, args_dict['min_overlap']) #use inputDir to get FASTQC files and output to outputDir/analysis
         with open(args_dict['output']+ '.txt', "w") as text_file:
             print(probe_out, file=text_file)

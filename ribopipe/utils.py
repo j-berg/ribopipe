@@ -74,7 +74,7 @@ def file_list(directory):
     #Walk through raw data files within given directory
     for subdir, dirs, files in os.walk(directory):
         for f in files:
-            if f.startswith('.') or f.endswith('.bai') or f.endswith('.png') or f.endswith('.pdf'): #ignore hidden files and other uninterested files (particular for some submodules)
+            if f.startswith('.') or f.endswith('.bai') or f.endswith('.html') or f.endswith('.png') or f.endswith('.pdf'): #ignore hidden files and other uninterested files (particular for some submodules)
                 pass
             else:
                 file_list.append(f)
