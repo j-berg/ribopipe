@@ -78,7 +78,7 @@ def assemble(args):
 
     #samtools -- sort, count, tabulate alignment output
     os.system("samtools sort " + dir_dict['aligndir'] + file[:-6] + "_hisat2_out.sam -o " + dir_dict['aligndir'] + file[:-6] + "_hisat2_sorted.sam")
-    os.system("htseq-count " + dir_dict['aligndir'] + file[:-6] + "_hisat2_sorted.sam " + dir_dict['reference'] + transcripts " >> " + dir_dict['aligndir'] + file[:-6] + "_pre.csv")
+    os.system("htseq-count " + dir_dict['aligndir'] + file[:-6] + "_hisat2_sorted.sam " + dir_dict['reference'] + transcripts + " >> " + dir_dict['aligndir'] + file[:-6] + "_pre.csv")
     os.system("cat " + dir_dict['aligndir'] + file[:-6] + "_pre.csv | tr -s '[:blank:]' ',' > " + dir_dict['countsdir'] + file[:-6] + ".csv")
 
     #create a sorted bam, bed, and bigwig file for meta analyses
