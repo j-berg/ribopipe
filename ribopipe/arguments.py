@@ -209,8 +209,8 @@ def get_arguments(args, __version__):
     #Count information parameters
     count_parser = argparse.ArgumentParser(description='Shared count info', add_help=False)
     count_parser.add_argument(
-        "--full_transcripts",
-        help="Select this option to keep first 45 nt of all transcript references (it is recommended to not include this option as ribosome profiling data for this region is often unreliable\nSpecify as False if running [align] with non-Ribosome Profiling data",
+        "--full_genome",
+        help="Select this option to map reads to full genome. If false, will not map to first 45 nt of all transcripts for ribosome profiling <riboseq>, or will just map to transcripts for <rnaseq> (it is recommended to NOT include this option as ribosome profiling data for this region is often unreliable\nSpecify as False if running [align] with non-Ribosome Profiling data",
         action='store_true'
         )
     count_parser.add_argument(
@@ -245,7 +245,7 @@ def get_arguments(args, __version__):
     #options arguments
     riboseq_parser.add_argument(
         "--min_overlap",
-        help="Minimum number of bases that must match on a side to combine sequences",
+        help="Minimum number of bases that must match on a side to combine sequences for rrna_prober",
         metavar="<integer>",
         type=int,
         required=False,
@@ -253,12 +253,7 @@ def get_arguments(args, __version__):
         )
 
     #RNASEQ subparser program
-    rnaseq_parser = subparser.add_parser('rnaseq', description='RNAseq Pipeline', parents=[files_parser, samples_parser, read_parser, adaptor_parser])
-    rnaseq_parser.add_argument(
-        "--count_cutoff",
-        help="Minimum counts threshold. Will remove any row in the final count tables if any sample does not meet this cutoff threshold",
-        metavar="<int>"
-        )
+    rnaseq_parser = subparser.add_parser('rnaseq', description='RNAseq Pipeline', parents=[files_parser, samples_parser, read_parser, adaptor_parser, count_parser])
     rnaseq_parser.add_argument(
         "--replicates",
         help="Select this option if samples are replicates (do not use if 3+ replicates). Make sure when passing the argument to list samples these are sorted so replicates are next to each other in this list",

@@ -37,23 +37,6 @@ def read_df(file_name):
 
     return df_name
 
-#Check transcript file formatting based on user input
-def check_transcript(reference_status):
-
-    #Initialize variables
-    file_ref = ''
-    file_flat = ''
-
-    #Check if using normal or truncated transcripts and set file variables
-    if reference_status == True:
-        file_ref = 'transcripts.gtf'
-        file_flat = 'transcripts_refFlat.txt'
-    else:
-        file_ref = 'transcripts_50.gtf'
-        file_flat = 'transcripts_refFlat_50.txt'
-
-    return file_ref, file_flat
-
 #Check directory formatting
 def check_directory(directory):
 

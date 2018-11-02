@@ -32,18 +32,8 @@ matplotlib.use('agg') #remove need for -X server connect
 import matplotlib.pyplot as plt
 import scipy.stats as stats
 from scipy.stats import linregress
-from .utils import file_list, check_transcript
+from .utils import file_list
 import concurrent.futures
-
-"""df = pd.DataFrame(columns=['x','y'])
-data1 = 0
-data2 = "1.2581234E17"
-data2 = float(data2)
-num
-
-x= 0
-df.loc[x] = [int(data1),float(data2)]
-df"""
 
 """
 FUNCTIONS
@@ -239,10 +229,17 @@ def meta_run(args):
 
     #Get variables
     file, dir_dict, args_dict = args[0], args[1], args[2]
-    transcript_ref, transcript_flat = check_transcript(args_dict['full_transcripts'])
+
+    #Prep transcripts reference to pull from
+    if 'riboseq' in args_dict.values():
+        transcripts = 'transcripts_refFlat_45.txt'
+    elif 'rnaseq' in args_dict.values():
+        transcripts = 'transcripts_refFlat.txt'
+    else:
+        sys.exit(1)
 
     #Perform meta ORF analysis for each file
-    os.system("picard CollectRnaSeqMetrics QUIET=true REF_FLAT=" + dir_dict['reference'] + transcript_flat + " STRAND_SPECIFICITY=NONE INPUT=" + dir_dict['bamdir'] + file + " OUTPUT=" + dir_dict['picarddir'] + file[:-4] + "_rna_metrics")
+    os.system("picard CollectRnaSeqMetrics QUIET=true REF_FLAT=" + dir_dict['reference'] + transcripts + " STRAND_SPECIFICITY=NONE INPUT=" + dir_dict['bamdir'] + file + " OUTPUT=" + dir_dict['picarddir'] + file[:-4] + "_rna_metrics")
 
     #Perform periodicity analysis for each file
     if 'type' in args_dict and args_dict['type'] == 'riboseq':

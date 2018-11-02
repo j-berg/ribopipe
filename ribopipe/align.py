@@ -24,7 +24,7 @@ IMPORT DEPENDENCIES
 """
 import os
 import sys
-from .utils import file_list, check_transcript
+from .utils import file_list
 import concurrent.futures
 
 """
@@ -35,28 +35,50 @@ def assemble(args):
 
     #Unpackage file data and check which transcript ref files to use
     file, dir_dict, args_dict = args[0], args[1], args[2]
-    transcript_ref, transcript_flat = check_transcript(args_dict['full_transcripts'])
 
-    if args_dict['program'] == 'STAR':
-        #STAR -- in silico rRNA removal, uses default parameters
-        os.system("STAR --runThreadN 1 --genomeDir " + str(dir_dict['reference']) + "rrna --readFilesIn " + str(dir_dict['trimdir']) + file + " --outReadsUnmapped " + str(dir_dict['aligndir']) + file[:-6] + "_norrna.fastq --outFileNamePrefix " + str(dir_dict['aligndir']) + file[:-6] + "_norrna_")
-
-        #STAR -- align curated reads to reference, uses default parameters
-        os.system("STAR --runThreadN 1 --genomeDir " + str(dir_dict['reference']) + "genome/ --readFilesIn " + str(dir_dict['aligndir']) + file[:-6] + "_norrna.fastq --outFileNamePrefix " + str(dir_dict['aligndir']) + file[:-6] + "_genome_")
-
-    elif args_dict['program'] == 'HISAT2':
-        #hisat2 -- in silico rRNA removal
-        os.system("hisat2 --quiet -x " + str(dir_dict['reference']) + "ncrna --un=" + str(dir_dict['aligndir']) + file[:-6] + "_norrna.fastq -U " + str(dir_dict['trimdir']) + file)
-
-        #hisat2 -- align curated reads to references
-        os.system("hisat2 --quiet -x " + str(dir_dict['reference']) + "genome -U " + str(dir_dict['aligndir']) + file[:-6] + "_norrna.fastq -S " + str(dir_dict['aligndir']) + file[:-6] + "_hisat2_out.sam")
-
+    #Prep transcripts reference to pull from
+    if 'riboseq' in args_dict.values():
+        transcripts = 'transcripts_45.gtf'
+    elif 'rnaseq' in args_dict.values():
+        transcripts = 'transcripts.gtf'
     else:
         sys.exit(1)
 
+    #Map to full genome, do ncrna depletion
+    if 'full_genome' in args_dict and args_dict['full_genome'] == True:
+        if args_dict['program'] == 'STAR':
+            #STAR -- align curated reads to reference, uses default parameters
+            os.system("STAR --runThreadN 1 --genomeDir " + str(dir_dict['reference']) + "genome/ --readFilesIn " + str(dir_dict['trimdir']) + file + " --outFileNamePrefix " + str(dir_dict['aligndir']) + file[:-6] + "_genome_")
+
+        elif args_dict['program'] == 'HISAT2':
+            #hisat2 -- align curated reads to references
+            os.system("hisat2 --quiet -x " + str(dir_dict['reference']) + "genome -U " + str(dir_dict['trimdir']) + file + " -S " + str(dir_dict['aligndir']) + file[:-6] + "_hisat2_out.sam")
+
+        else:
+            sys.exit(1)
+
+    #Map to coding genome, do ncrna depletion
+    else:
+        if args_dict['program'] == 'STAR':
+            #STAR -- in silico rRNA removal, uses default parameters
+            os.system("STAR --runThreadN 1 --genomeDir " + str(dir_dict['reference']) + "ncrna --readFilesIn " + str(dir_dict['trimdir']) + file + " --outReadsUnmapped " + str(dir_dict['aligndir']) + file[:-6] + "_norrna.fastq --outFileNamePrefix " + str(dir_dict['aligndir']) + file[:-6] + "_norrna_")
+
+            #STAR -- align curated reads to reference, uses default parameters
+            os.system("STAR --runThreadN 1 --genomeDir " + str(dir_dict['reference']) + "genome/ --readFilesIn " + str(dir_dict['aligndir']) + file[:-6] + "_norrna.fastq --outFileNamePrefix " + str(dir_dict['aligndir']) + file[:-6] + "_genome_")
+
+        elif args_dict['program'] == 'HISAT2':
+            #hisat2 -- in silico rRNA removal
+            os.system("hisat2 --quiet -x " + str(dir_dict['reference']) + "ncrna --un=" + str(dir_dict['aligndir']) + file[:-6] + "_norrna.fastq -U " + str(dir_dict['trimdir']) + file)
+
+            #hisat2 -- align curated reads to references
+            os.system("hisat2 --quiet -x " + str(dir_dict['reference']) + "genome -U " + str(dir_dict['aligndir']) + file[:-6] + "_norrna.fastq -S " + str(dir_dict['aligndir']) + file[:-6] + "_hisat2_out.sam")
+
+        else:
+            sys.exit(1)
+
     #samtools -- sort, count, tabulate alignment output
     os.system("samtools sort " + dir_dict['aligndir'] + file[:-6] + "_hisat2_out.sam -o " + dir_dict['aligndir'] + file[:-6] + "_hisat2_sorted.sam")
-    os.system("htseq-count " + dir_dict['aligndir'] + file[:-6] + "_hisat2_sorted.sam " + dir_dict['reference'] + transcript_ref + " >> " + dir_dict['aligndir'] + file[:-6] + "_pre.csv")
+    os.system("htseq-count " + dir_dict['aligndir'] + file[:-6] + "_hisat2_sorted.sam " + dir_dict['reference'] + transcripts " >> " + dir_dict['aligndir'] + file[:-6] + "_pre.csv")
     os.system("cat " + dir_dict['aligndir'] + file[:-6] + "_pre.csv | tr -s '[:blank:]' ',' > " + dir_dict['countsdir'] + file[:-6] + ".csv")
 
     #create a sorted bam, bed, and bigwig file for meta analyses
