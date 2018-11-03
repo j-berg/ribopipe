@@ -48,36 +48,36 @@ descrip = """\
 The RiboPipe submodules can be accessed by executing:
     "ribopipe module_name"
 
-<riboseq> [--help]
+riboseq [--help]
     Pipeline for handling raw ribosome profiling sequence data
     Run quality and adaptor trimming, alignment, quality control, and output
         formatting on a directory of raw ribosome profiling sequence data
 
-<rnaseq> [--help]
+rnaseq [--help]
     Pipeline for handling raw single-end short (<= 100 bps) sequence data
     Run quality and adaptor trimming, alignment, quality control, and output
         formatting on a directory of raw single-end short (<= 100 bps) sequence
         data
 
-<trim> [--help]
+trim [--help]
     Run quality and adaptor trimming on a directory of raw sequence data
 
-<align> [--help]
+align [--help]
     Run alignment and output formatting on a directory of sequence data
     User must ensure data is properly trimmed if desired
 
-<quality> [--help]
+quality [--help]
     Perform quality analyses on a table <.csv> of sequence counts
 
-<local_install> [--help]
+local_install [--help]
     Install RiboPipe dependencies needed for running any of the other submodules
 
-<rrna_prober> [--help]
+rrna_prober [--help]
     Run rrna_prober, a tool that identified over-represented sequences in
     footprint data for rRNA depletion in the Ribosome Profiling protocol
     Input is a directory of _fastqc_data.txt files
 
-<gene_dictionary> [--help]
+gene_dictionary [--help]
     Converts systematic gene names in a counts table to the common gene names
     Converts raw count table into an RPKM normalized count table
     Input is a raw count table <.csv> and a reference table <.csv> formatted as
@@ -86,7 +86,7 @@ The RiboPipe submodules can be accessed by executing:
         Column2 data -> Corresponding common names
         Column3 data -> Transcript length (nt)
 
-<diffex> [--help]
+diffex [--help]
     Runs pairwise DESeq2 differential expression analysis on the raw counts
     table output in the pipeline and a sample description table.
     Please see https://github.com/j-berg/ribopipe/diffex_template.csv for a
@@ -123,7 +123,7 @@ def get_arguments(args, __version__):
         )
     parser.add_argument(
         "--cluster",
-        help="Select this option if running on a high-performance cluster\ni.e. ribopipe riboseq --cluster ...",
+        help="Select this option if running on a high-performance cluster and not manually specifying which programs to module load in the runscript\ni.e. ribopipe riboseq --cluster ...",
         action='store_true',
         default=False
         )
@@ -133,16 +133,19 @@ def get_arguments(args, __version__):
     """
     #Input files
     files_parser = argparse.ArgumentParser(description='Shared file info', add_help=False)
-    files_parser.add_argument(
+    #Required arguments
+    req_files = files_parser.add_argument_group('required arguments')
+    req_files.add_argument(
         "-i", "--input",
         help="Specify full PATH to input directory",
         required=True
         )
-    files_parser.add_argument(
+    req_files.add_argument(
         "-o", "--output",
         help="Specify full PATH to output directory",
         required=True
         )
+    #Optional arguments
     files_parser.add_argument(
         "-m", "--max_processors",
         help="Number of max processors pipeline can use for multiprocessing tasks (default: No limit)",
@@ -153,77 +156,91 @@ def get_arguments(args, __version__):
 
     #Sample information
     samples_parser = argparse.ArgumentParser(description='Shared sample info', add_help=False)
-    samples_parser.add_argument(
+    #Required arguments
+    req_samples = samples_parser.add_argument_group('required arguments')
+    req_samples.add_argument(
         "-r", "--reference",
         help="Specifiy model organism used for experiments. Pipeline will align sequence data to a current reference file for the given organism",
         metavar="<yeast>, <human>, <mouse>",
         required=True
         )
-    samples_parser.add_argument(
+    req_samples.add_argument(
         "-e", "--experiment",
         help="Provide experiment name to prepend to output files",
         metavar="<string>",
         required=True
         )
-    samples_parser.add_argument(
+    req_samples.add_argument(
         "-s", "--samples",
         help="Space delimited list of samples in order.\nIf replicates are included, indicate number in sample name to delineate.\nFor ribosome profiling, do not differentiate between footprint and RNA samples.",
         metavar="<string>",
         nargs="+",
         required=True
         )
+    #Optional arguments
     samples_parser.add_argument(
         "-p", "--program",
         help="Alignment software to be used to align reads to reference (default: %s)" % DEFAULT_PROGRAM,
         metavar="<HISAT2>, <STAR>",
-        default=DEFAULT_PROGRAM
+        default=DEFAULT_PROGRAM,
+        required=False
         )
 
     #Read trimming parameters
     read_parser = argparse.ArgumentParser(description='Shared read info', add_help=False)
+    #Optional arguments
     read_parser.add_argument(
         "--read_length_min",
         help="Minimum read length threshold to keep for reads (default: %s)" % DEFAULT_READ_MIN,
         metavar="<int>",
-        default=DEFAULT_READ_MIN
+        default=DEFAULT_READ_MIN,
+        required=False
         )
     read_parser.add_argument(
         "--read_length_max",
         help="Maximum read length threshold to keep for reads (default: %s)" % DEFAULT_READ_MAX,
         metavar="<int>",
-        default=DEFAULT_READ_MAX
+        default=DEFAULT_READ_MAX,
+        required=False
         )
     read_parser.add_argument(
         "--read_quality",
         help="PHRED read quality threshold (default: %s)" % DEFAULT_READ_QUALITY,
         metavar="<int>",
-        default=DEFAULT_READ_QUALITY
+        default=DEFAULT_READ_QUALITY,
+        required=False
         )
     read_parser.add_argument(
         "--platform",
         help="Sequencing platform used (default: %s)" % DEFAULT_PLATFORM,
         metavar="<SANGER>, <ILLUMINA>",
-        default=DEFAULT_PLATFORM
+        default=DEFAULT_PLATFORM,
+        required=False
         )
 
     #Count information parameters
     count_parser = argparse.ArgumentParser(description='Shared count info', add_help=False)
+    #Optional arguments
     count_parser.add_argument(
         "--full_genome",
         help="Select this option to map reads to full genome. If false, will not map to first 45 nt of all transcripts for ribosome profiling <riboseq>, or will just map to transcripts for <rnaseq> (it is recommended to NOT include this option as ribosome profiling data for this region is often unreliable\nSpecify as False if running [align] with non-Ribosome Profiling data",
-        action='store_true'
+        action='store_true',
+        required=False
         )
     count_parser.add_argument(
         "--count_cutoff",
         help="Minimum counts threshold. Will remove any row in the final count tables if any sample does not meet this cutoff threshold",
-        metavar="<int>"
+        metavar="<int>",
+        required=False
         )
 
     #Adaptor information parameters
     adaptor_parser = argparse.ArgumentParser(description='Shared adaptors info', add_help=False)
-    adaptor_parser.add_argument(
+    #Required arguments
+    req_adaptor = adaptor_parser.add_argument_group('required arguments')
+    req_adaptor.add_argument(
         "-a", "--adaptor",
-        help="Sequence of 3' linker (only supports one 3' linker currently) (default: %s)" % DEFAULT_LINKER,
+        help="Sequence of 3' linker (only supports one 3' linker currently) (default: %s). If no adaptor was used, specify 'None'" % DEFAULT_LINKER,
         metavar="<string>",
         default=DEFAULT_LINKER,
         required=True
@@ -236,13 +253,13 @@ def get_arguments(args, __version__):
 
     #RIBOSEQ subparser program
     riboseq_parser = subparser.add_parser('riboseq', description='Ribosome Profiling Pipeline', parents=[files_parser, samples_parser, read_parser, adaptor_parser, count_parser])
+    #Optional arguments
     riboseq_parser.add_argument(
         "-f", "--footprints_only",
         help="Select this option if ONLY providing raw footprint sequence data",
         action='store_true',
         default=False
         )
-    #options arguments
     riboseq_parser.add_argument(
         "--min_overlap",
         help="Minimum number of bases that must match on a side to combine sequences for rrna_prober",
@@ -254,6 +271,7 @@ def get_arguments(args, __version__):
 
     #RNASEQ subparser program
     rnaseq_parser = subparser.add_parser('rnaseq', description='RNAseq Pipeline', parents=[files_parser, samples_parser, read_parser, adaptor_parser, count_parser])
+    #Optional arguments
     rnaseq_parser.add_argument(
         "--replicates",
         help="Select this option if samples are replicates (do not use if 3+ replicates). Make sure when passing the argument to list samples these are sorted so replicates are next to each other in this list",
@@ -266,7 +284,9 @@ def get_arguments(args, __version__):
 
     #ALIGN subparser program
     align_parser = subparser.add_parser('align', description='Alignment submodule', parents=[files_parser, samples_parser, count_parser])
-    align_parser.add_argument(
+    #Required arguments
+    req_align = align_parser.add_argument_group('required arguments')
+    req_align.add_argument(
         "-t", "--type",
         help="Sequencing type -- ribosome profiling <riboseq> or single-end short read sequence data <rnaseq>",
         required=True,
@@ -275,24 +295,26 @@ def get_arguments(args, __version__):
 
     #ALIGN subparser program
     quality_parser = subparser.add_parser('quality', description='Quality control submodule')
-    #required arguments
-    quality_parser.add_argument(
+    #Required arguments
+    req_quality = quality_parser.add_argument_group('required arguments')
+    req_quality.add_argument(
         "-i", "--input",
         help="Input table (must be .csv file) of raw counts",
         required=True,
         type=lambda file:check_csv(file)
         )
-    quality_parser.add_argument(
+    req_quality.add_argument(
         "-o", "--output",
         help="Specify full PATH to output directory",
         required=True
         )
-    quality_parser.add_argument(
+    req_quality.add_argument(
         "-t", "--type",
         help="Sequencing type -- ribosome profiling <riboseq> or single-end short read sequence data <rnaseq>",
         required=True,
         metavar="<riboseq>, <rnaseq>"
         )
+    #Optional arguments
     quality_parser.add_argument(
         "--replicates",
         help="Select this option if samples are replicates (do not use if 3+ replicates). Make sure when passing the argument to list samples these are sorted so replicates are next to each other in this list",
@@ -305,21 +327,22 @@ def get_arguments(args, __version__):
 
     #RRNA PROBER subparser program
     probe_parser = subparser.add_parser('rrna_prober', description='rRNA prober submodule')
-    #required arguments
-    probe_parser.add_argument(
+    #Required arguments
+    req_probe = probe_parser.add_argument_group('required arguments')
+    req_probe.add_argument(
         "-i", "--input",
         help="Space delimited list of zipped files",
         metavar="<string>",
         nargs="+",
         required=True
         )
-    probe_parser.add_argument(
+    req_probe.add_argument(
         "-o", "--output",
         help="Output file name to write output to",
         metavar="<string>",
         required=True
         )
-    #options arguments
+    #Optional arguments
     probe_parser.add_argument(
         "--min_overlap",
         help="Minimum number of bases that must match on a side to combine sequences",
@@ -331,34 +354,37 @@ def get_arguments(args, __version__):
 
     #GENE/LENGTH DICTIONARY subparser program
     dict_parser = subparser.add_parser('gene_dictionary', description='Gene name/RPKM conversion submodule')
-    #required arguments
-    dict_parser.add_argument(
+    #Required arguments
+    req_dict = dict_parser.add_argument_group('required arguments')
+    req_dict.add_argument(
         "-i", "--input",
         help="Input file (must be .csv file)",
         required=True,
         type=check_csv
         )
-    dict_parser.add_argument(
+    req_dict.add_argument(
         "-o", "--output",
         help="Output file prefix",
         required=True
         )
-    dict_parser.add_argument(
+    req_dict.add_argument(
         "-r", "--reference",
         help="Input dictionary (must be .csv file, no headers, see ribopipe --help for more information)",
         required=True,
         type=check_csv
         )
-    dict_parser.add_argument(
+    req_dict.add_argument(
         "-c", "--conversion",
         help="Type of conversion to run",
         required=True,
         metavar="<common>, <common_rpkm>, <rpkm>"
         )
+    #Optional arguments
     dict_parser.add_argument(
         "--te_convert",
         help="Provide this flag if you want your count table to be normalized for translation efficiency. Only valid with --conversion <system2commonName_rpkm>, <system2rpkm>",
-        action='store_true'
+        action='store_true',
+        required=False
         )
     dict_parser.add_argument(
         "-s","--samples",
@@ -370,34 +396,38 @@ def get_arguments(args, __version__):
 
     #DESeq2 module
     de_parser = subparser.add_parser('diffex', description='Run DESeq2 (differential expression analysis) with raw count table and sample_description table')
-    #required arguments
-    de_parser.add_argument(
+    #Required arguments
+    req_de = de_parser.add_argument_group('required arguments')
+    req_de.add_argument(
         "-i", "--input",
         help="Input file -- raw count table (must be .csv file)",
         required=True,
         type=lambda file:check_csv(file)
         )
-    de_parser.add_argument(
+    req_de.add_argument(
         "-o", "--output",
         help="Output file prefix",
         required=True
         )
-    de_parser.add_argument(
-        "-d", "--descriptions",
-        help="Add common names, descriptions, or other information to DESeq output table (must be a .csv file, see ribopipe --help for more information)",
-        metavar="<str>",
-        type=check_csv
-        )
-    de_parser.add_argument(
-        "--replicates",
-        help="Select this option if samples are replicates",
-        action='store_true'
-        )
-    de_parser.add_argument(
+    req_de.add_argument(
         "--type",
         help="Select this option if samples are replicates",
         required=True,
         metavar="<riboseq>, <rnaseq>"
+        )
+    #Optional arguments
+    de_parser.add_argument(
+        "-d", "--descriptions",
+        help="Add common names, descriptions, or other information to DESeq output table (must be a .csv file, see ribopipe --help for more information)",
+        metavar="<str>",
+        type=check_csv,
+        required=False
+        )
+    de_parser.add_argument(
+        "--replicates",
+        help="Select this option if samples are replicates",
+        action='store_true',
+        required=False
         )
     de_parser.add_argument(
         "--custom",
