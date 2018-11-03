@@ -94,7 +94,7 @@ def main(args=None):
                         probe_list.append(dir_dict['postqcdir'] + x)
 
             probe_out = rrna_prober(probe_list, args_dict['min_overlap']) #use inputDir to get FASTQC files and output to outputDir/analysis
-            with open(dir_dict['highlights'] + args_dict['output']+ '.txt', "w") as text_file:
+            with open(dir_dict['highlights'] + 'rrna_prober_output.txt', "w") as text_file:
                 print(probe_out, file=text_file)
 
         #Run ASSEMBLE
@@ -187,7 +187,7 @@ def main(args=None):
 
         #Run rrna_prober, output to outputDir
         probe_out = rrna_prober(probe_list, args_dict['min_overlap']) #use inputDir to get FASTQC files and output to outputDir/analysis
-        with open(args_dict['output']+ '.txt', "w") as text_file:
+        with open(args_dict['output']+ 'rrna_prober_output.txt', "w") as text_file:
             print(probe_out, file=text_file)
 
     #Run gene name/RPKM conversion tool
