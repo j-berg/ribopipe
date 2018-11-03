@@ -83,7 +83,7 @@ def compile_images(directory, plotdir, summary_name):
                             data1, data2 = line.split("\t")
 
                             if data2.endswith('\n'):
-                                data2 = data2[:-2]
+                                data2 = data2.strip()
 
                             try:
                                 df.loc[x] = [int(data1),float(data2)]
