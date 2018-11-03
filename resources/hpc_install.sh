@@ -5,7 +5,7 @@
 #or
 #bash local_install.sh <HISAT2>,<STAR> <yeast>,<mouse>,<human> version github_tag
 
-echo "Do you want to clone the git repository or download a version of RiboPipe?"
+echo "Do you want to <clone> the git repository or download a <version> of RiboPipe?"
 read action
 
 if [$action == 'clone']; then
@@ -17,6 +17,7 @@ if [$action == 'version']; then
   read tag
   wget https://github.com/j-berg/ribopipe/archive/$tag.zip
   unzip ribopipe-${tag:1}.zip
+  rm ribopipe-${tag:1}.zip
   cd ribopipe-${tag:1}/ribopipe/references
 
 echo "What program do you want to use to align? Options: 'hisat2' or 'star' (case sensitive)"
@@ -31,3 +32,22 @@ cd ../../
 module load python3
 python setup.py install --prefix ~/.local
 cd ../
+
+#Install htseq
+echo "Do you want to <clone> the git repository or download <version> 0.11.0 of HTSeq?"
+read action2
+
+if [$action == 'clone']; then
+  git clone https://github.com/simon-anders/htseq.git
+  cd htseq
+  python setup.py install --prefix ~/.local
+  cd ../
+
+if [$action == 'version']; then
+  echo "Fetching HTSeq v0.11.0"
+  wget https://github.com/simon-anders/htseq/archive/release_0.11.0.zip
+  unzip htseq-release_0.11.0.zip
+  rm htseq-release_0.11.0.zip
+  cd htseq-release_0.11.0
+  python setup.py install --prefix ~/.local
+  cd ../
