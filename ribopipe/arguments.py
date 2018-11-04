@@ -250,7 +250,7 @@ def get_arguments(args, __version__):
         )
 
     #RNASEQ subparser program
-    rnaseq_parser = subparser.add_parser('rnaseq', description='RNAseq Pipeline')
+    rnaseq_parser = subparser.add_parser('rnaseq', description='RNAseq Pipeline', add_help=False)
     #Required arguments
     rnaseq_reqs = rnaseq_parser.add_argument_group('required arguments')
     rnaseq_reqs.add_argument(
@@ -291,6 +291,11 @@ def get_arguments(args, __version__):
         )
     #Optional arguments
     rnaseq_opts = rnaseq_parser.add_argument_group('optional arguments')
+    rnaseq_opts.add_argument(
+        "-h", "--help",
+        action="help",
+        help="show this help message and exit"
+        )
     rnaseq_opts.add_argument(
         "-m", "--max_processors",
         help="Number of max processors pipeline can use for multiprocessing tasks (default: No limit)",
@@ -353,7 +358,7 @@ def get_arguments(args, __version__):
         )
 
     #TRIM subparser program
-    trim_parser = subparser.add_parser('trim', description='Quality trimming submodule')
+    trim_parser = subparser.add_parser('trim', description='Quality trimming submodule', add_help=False)
     #Required arguments
     trim_reqs = trim_parser.add_argument_group('required arguments')
     trim_reqs.add_argument(
@@ -375,6 +380,11 @@ def get_arguments(args, __version__):
         )
     #Optional arguments
     trim_opts = trim_parser.add_argument_group('optional arguments')
+    trim_opts.add_argument(
+        "-h", "--help",
+        action="help",
+        help="show this help message and exit"
+        )
     trim_opts.add_argument(
         "-m", "--max_processors",
         help="Number of max processors pipeline can use for multiprocessing tasks (default: No limit)",
@@ -412,7 +422,7 @@ def get_arguments(args, __version__):
         )
 
     #ALIGN subparser program
-    align_parser = subparser.add_parser('align', description='Alignment submodule')
+    align_parser = subparser.add_parser('align', description='Alignment submodule', add_help=False)
     #Required arguments
     align_reqs = align_parser.add_argument_group('required arguments')
     align_reqs.add_argument(
@@ -453,6 +463,11 @@ def get_arguments(args, __version__):
     #Optional arguments
     align_opts = align_parser.add_argument_group('optional arguments')
     align_opts.add_argument(
+        "-h", "--help",
+        action="help",
+        help="show this help message and exit"
+        )
+    align_opts.add_argument(
         "-m", "--max_processors",
         help="Number of max processors pipeline can use for multiprocessing tasks (default: No limit)",
         metavar="<int>",
@@ -480,7 +495,7 @@ def get_arguments(args, __version__):
         )
 
     #QUALTIY subparser program
-    quality_parser = subparser.add_parser('quality', description='Quality control submodule')
+    quality_parser = subparser.add_parser('quality', description='Quality control submodule', add_help=False)
     #Required arguments
     quality_reqs = quality_parser.add_argument_group('required arguments')
     quality_reqs.add_argument(
@@ -503,6 +518,11 @@ def get_arguments(args, __version__):
     #Optional arguments
     quality_opts = quality_parser.add_argument_group('optional arguments')
     quality_opts.add_argument(
+        "-h", "--help",
+        action="help",
+        help="show this help message and exit"
+        )
+    quality_opts.add_argument(
         "--replicates",
         help="Select this option if samples are replicates (do not use if 3+ replicates). Make sure when passing the argument to list samples these are sorted so replicates are next to each other in this list",
         action='store_true',
@@ -513,7 +533,7 @@ def get_arguments(args, __version__):
     local_install_parser = subparser.add_parser('local_install', description='Local install submodule. Install or update dependencies required for RiboPipe')
 
     #RRNA PROBER subparser program
-    probe_parser = subparser.add_parser('rrna_prober', description='rRNA prober submodule')
+    probe_parser = subparser.add_parser('rrna_prober', description='rRNA prober submodule', add_help=False)
     #Required arguments
     probe_reqs = probe_parser.add_argument_group('required arguments')
     probe_reqs.add_argument(
@@ -532,6 +552,11 @@ def get_arguments(args, __version__):
     #Optional arguments
     probe_opts = probe_parser.add_argument_group('optional arguments')
     probe_opts.add_argument(
+        "-h", "--help",
+        action="help",
+        help="show this help message and exit"
+        )
+    probe_opts.add_argument(
         "--min_overlap",
         help="Minimum number of bases that must match on a side to combine sequences",
         metavar="<integer>",
@@ -541,7 +566,7 @@ def get_arguments(args, __version__):
         )
 
     #GENE/LENGTH DICTIONARY subparser program
-    dict_parser = subparser.add_parser('gene_dictionary', description='Gene name/RPKM conversion submodule')
+    dict_parser = subparser.add_parser('gene_dictionary', description='Gene name/RPKM conversion submodule', add_help=False)
     #Required arguments
     dict_reqs = dict_parser.add_argument_group('required arguments')
     dict_reqs.add_argument(
@@ -570,6 +595,11 @@ def get_arguments(args, __version__):
     #Optional arguments
     dict_opts = dict_parser.add_argument_group('optional arguments')
     dict_opts.add_argument(
+        "-h", "--help",
+        action="help",
+        help="show this help message and exit"
+        )
+    dict_opts.add_argument(
         "--te_convert",
         help="Provide this flag if you want your count table to be normalized for translation efficiency. Only valid with --conversion <system2commonName_rpkm>, <system2rpkm>",
         action='store_true',
@@ -584,7 +614,7 @@ def get_arguments(args, __version__):
         )
 
     #DESeq2 module
-    de_parser = subparser.add_parser('diffex', description='Run DESeq2 (differential expression analysis) with raw count table and sample_description table')
+    de_parser = subparser.add_parser('diffex', description='Run DESeq2 (differential expression analysis) with raw count table and sample_description table', add_help=False)
     #Required arguments
     de_reqs = de_parser.add_argument_group('required arguments')
     de_reqs.add_argument(
@@ -606,6 +636,11 @@ def get_arguments(args, __version__):
         )
     #Optional arguments
     de_opts = de_parser.add_argument_group('optional arguments')
+    de_opts.add_argument(
+        "-h", "--help",
+        action="help",
+        help="show this help message and exit"
+        )
     de_opts.add_argument(
         "-d", "--descriptions",
         help="Add common names, descriptions, or other information to DESeq output table (must be a .csv file, see ribopipe --help for more information)",
