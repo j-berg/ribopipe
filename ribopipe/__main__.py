@@ -99,7 +99,16 @@ def main(args=None):
 
         #Run ASSEMBLE
         msg_align()
-        align(args_dict, dir_dict, dir_dict['trimdir'])
+        #Prep transcripts reference to pull from
+        if args.cmd == 'riboseq':
+            transcripts = 'transcripts_45.gtf'
+            transcripts_flat = 'transcripts_refFlat_45.txt'
+        elif args.cmd == 'rnaseq':
+            transcripts = 'transcripts.gtf'
+            transcripts_flat = 'transcripts_refFlat.txt'
+        else:
+            sys.exit(1)
+        align(args_dict, dir_dict, dir_dict['trimdir'], transcripts)
 
         #Run CATENATE COUNTS
         msg_count()
@@ -112,7 +121,7 @@ def main(args=None):
         if (args.cmd == 'riboseq' and 'footprints_only' in args_dict and args_dict['footprints_only'] == False) or (args.cmd == 'rnaseq' and 'replicates' in args_dict and args_dict['replicates'] == True):
             quality(df, dir_dict['highlights'], args.cmd)
 
-        meta_analysis(args_dict, dir_dict)
+        meta_analysis(args_dict, dir_dict, transcripts_flat)
 
         #Output metrics to csv in outputDir
 

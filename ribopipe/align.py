@@ -34,15 +34,9 @@ FUNCTIONS
 def assemble(args):
 
     #Unpackage file data and check which transcript ref files to use
-    file, dir_dict, args_dict = args[0], args[1], args[2]
+    file, dir_dict, args_dict, transcripts = args[0], args[1], args[2], args[3]
 
-    #Prep transcripts reference to pull from
-    if 'riboseq' in args_dict.values():
-        transcripts = 'transcripts_45.gtf'
-    elif 'rnaseq' in args_dict.values():
-        transcripts = 'transcripts.gtf'
-    else:
-        sys.exit(1)
+
 
     #Map to full genome, do ncrna depletion
     if 'full_genome' in args_dict and args_dict['full_genome'] == True:
@@ -90,11 +84,11 @@ def assemble(args):
 """
 MAIN
 """
-def align(args_dict, dir_dict, directory):
+def align(args_dict, dir_dict, directory, transcripts):
 
     #Make list of files to process alignment and package input data for multiprocessing
     align_list = file_list(directory)
-    args_iter = ([file, dir_dict, args_dict] for file in align_list)
+    args_iter = ([file, dir_dict, args_dict, transcripts] for file in align_list)
 
     #Execute multiprocessed alignment of files
     with concurrent.futures.ProcessPoolExecutor(max_workers=args_dict['max_processors']) as executor:

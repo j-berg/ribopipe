@@ -228,18 +228,10 @@ def quality(df, plotdir, type):
 def meta_run(args):
 
     #Get variables
-    file, dir_dict, args_dict = args[0], args[1], args[2]
-
-    #Prep transcripts reference to pull from
-    if 'riboseq' in args_dict.values():
-        transcripts = 'transcripts_refFlat_45.txt'
-    elif 'rnaseq' in args_dict.values():
-        transcripts = 'transcripts_refFlat.txt'
-    else:
-        sys.exit(1)
+    file, dir_dict, args_dict, transcripts_flat = args[0], args[1], args[2], args[3]
 
     #Perform meta ORF analysis for each file
-    os.system("picard CollectRnaSeqMetrics QUIET=true REF_FLAT=" + dir_dict['reference'] + transcripts + " STRAND_SPECIFICITY=NONE INPUT=" + dir_dict['bamdir'] + file + " OUTPUT=" + dir_dict['picarddir'] + file[:-4] + "_rna_metrics")
+    os.system("picard CollectRnaSeqMetrics QUIET=true REF_FLAT=" + dir_dict['reference'] + transcripts_flat + " STRAND_SPECIFICITY=NONE INPUT=" + dir_dict['bamdir'] + file + " OUTPUT=" + dir_dict['picarddir'] + file[:-4] + "_rna_metrics")
 
     #Perform periodicity analysis for each file
     if 'type' in args_dict and args_dict['type'] == 'riboseq':
@@ -248,11 +240,11 @@ def meta_run(args):
 """
 MAIN
 """
-def meta_analysis(args_dict, dir_dict):
+def meta_analysis(args_dict, dir_dict, transcripts_flat):
 
     #Prepare variables
     bam_files = file_list(dir_dict['bamdir'])
-    args_iter = ([file, dir_dict, args_dict] for file in bam_files if file.endswith('.bam'))
+    args_iter = ([file, dir_dict, args_dict, transcripts_flat] for file in bam_files if file.endswith('.bam'))
 
     #Run each file through the meta-analysis suite/PARALLEL
     with concurrent.futures.ProcessPoolExecutor() as executor:
