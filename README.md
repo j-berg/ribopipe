@@ -1,6 +1,6 @@
 <p><img src="https://github.com/j-berg/ribopipe/blob/master/ribopipe_logo_v4.png" class="center" width="17%" height="17%" align="right">
 
-<b><u>RiboPipe v0.1.4-beta</u></b>   
+<b><u>RiboPipe v0.1.5-beta</u></b>   
 <i>A Flexible Sequence Assembly and Analysis Pipeline</i>  
 
 Author: Jordan A Berg   
