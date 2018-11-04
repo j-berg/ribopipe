@@ -102,7 +102,14 @@ Watch this <a href=""><b>video</b></a> for a walkthrough of how to use Ribopipe.
       ```linux
       sbatch hpc_run_template.sh
       ```
-
+    If you want the slurm output file to be sent to the SLURM directory to avoid storage space issues on your interactive node, then in the
+    ```linux
+    #SBATCH -o slurmjob-%j
+    ``` line, replace it with the path to your SLURM directory:
+    ```linux
+    #SBATCH -o /scratch/general/lustre/INPUT_USER_ID_HERE/slurmjob-%j
+    ```   
+    
 <b><u>RUNNING THE PROGRAM:</u></b>   
 1)  Download your raw sequence data and place in a folder -- this folder should contain all the sequence data and nothing else  
 2)  Make sure files follow a pattern naming scheme. For example, if you had 3 genetic backgrounds of ribosome profiling data, the naming scheme would go as follows:  
