@@ -102,11 +102,7 @@ Watch this <a href=""><b>video</b></a> for a walkthrough of how to use Ribopipe.
       ```linux
       sbatch hpc_run_template.sh
       ```
-    If you want the slurm output file to be sent to the SLURM directory to avoid storage space issues on your interactive node, then in the
-    ```linux
-    #SBATCH -o slurmjob-%j
-    ```
-    line, replace it with the path to your SLURM directory:
+    If you want the slurm output file to be sent to the SLURM directory to avoid storage space issues on your interactive node, then in the `#SBATCH -o slurmjob-%j` line, replace it with the path to your SLURM directory:
     ```linux
     #SBATCH -o /scratch/general/lustre/INPUT_USER_ID_HERE/slurmjob-%j
     ```   
