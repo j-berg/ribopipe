@@ -1,5 +1,5 @@
 {% set name = "ribopipe" %}
-{% set version = "v0.1.3beta" %}
+{% set version = "v0.1.5beta" %}
 {% set sha256 = "5dd3744495b8ee72b706e632b6cb9e860a6c7434cdc5b4be4cb4b05ade1f5b67" %}
 
 package:
