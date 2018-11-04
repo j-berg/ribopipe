@@ -99,8 +99,6 @@ def main(args=None):
 
         #Run ASSEMBLE
         msg_align()
-        if args.cmd == 'rnaseq':
-            args_dict['truncate_transcripts'] = False
         align(args_dict, dir_dict, dir_dict['trimdir'])
 
         #Run CATENATE COUNTS
