@@ -134,7 +134,7 @@ def get_arguments(args, __version__):
     subparser = parser.add_subparsers(title='Sub-modules', description='Choose one of the following:', dest='cmd')
 
     #RIBOSEQ subparser program
-    riboseq_parser = subparser.add_parser('riboseq', description='Ribosome Profiling Pipeline')
+    riboseq_parser = subparser.add_parser('riboseq', description='Ribosome Profiling Pipeline', add_help=False)
     #Required arguments
     riboseq_reqs = riboseq_parser.add_argument_group('required arguments')
     riboseq_reqs.add_argument(
@@ -175,6 +175,11 @@ def get_arguments(args, __version__):
         )
     #Optional arguments
     riboseq_opts = riboseq_parser.add_argument_group('optional arguments')
+    riboseq_opts.add_argument(
+        "-h", "--help",
+        action="help",
+        help="show this help message and exit"
+        )
     riboseq_opts.add_argument(
         "-m", "--max_processors",
         help="Number of max processors pipeline can use for multiprocessing tasks (default: No limit)",
