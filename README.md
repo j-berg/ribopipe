@@ -26,7 +26,7 @@ See this <a href="https://www.ncbi.nlm.nih.gov/pubmed/28579404">paper</a> for a 
 Watch this <a href=""><b>video</b></a> for a walkthrough of how to use Ribopipe.
 
 <b><u>LOCAL INSTALLATION:</u></b>   
-1)  Make sure Python3, git, and wget are installed (we recommend version <a href='https://www.python.org/downloads/release/python-364/'>3.5.0</a> or higher).   
+1)  Make sure Python3 (we recommend version <a href='https://www.python.org/downloads/release/python-364/'>3.5.0</a> or higher), git, and wget are installed.   
 2)  Download <a href='https://www.anaconda.com/download/#macos'>Conda</a>, a package manager, for your operating system. Double click the ```.pkg``` file if on MacOS, the ```.exe``` file on Windows, or follow these <a href='https://conda.io/docs/user-guide/install/linux.html#install-linux-silent'>instructions</a> on Linux.    
 3)  Execute the following lines of code in <a href="https://www.imore.com/how-use-terminal-mac-when-you-have-no-idea-where-start">Terminal</a> (on Mac, open Spotlight and type 'Terminal'):    
       ```linux
