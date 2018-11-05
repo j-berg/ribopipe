@@ -31,7 +31,6 @@ from .make_directories import *
 from .rrna_prober import rrna_prober
 from .trim import trim
 from .align import align
-from .install import *
 from .format import format
 from .normalize import *
 from .quality import quality, meta_analysis
@@ -64,7 +63,7 @@ def main(args=None):
     """
     #Install dependencies for supercomputing use
     if args.cluster == True:
-        node()
+        #Run bash script
 
     #Run sequencing pipelines
     if args.cmd == 'riboseq' or args.cmd == 'rnaseq':
@@ -218,7 +217,8 @@ def main(args=None):
 
     #Run local install of dependencies
     elif args.cmd == 'local_install':
-        local()
+
+        #Run bash script
         sys.exit(1)
 
     #Display submodule error information
