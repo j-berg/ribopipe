@@ -33,7 +33,7 @@ def local():
     #INSTALL DEPENDENCIES
     print("THE FOLLOWING MAY ASK YOU FOR YOUR PASSWORD -- THIS IS IN ORDER TO INSTALL THE NECESSARY DEPENDENCIES WITH ADMIN PERMISSIONS.")
     #os.system("sudo conda install -y -c bioconda setuptools=40.4.3 fastqc=0.11.7 fastx_toolkit=0.0.14 htseq=0.9.1 picard=2.18.3 samtools=1.7 star=2.6.1b bedtools=2.27.1 deeptools=3.1.3 scipy=1.0.0 plastid=0.4.8 pandas=0.22.0 numpy=1.8.0 matplotlib=2.2.0 seaborn=0.9.0")
-    os.system("sudo conda install -y -c bioconda setuptools fastqc fastx_toolkit htseq picard samtools star bedtools deeptools scipy plastid pandas numpy matplotlib seaborn")
+    os.system("sudo conda install -y -c bioconda setuptools fastqc fastx_toolkit htseq picard samtools hisat2 star bedtools deeptools scipy plastid pandas numpy matplotlib seaborn")
     sys.exit()
 
 #Install dependencies on supercomputer using module loading

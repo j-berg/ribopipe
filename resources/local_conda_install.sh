@@ -16,4 +16,7 @@ chmod 700 Anaconda3-5.3.0-Linux-x86_64.sh
 ./Anaconda3-5.3.0-Linux-x86_64.sh
 
 #This will launch an interactive script. Follow along, add conda to $PATh via .bashrc
-#Exit out of terminal and log in again 
+#Exit out of terminal and log in again
+
+#Install dependencies
+conda install -y -c bioconda setuptools fastqc fastx_toolkit htseq picard samtools hisat2 star bedtools deeptools scipy plastid pandas numpy matplotlib seaborn pysam=0.14
