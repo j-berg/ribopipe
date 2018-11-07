@@ -42,22 +42,22 @@ mkdir $SCRDIR/out_dang_berger
 #catenate raw data if needed
 cd $SCRDIR/raw_dang_berger
 
-prefetch -v
+prefetch -v SRR1066660
 fastq-dump --outdir ./ $NCBI/ncbi/public/sra/SRR1066660.sra
 mv SRR1066660.fastq SRR1066660_WT_CR_B.fastq
 rm $NCBI/ncbi/public/sra/SRR1066660.sra
 
-prefetch -v
+prefetch -v SRR1066659
 fastq-dump --outdir ./ $NCBI/ncbi/public/sra/SRR1066659.sra
 mv SRR1066659.fastq SRR1066659_WT_CR_A.fastq
 rm $NCBI/ncbi/public/sra/SRR1066659.sra
 
-prefetch -v
+prefetch -v SRR1066658
 fastq-dump --outdir ./ $NCBI/ncbi/public/sra/SRR1066658.sra
 mv SRR1066658.fastq SRR1066658_WT_NR_B.fastq
 rm $NCBI/ncbi/public/sra/SRR1066658.sra
 
-prefetch -v
+prefetch -v SRR1066657
 fastq-dump --outdir ./ $NCBI/ncbi/public/sra/SRR1066657.sra
 mv SRR1066657.fastq SRR1066657_WT_NR_A.fastq
 rm $NCBI/ncbi/public/sra/SRR1066657.sra
