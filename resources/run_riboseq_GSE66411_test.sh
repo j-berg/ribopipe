@@ -219,4 +219,4 @@ ribopipe riboseq -i $SCRDIR/raw_ingolia/ -o $SCRDIR/out_ingolia/ -r yeast -e ing
   e_WT_DED1_1_37deg f_WT_DED1_2_37deg g_ded1_ts_1_37deg h_ded_ts_2_37deg \
   i_WT_TIF1_1_30deg j_WT_TIF1_2_30deg k_tif1_ts_1_30deg l_tif1_ts_2_30deg \
   m_WT_TIF1_1_37deg n_WT_TIF1_2_37deg o_tif1_ts_1_37deg p_tif1_ts_2_37deg \
-  -p HISAT2 -a CTGTAGGCACCATCAAT --platform ILLUMINA
+  -p HISAT2 -a CTGTAGGCACCATCAAT --platform ILLUMINA --count_cutoff 128
