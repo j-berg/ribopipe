@@ -22,7 +22,7 @@
 #Commands to download and run short read SE RNAseq data through RiboPipe (used for figure 4)
 
 #Path to ncbi/public/sra where sra-tools prefetch saves files
-USER=$1
+NCBI=$1
 
 #Download SRA Toolkit
 #conda install -c bioconda sra-tools
@@ -43,24 +43,24 @@ mkdir $SCRDIR/out_dang_berger
 cd $SCRDIR/raw_dang_berger
 
 prefetch -v
-fastq-dump --outdir ./ $USER/ncbi/public/sra/SRR1066660.sra
+fastq-dump --outdir ./ $NCBI/ncbi/public/sra/SRR1066660.sra
 mv SRR1066660.fastq SRR1066660_WT_CR_B.fastq
-rm $USER/ncbi/public/sra/SRR1066660.sra
+rm $NCBI/ncbi/public/sra/SRR1066660.sra
 
 prefetch -v
-fastq-dump --outdir ./ $USER/ncbi/public/sra/SRR1066659.sra
+fastq-dump --outdir ./ $NCBI/ncbi/public/sra/SRR1066659.sra
 mv SRR1066659.fastq SRR1066659_WT_CR_A.fastq
-rm $USER/ncbi/public/sra/SRR1066659.sra
+rm $NCBI/ncbi/public/sra/SRR1066659.sra
 
 prefetch -v
-fastq-dump --outdir ./ $USER/ncbi/public/sra/SRR1066658.sra
+fastq-dump --outdir ./ $NCBI/ncbi/public/sra/SRR1066658.sra
 mv SRR1066658.fastq SRR1066658_WT_NR_B.fastq
-rm $USER/ncbi/public/sra/SRR1066658.sra
+rm $NCBI/ncbi/public/sra/SRR1066658.sra
 
 prefetch -v
-fastq-dump --outdir ./ $USER/ncbi/public/sra/SRR1066657.sra
+fastq-dump --outdir ./ $NCBI/ncbi/public/sra/SRR1066657.sra
 mv SRR1066657.fastq SRR1066657_WT_NR_A.fastq
-rm $USER/ncbi/public/sra/SRR1066657.sra
+rm $NCBI/ncbi/public/sra/SRR1066657.sra
 
 #run script --- add directory of raw data
 #Trimming Universal miRNA cloning linker (New England Biolabs) as specified in linked protocol (Ingolia,2010)

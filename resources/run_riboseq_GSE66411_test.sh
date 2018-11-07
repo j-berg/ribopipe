@@ -22,7 +22,7 @@
 #Commands to download and run Ribosome Profiling data through RiboPipe (used for figure 3)
 
 #Path to ncbi/public/sra where sra-tools prefetch saves files
-USER=$1
+NCBI=$1
 
 #Download SRA Toolkit
 #conda install -c bioconda sra-tools
@@ -44,169 +44,169 @@ cd $SCRDIR/raw_ingolia
 
 
 prefetch -v SRR1822476
-fastq-dump --outdir ./ $USER/ncbi/public/sra/SRR1822476.sra
+fastq-dump --outdir ./ $NCBI/ncbi/public/sra/SRR1822476.sra
 mv SRR1822476.fastq GSE66411_p_tif1-ts_replicate_2_37_deg_RNA.fastq
-rm $USER/ncbi/public/sra/SRR1822476.sra
+rm $NCBI/ncbi/public/sra/SRR1822476.sra
 
 prefetch -v SRR1822475
-fastq-dump --outdir ./ $USER/ncbi/public/sra/SRR1822475.sra
+fastq-dump --outdir ./ $NCBI/ncbi/public/sra/SRR1822475.sra
 mv SRR1822475.fastq GSE66411_o_tif1-ts_replicate_1_37_deg_RNA.fastq
-rm $USER/ncbi/public/sra/SRR1822475.sra
+rm $NCBI/ncbi/public/sra/SRR1822475.sra
 
 prefetch -v SRR1822474
-fastq-dump --outdir ./ $USER/ncbi/public/sra/SRR1822474.sra
+fastq-dump --outdir ./ $NCBI/ncbi/public/sra/SRR1822474.sra
 mv SRR1822474.fastq GSE66411_n_wild-type_TIF1_replicate_2_37_deg_RNA.fastq
-rm $USER/ncbi/public/sra/SRR1822474.sra
+rm $NCBI/ncbi/public/sra/SRR1822474.sra
 
 prefetch -v SRR1822473
-fastq-dump --outdir ./ $USER/ncbi/public/sra/SRR1822473.sra
+fastq-dump --outdir ./ $NCBI/ncbi/public/sra/SRR1822473.sra
 mv SRR1822473.fastq GSE66411_m_wild-type_TIF1_replicate_1_37_deg_RNA.fastq
-rm $USER/ncbi/public/sra/SRR1822473.sra
+rm $NCBI/ncbi/public/sra/SRR1822473.sra
 
 prefetch -v SRR1822472
-fastq-dump --outdir ./ $USER/ncbi/public/sra/SRR1822472.sra
+fastq-dump --outdir ./ $NCBI/ncbi/public/sra/SRR1822472.sra
 mv SRR1822472.fastq GSE66411_p_tif1-ts_replicate_2_37_deg_FP.fastq
-rm $USER/ncbi/public/sra/SRR1822472.sra
+rm $NCBI/ncbi/public/sra/SRR1822472.sra
 
 prefetch -v SRR1822471
-fastq-dump --outdir ./ $USER/ncbi/public/sra/SRR1822471.sra
+fastq-dump --outdir ./ $NCBI/ncbi/public/sra/SRR1822471.sra
 mv SRR1822471.fastq GSE66411_o_tif1-ts_replicate_1_37_deg_FP.fastq
-rm $USER/ncbi/public/sra/SRR1822471.sra
+rm $NCBI/ncbi/public/sra/SRR1822471.sra
 
 prefetch -v SRR1822470
-fastq-dump --outdir ./ $USER/ncbi/public/sra/SRR1822470.sra
+fastq-dump --outdir ./ $NCBI/ncbi/public/sra/SRR1822470.sra
 mv SRR1822470.fastq GSE66411_n_wild-type_TIF1_replicate_2_37_deg_FP.fastq
-rm $USER/ncbi/public/sra/SRR1822470.sra
+rm $NCBI/ncbi/public/sra/SRR1822470.sra
 
 prefetch -v SRR1822469
-fastq-dump --outdir ./ $USER/ncbi/public/sra/SRR1822469.sra
+fastq-dump --outdir ./ $NCBI/ncbi/public/sra/SRR1822469.sra
 mv SRR1822469.fastq GSE66411_m_wild-type_TIF1_replicate_1_37_deg_FP.fastq
-rm $USER/ncbi/public/sra/SRR1822469.sra
+rm $NCBI/ncbi/public/sra/SRR1822469.sra
 
 
 prefetch -v SRR1822468
-fastq-dump --outdir ./ $USER/ncbi/public/sra/SRR1822468.sra
+fastq-dump --outdir ./ $NCBI/ncbi/public/sra/SRR1822468.sra
 mv SRR1822468.fastq GSE66411_l_tif1-ts_replicate_2_30_deg_RNA.fastq
-rm $USER/ncbi/public/sra/SRR1822468.sra
+rm $NCBI/ncbi/public/sra/SRR1822468.sra
 
 prefetch -v SRR1822467
-fastq-dump --outdir ./ $USER/ncbi/public/sra/SRR1822467.sra
+fastq-dump --outdir ./ $NCBI/ncbi/public/sra/SRR1822467.sra
 mv SRR1822467.fastq GSE66411_k_tif1-ts_replicate_1_30_deg_RNA.fastq
-rm $USER/ncbi/public/sra/SRR1822467.sra
+rm $NCBI/ncbi/public/sra/SRR1822467.sra
 
 prefetch -v SRR1822466
-fastq-dump --outdir ./ $USER/ncbi/public/sra/SRR1822466.sra
+fastq-dump --outdir ./ $NCBI/ncbi/public/sra/SRR1822466.sra
 mv SRR1822466.fastq GSE66411_j_wild-type_TIF1_replicate_2_30_deg_RNA.fastq
-rm $USER/ncbi/public/sra/SRR1822466.sra
+rm $NCBI/ncbi/public/sra/SRR1822466.sra
 
 prefetch -v SRR1822465
-fastq-dump --outdir ./ $USER/ncbi/public/sra/SRR1822465.sra
+fastq-dump --outdir ./ $NCBI/ncbi/public/sra/SRR1822465.sra
 mv SRR1822465.fastq GSE66411_i_wild-type_TIF1_replicate_1_30_deg_RNA.fastq
-rm $USER/ncbi/public/sra/SRR1822465.sra
+rm $NCBI/ncbi/public/sra/SRR1822465.sra
 
 prefetch -v SRR1822464
-fastq-dump --outdir ./ $USER/ncbi/public/sra/SRR1822464.sra
+fastq-dump --outdir ./ $NCBI/ncbi/public/sra/SRR1822464.sra
 mv SRR1822464.fastq GSE66411_l_tif1-ts_replicate_2_30_deg_FP.fastq
-rm $USER/ncbi/public/sra/SRR1822464.sra
+rm $NCBI/ncbi/public/sra/SRR1822464.sra
 
 prefetch -v SRR1822463
-fastq-dump --outdir ./ $USER/ncbi/public/sra/SRR1822463.sra
+fastq-dump --outdir ./ $NCBI/ncbi/public/sra/SRR1822463.sra
 mv SRR1822463.fastq GSE66411_k_tif1-ts_replicate_1_30_deg_FP.fastq
-rm $USER/ncbi/public/sra/SRR1822463.sra
+rm $NCBI/ncbi/public/sra/SRR1822463.sra
 
 prefetch -v SRR1822462
-fastq-dump --outdir ./ $USER/ncbi/public/sra/SRR1822462.sra
+fastq-dump --outdir ./ $NCBI/ncbi/public/sra/SRR1822462.sra
 mv SRR1822462.fastq GSE66411_j_wild-type_TIF1_replicate_2_30_deg_FP.fastq
-rm $USER/ncbi/public/sra/SRR1822462.sra
+rm $NCBI/ncbi/public/sra/SRR1822462.sra
 
 prefetch -v SRR1822461
-fastq-dump --outdir ./ $USER/ncbi/public/sra/SRR1822461.sra
+fastq-dump --outdir ./ $NCBI/ncbi/public/sra/SRR1822461.sra
 mv SRR1822461.fastq GSE66411_i_wild-type_TIF1_replicate_1_30_deg_FP.fastq
-rm $USER/ncbi/public/sra/SRR1822461.sra
+rm $NCBI/ncbi/public/sra/SRR1822461.sra
 
 
 
 prefetch -v SRR1822460
-fastq-dump --outdir ./ $USER/ncbi/public/sra/SRR1822460.sra
+fastq-dump --outdir ./ $NCBI/ncbi/public/sra/SRR1822460.sra
 mv SRR1822460.fastq GSE66411_h_ded1-ts_replicate_2_37_deg_RNA.fastq
-rm $USER/ncbi/public/sra/SRR1822460.sra
+rm $NCBI/ncbi/public/sra/SRR1822460.sra
 
 prefetch -v SRR1822459
-fastq-dump --outdir ./ $USER/ncbi/public/sra/SRR1822459.sra
+fastq-dump --outdir ./ $NCBI/ncbi/public/sra/SRR1822459.sra
 mv SRR1822459.fastq GSE66411_g_ded1-ts_replicate_1_37_deg_RNA.fastq
-rm $USER/ncbi/public/sra/SRR1822459.sra
+rm $NCBI/ncbi/public/sra/SRR1822459.sra
 
 prefetch -v SRR1822458
-fastq-dump --outdir ./ $USER/ncbi/public/sra/SRR1822458.sra
+fastq-dump --outdir ./ $NCBI/ncbi/public/sra/SRR1822458.sra
 mv SRR1822458.fastq GSE66411_f_wild-type_DED1_replicate_2_37_deg_RNA.fastq
-rm $USER/ncbi/public/sra/SRR1822458.sra
+rm $NCBI/ncbi/public/sra/SRR1822458.sra
 
 prefetch -v SRR1822457
-fastq-dump --outdir ./ $USER/ncbi/public/sra/SRR1822457.sra
+fastq-dump --outdir ./ $NCBI/ncbi/public/sra/SRR1822457.sra
 mv SRR1822457.fastq GSE66411_e_wild-type_DED1_replicate_1_37_deg_RNA.fastq
-rm $USER/ncbi/public/sra/SRR1822457.sra
+rm $NCBI/ncbi/public/sra/SRR1822457.sra
 
 prefetch -v SRR1822456
-fastq-dump --outdir ./ $USER/ncbi/public/sra/SRR1822456.sra
+fastq-dump --outdir ./ $NCBI/ncbi/public/sra/SRR1822456.sra
 mv SRR1822456.fastq GSE66411_h_ded1-ts_replicate_2_37_deg_FP.fastq
-rm $USER/ncbi/public/sra/SRR1822456.sra
+rm $NCBI/ncbi/public/sra/SRR1822456.sra
 
 prefetch -v SRR1822455
-fastq-dump --outdir ./ $USER/ncbi/public/sra/SRR1822455.sra
+fastq-dump --outdir ./ $NCBI/ncbi/public/sra/SRR1822455.sra
 mv SRR1822455.fastq GSE66411_g_ded1-ts_replicate_1_37_deg_FP.fastq
-rm $USER/ncbi/public/sra/SRR1822455.sra
+rm $NCBI/ncbi/public/sra/SRR1822455.sra
 
 prefetch -v SRR1822454
-fastq-dump --outdir ./ $USER/ncbi/public/sra/SRR1822454.sra
+fastq-dump --outdir ./ $NCBI/ncbi/public/sra/SRR1822454.sra
 mv SRR1822454.fastq GSE66411_f_wild-type_DED1_replicate_2_37_deg_FP.fastq
-rm $USER/ncbi/public/sra/SRR1822454.sra
+rm $NCBI/ncbi/public/sra/SRR1822454.sra
 
 prefetch -v SRR1822453
-fastq-dump --outdir ./ $USER/ncbi/public/sra/SRR1822453.sra
+fastq-dump --outdir ./ $NCBI/ncbi/public/sra/SRR1822453.sra
 mv SRR1822453.fastq GSE66411_e_wild-type_DED1_replicate_1_37_deg_FP.fastq
-rm $USER/ncbi/public/sra/SRR1822453.sra
+rm $NCBI/ncbi/public/sra/SRR1822453.sra
 
 
 
 prefetch -v SRR1822452
-fastq-dump --outdir ./ $USER/ncbi/public/sra/SRR1822452.sra
+fastq-dump --outdir ./ $NCBI/ncbi/public/sra/SRR1822452.sra
 mv SRR1822452.fastq GSE66411_d_ded1-cs_replicate_2_15_deg_RNA.fastq
-rm $USER/ncbi/public/sra/SRR1822452.sra
+rm $NCBI/ncbi/public/sra/SRR1822452.sra
 
 prefetch -v SRR1822451
-fastq-dump --outdir ./ $USER/ncbi/public/sra/SRR1822451.sra
+fastq-dump --outdir ./ $NCBI/ncbi/public/sra/SRR1822451.sra
 mv SRR1822451.fastq GSE66411_c_ded1-cs_replicate_1_15_deg_RNA.fastq
-rm $USER/ncbi/public/sra/SRR1822451.sra
+rm $NCBI/ncbi/public/sra/SRR1822451.sra
 
 prefetch -v SRR1822450
-fastq-dump --outdir ./ $USER/ncbi/public/sra/SRR1822450.sra
+fastq-dump --outdir ./ $NCBI/ncbi/public/sra/SRR1822450.sra
 mv SRR1822450.fastq GSE66411_b_wild-type_DED1_replicate_2_15_deg_RNA.fastq
-rm $USER/ncbi/public/sra/SRR1822450.sra
+rm $NCBI/ncbi/public/sra/SRR1822450.sra
 
 prefetch -v SRR1822449
-fastq-dump --outdir ./ $USER/ncbi/public/sra/SRR1822449.sra
+fastq-dump --outdir ./ $NCBI/ncbi/public/sra/SRR1822449.sra
 mv SRR1822449.fastq GSE66411_a_wild-type_DED1_replicate_1_15_deg_RNA.fastq
-rm $USER/ncbi/public/sra/SRR1822449.sra
+rm $NCBI/ncbi/public/sra/SRR1822449.sra
 
 prefetch -v SRR1822448
-fastq-dump --outdir ./ $USER/ncbi/public/sra/SRR1822448.sra
+fastq-dump --outdir ./ $NCBI/ncbi/public/sra/SRR1822448.sra
 mv SRR1822448.fastq GSE66411_d_ded1-cs_replicate_2_15_deg_FP.fastq
-rm $USER/ncbi/public/sra/SRR1822448.sra
+rm $NCBI/ncbi/public/sra/SRR1822448.sra
 
 prefetch -v SRR1822447
-fastq-dump --outdir ./ $USER/ncbi/public/sra/SRR1822447.sra
+fastq-dump --outdir ./ $NCBI/ncbi/public/sra/SRR1822447.sra
 mv SRR1822447.fastq GSE66411_c_ded1-cs_replicate_1_15_deg_FP.fastq
-rm $USER/ncbi/public/sra/SRR1822447.sra
+rm $NCBI/ncbi/public/sra/SRR1822447.sra
 
 prefetch -v SRR1822446
-fastq-dump --outdir ./ $USER/ncbi/public/sra/SRR1822446.sra
+fastq-dump --outdir ./ $NCBI/ncbi/public/sra/SRR1822446.sra
 mv SRR1822446.fastq GSE66411_b_wild-type_DED1_replicate_2_15_deg_FP.fastq
-rm $USER/ncbi/public/sra/SRR1822446.sra
+rm $NCBI/ncbi/public/sra/SRR1822446.sra
 
 prefetch -v SRR1822445
-fastq-dump --outdir ./ $USER/ncbi/public/sra/SRR1822445.sra
+fastq-dump --outdir ./ $NCBI/ncbi/public/sra/SRR1822445.sra
 mv SRR1822445.fastq GSE66411_a_wild-type_DED1_replicate_1_15_deg_FP.fastq
-rm $USER/ncbi/public/sra/SRR1822445.sra
+rm $NCBI/ncbi/public/sra/SRR1822445.sra
 
 
 
