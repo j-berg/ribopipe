@@ -63,7 +63,8 @@ def main(args=None):
     """
     #Install dependencies for supercomputing use
     if args.cluster == True:
-        #Run bash script
+        print("Run bash script from resources folder before running ribopipe")
+        sys.exit(1)
 
     #Run sequencing pipelines
     if args.cmd == 'riboseq' or args.cmd == 'rnaseq':
