@@ -165,14 +165,16 @@ def quality(df, plotdir, type):
     ax_y = 0
 
     #Initiate plotting necessities
-    if len(sample_list) <= 4:
-        rows = 2
+    if len(sample_list)/2 < 2:
+        plot_rows = 2
+        fig_size = (15,16)
     else:
-        rows = math.ceil(len(sample_list)/4)
+        plot_rows = math.ceil(len(sample_list)/2)
+        fig_size = (15,(8*(int(len(sample_list)/2))))
 
-    #Initiate plot with subplots
-    fig, axes = plt.subplots(nrows=rows, ncols=2)
-    plt.tight_layout(h_pad=2, w_pad=2)
+    #Initiate plotting necessities
+    fig, axes = plt.subplots(nrows=plot_rows, ncols=2, figsize=fig_size)
+    plt.subplots_adjust(bottom = .3)
 
     while x < len(sample_list):
         #to prevent the divide by 0 error, loss of R2 value
