@@ -108,18 +108,33 @@ def trim_adaptor(args):
 
     #Trim files
     if args_dict['platform'].upper() == 'SANGER':
-        if str(args_dict['adaptor']).upper() == "NONE":
+        if len(args_dict['adaptor']) ==1 and args_dict['adaptor'].upper() == "NONE":
             os.system("fastq_quality_filter -q " + str(args_dict['read_quality']) + " -i " + str(args_dict['input']) + file + " -o " + str(args_dict['output']) + "trimmed_" + file)
         else:
-            os.system("fastx_clipper -a " + str(args_dict['adaptor']) + " -l " + str(args_dict['read_length_min']) + " -i " + str(args_dict['input']) + file + " -o " + str(args_dict['output']) + "pre_" + file)
+            counter = 1
+            for x in args_dict['adaptor']:
+                os.system("fastx_clipper -a " + str(args_dict['adaptor']) + " -l " + str(args_dict['read_length_min']) + " -i " + str(args_dict['input']) + file + " -o " + str(args_dict['output']) + "pre_" + file)
+                if counter != len(args_dict['adaptor']):
+                    os.system('mv ' + str(args_dict['output']) + "pre_" + file + ' ' + str(args_dict['input']) + file)
+                    counter += 1
+                else:
+                    pass
+
             os.system("fastq_quality_filter -q " + str(args_dict['read_quality']) + " -i " + str(args_dict['output']) + "pre_" + file + " -o " + str(args_dict['output']) + "trimmed_" + file)
 
     elif args_dict['platform'].upper() == 'ILLUMINA':
         #add -Q33 flag for illumina encoded quality scoring
-        if str(args_dict['adaptor']).upper() == "NONE":
+        if len(args_dict['adaptor']) ==1 and args_dict['adaptor'].upper() == "NONE":
             os.system("fastq_quality_filter -Q33 -q " + str(args_dict['read_quality']) + " -i " + str(args_dict['input']) + file + " -o " + str(args_dict['output']) + "trimmed_" + file)
         else:
-            os.system("fastx_clipper -Q33 -a " + str(args_dict['adaptor']) + " -l " + str(args_dict['read_length_min']) + " -i " + str(args_dict['input']) + file + " -o " + str(args_dict['output']) + "pre_" + file)
+            counter = 1
+            for x in args_dict['adaptor']:
+                os.system("fastx_clipper -Q33 -a " + str(args_dict['adaptor']) + " -l " + str(args_dict['read_length_min']) + " -i " + str(args_dict['input']) + file + " -o " + str(args_dict['output']) + "pre_" + file)
+                if counter != len(args_dict['adaptor']):
+                    os.system('mv ' + str(args_dict['output']) + "pre_" + file + ' ' + str(args_dict['input']) + file)
+                    counter += 1
+                else:
+                    pass
             os.system("fastq_quality_filter -Q33 -q " + str(args_dict['read_quality']) + " -i " + str(args_dict['output']) + "pre_" + file + " -o " + str(args_dict['output']) + "trimmed_" + file)
     else:
         pass

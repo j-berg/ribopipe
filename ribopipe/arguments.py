@@ -170,6 +170,7 @@ def get_arguments(args, __version__):
         "-a", "--adaptor",
         help="Sequence of 3' linker (only supports one 3' linker currently) (default: %s). If no adaptor was used, specify 'None'" % DEFAULT_LINKER,
         metavar="<string>",
+        nargs="+",
         default=DEFAULT_LINKER,
         required=True
         )
@@ -286,6 +287,7 @@ def get_arguments(args, __version__):
         "-a", "--adaptor",
         help="Sequence of 3' linker (only supports one 3' linker currently) (default: %s). If no adaptor was used, specify 'None'" % DEFAULT_LINKER,
         metavar="<string>",
+        nargs="+",
         default=DEFAULT_LINKER,
         required=True
         )
@@ -375,6 +377,7 @@ def get_arguments(args, __version__):
         "-a", "--adaptor",
         help="Sequence of 3' linker (only supports one 3' linker currently) (default: %s). If no adaptor was used, specify 'None'" % DEFAULT_LINKER,
         metavar="<string>",
+        nargs="+",
         default=DEFAULT_LINKER,
         required=True
         )
