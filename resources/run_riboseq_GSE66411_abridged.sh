@@ -19,10 +19,7 @@
 #You should have received a copy of the GNU General Public License along with
 #this program.  If not, see <https://www.gnu.org/licenses/>.
 
-#Commands to download and run short read SE RNAseq data through RiboPipe (used for figure 4)
-
-#Path to ncbi/public/sra where sra-tools prefetch saves files
-NCBI=$1
+#Commands to download and run Ribosome Profiling data through RiboPipe (used for figure 3)
 
 #Download SRA Toolkit
 #conda install -c bioconda sra-tools
@@ -36,36 +33,19 @@ SCRDIR=/scratch/general/lustre/$USER/$SLURM_JOBID
 mkdir -p $SCRDIR
 
 #import ripopipe
-mkdir $SCRDIR/raw_dang_berger
-mkdir $SCRDIR/out_dang_berger
+mkdir $SCRDIR/raw_ingolia
+mkdir $SCRDIR/out_ingolia
 
 #catenate raw data if needed
-cd $SCRDIR/raw_dang_berger
-
-prefetch -v SRR1066660
-fastq-dump --outdir ./ $NCBI/ncbi/public/sra/SRR1066660.sra
-mv SRR1066660.fastq SRR1066660_WT_CR_B.fastq
-rm $NCBI/ncbi/public/sra/SRR1066660.sra
-
-prefetch -v SRR1066659
-fastq-dump --outdir ./ $NCBI/ncbi/public/sra/SRR1066659.sra
-mv SRR1066659.fastq SRR1066659_WT_CR_A.fastq
-rm $NCBI/ncbi/public/sra/SRR1066659.sra
-
-prefetch -v SRR1066658
-fastq-dump --outdir ./ $NCBI/ncbi/public/sra/SRR1066658.sra
-mv SRR1066658.fastq SRR1066658_WT_NR_B.fastq
-rm $NCBI/ncbi/public/sra/SRR1066658.sra
-
-prefetch -v SRR1066657
-fastq-dump --outdir ./ $NCBI/ncbi/public/sra/SRR1066657.sra
-mv SRR1066657.fastq SRR1066657_WT_NR_A.fastq
-rm $NCBI/ncbi/public/sra/SRR1066657.sra
+cp /scratch/general/lustre/$USER/sra-files/ingolia_raw/* $SCRDIR/raw_ingolia
 
 cd $SCRDIR/
 
 #run script --- add directory of raw data
 #Trimming Universal miRNA cloning linker (New England Biolabs) as specified in linked protocol (Ingolia,2010)
-ribopipe rnaseq -i $SCRDIR/raw_dang_berger/ -o $SCRDIR/out_dang_berger/ -r yeast -e dang_berger_2014 \
-  -s WT_NR_A WT_NR_B WT_CR_A WT_CR_B \
-  -p HISAT2 -a TGGAATTCTCGGGTGCCAAGG --platform ILLUMINA --full_genome --replicates
+ribopipe riboseq -i $SCRDIR/raw_ingolia/ -o $SCRDIR/out_ingolia/ -r yeast -e ingolia_2015 \
+  -s a_WT_DED1_1_15deg b_WT_DED1_2_15deg c_ded1_cs_1_15deg d_ded1_cs_2_15deg \
+  e_WT_DED1_1_37deg f_WT_DED1_2_37deg g_ded1_ts_1_37deg h_ded_ts_2_37deg \
+  i_WT_TIF1_1_30deg j_WT_TIF1_2_30deg k_tif1_ts_1_30deg l_tif1_ts_2_30deg \
+  m_WT_TIF1_1_37deg n_WT_TIF1_2_37deg o_tif1_ts_1_37deg p_tif1_ts_2_37deg \
+  -p HISAT2 -a CTGTAGGCACCATCAAT --platform ILLUMINA --count_cutoff 128
