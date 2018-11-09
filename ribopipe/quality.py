@@ -169,7 +169,7 @@ def quality(df, plotdir, type):
         plot_rows = 2
         fig_size = (15,16)
     else:
-        plot_rows = math.ceil(len(sample_list)/2)
+        plot_rows = math.ceil(len(sample_list)/4)
         fig_size = (15,(7.5*(int(len(sample_list)/2))))
 
     #Initiate plotting necessities
