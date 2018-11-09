@@ -132,7 +132,7 @@ def trim_adaptor(args):
                     os.system('cp ' + str(args_dict['output']) + "pre" + counter + "_" + file + ' ' + str(args_dict['input']) + file)
                     counter += 1
                 else:
-                    os.system("fastq_quality_filter -Q33 -q " + str(args_dict['read_quality']) + " -i " + str(args_dict['output']) + "pre_" + file + " -o " + str(args_dict['output']) + "trimmed_" + file)
+                    os.system("fastq_quality_filter -Q33 -q " + str(args_dict['read_quality']) + " -i " + str(args_dict['output']) + "pre" + counter + "_" + file + " -o " + str(args_dict['output']) + "trimmed_" + file)
     else:
         pass
 
