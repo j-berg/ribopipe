@@ -126,7 +126,9 @@ def trim_adaptor(args):
             os.system("fastq_quality_filter -Q33 -q " + str(args_dict['read_quality']) + " -i " + str(args_dict['input']) + file + " -o " + str(args_dict['output']) + "trimmed_" + file)
         else:
             counter = 1
+
             for x in args_dict['adaptor']:
+                print(counter)
                 os.system("fastx_clipper -Q33 -a " + str(args_dict['adaptor']) + " -l " + str(args_dict['read_length_min']) + " -i " + str(args_dict['input']) + file + " -o " + str(args_dict['output']) + "pre_" + file)
                 if counter != len(args_dict['adaptor']):
                     os.system('mv ' + str(args_dict['output']) + "pre_" + file + ' ' + str(args_dict['input']) + file)
