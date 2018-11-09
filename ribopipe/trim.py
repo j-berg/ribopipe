@@ -108,7 +108,7 @@ def trim_adaptor(args):
 
     #Trim files
     if args_dict['platform'].upper() == 'SANGER':
-        if len(args_dict['adaptor']) ==1 and args_dict['adaptor'].upper() == "NONE":
+        if len(args_dict['adaptor']) == 1 and args_dict['adaptor'][0].upper() == "NONE":
             os.system("fastq_quality_filter -q " + str(args_dict['read_quality']) + " -i " + str(args_dict['input']) + file + " -o " + str(args_dict['output']) + "trimmed_" + file)
         else:
             counter = 1
@@ -118,9 +118,7 @@ def trim_adaptor(args):
                     os.system('mv ' + str(args_dict['output']) + "pre_" + file + ' ' + str(args_dict['input']) + file)
                     counter += 1
                 else:
-                    pass
-
-            os.system("fastq_quality_filter -q " + str(args_dict['read_quality']) + " -i " + str(args_dict['output']) + "pre_" + file + " -o " + str(args_dict['output']) + "trimmed_" + file)
+                    os.system("fastq_quality_filter -q " + str(args_dict['read_quality']) + " -i " + str(args_dict['output']) + "pre_" + file + " -o " + str(args_dict['output']) + "trimmed_" + file)
 
     elif args_dict['platform'].upper() == 'ILLUMINA':
         #add -Q33 flag for illumina encoded quality scoring
