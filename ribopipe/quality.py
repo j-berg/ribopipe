@@ -170,7 +170,7 @@ def quality(df, plotdir, type):
         fig_size = (15,16)
     else:
         plot_rows = math.ceil(len(sample_list)/2)
-        fig_size = (15,(12*(int(len(sample_list)))))
+        fig_size = (15,(8*(int(len(sample_list)/2))))
 
     #Initiate plotting necessities
     fig, axes = plt.subplots(nrows=plot_rows, ncols=2, figsize=fig_size)
@@ -211,7 +211,7 @@ def quality(df, plotdir, type):
                 ax_y += 1
 
         #Plot scatter of two genes of interest
-        df_graph.plot.scatter(x=sample_list[x],y=sample_list[y], c='Black', figsize=(6,6), s=0.5, ax=axes[ax_y,ax_x], title="r$^2$ = " + str(round(r_sq, 2)) + "\np-value = " + str(round(p_value,4)))
+        df_graph.plot.scatter(x=sample_list[x],y=sample_list[y], c='Black', s=0.5, ax=axes[ax_y,ax_x], title="r$^2$ = " + str(round(r_sq, 2)) + "\np-value = " + str(round(p_value,4)))
 
         x += 2
         y += 2
