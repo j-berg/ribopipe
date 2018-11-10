@@ -57,7 +57,9 @@ def create_assemble_directories(inputDir, outputDir):
     os.system('mkdir ' + outputDir + 'assembly')
     os.system("""mkdir """ + outputDir + """assembly/alignment_output |
                 mkdir """ + outputDir + """assembly/counts |
-                mkdir """ + outputDir + """assembly/bam_files"""
+                mkdir """ + outputDir + """assembly/bam_files |
+                mkdir """ + outputDir + """assembly/bed_files |
+                mkdir """ + outputDir + """assembly/bigwig_files"""
     )
 
     #create dictionary with output directory paths
@@ -65,7 +67,9 @@ def create_assemble_directories(inputDir, outputDir):
         'inputDir': inputDir,
         'aligndir': str(outputDir + 'assembly/alignment_output/'),
         'countsdir': str(outputDir + 'assembly/counts/'),
-        'bamdir': str(outputDir + 'assembly/bam_files/')
+        'bamdir': str(outputDir + 'assembly/bam_files/'),
+        'beddir': str(outputDir + 'assembly/bed_files/'),
+        'bwdir': str(outputDir + 'assembly/bigwig_files/')
     }
 
     return directories
@@ -81,6 +85,8 @@ def create_directories(inputDir, outputDir):
                 mkdir """ + outputDir + """assembly/alignment_output |
                 mkdir """ + outputDir + """assembly/counts |
                 mkdir """ + outputDir + """assembly/bam_files |
+                mkdir """ + outputDir + """assembly/bed_files |
+                mkdir """ + outputDir + """assembly/bigwig_files |
                 mkdir """ + outputDir + """analysis/periodicity |
                 mkdir """ + outputDir + """analysis/quality_control |
                 mkdir """ + outputDir + """analysis/metaORF |
@@ -97,6 +103,8 @@ def create_directories(inputDir, outputDir):
         'aligndir': str(outputDir + 'assembly/alignment_output/'),
         'countsdir': str(outputDir + 'assembly/counts/'),
         'bamdir': str(outputDir + 'assembly/bam_files/'),
+        'beddir': str(outputDir + 'assembly/bed_files/'),
+        'bwdir': str(outputDir + 'assembly/bigwig_files/'),
         'plastdir': str(outputDir + 'analysis/periodicity/'),
         'qualdir': str(outputDir + 'analysis/quality_control/'),
         'preqcdir': str(outputDir + 'analysis/quality_control/pre-trim_fastqc/'),

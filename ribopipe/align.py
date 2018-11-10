@@ -78,8 +78,8 @@ def assemble(args):
     #create a sorted bam, bed, and bigwig file for meta analyses
     os.system("samtools view -S -b " + dir_dict['aligndir'] + file[:-6] + "_hisat2_sorted.sam > " + dir_dict['bamdir'] + file[:-6] + "_hisat2_sorted.bam")
     os.system("samtools index " + dir_dict['bamdir'] + "/" + file[:-6] + "_hisat2_sorted.bam")
-    os.system("bedtools bamtobed -i " + dir_dict['bamdir'] + file[:-6] + "_hisat2_sorted.bam > " + dir_dict['bamdir'] + file[:-6] + "_hisat2_sorted.bed")
-    os.system("bamCoverage -b " + dir_dict['bamdir'] + file[:-6] + "_hisat2_sorted.bam -o " + dir_dict['bamdir'] + file[:-6] + "_sorted_coverage.bw")
+    os.system("bedtools bamtobed -i " + dir_dict['bamdir'] + file[:-6] + "_hisat2_sorted.bam > " + dir_dict['beddir'] + file[:-6] + "_hisat2_sorted.bed")
+    os.system("bamCoverage -b " + dir_dict['bamdir'] + file[:-6] + "_hisat2_sorted.bam -o " + dir_dict['bwdir'] + file[:-6] + "_sorted_coverage.bw")
 
 """
 MAIN
