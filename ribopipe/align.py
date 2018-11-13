@@ -34,7 +34,7 @@ FUNCTIONS
 def assemble(args):
 
     #Unpackage file data and check which transcript ref files to use
-    file, dir_dict, args_dict, transcripts = args[0], args[1], args[2], args[3]
+    file, dir_dict, args_dict = args[0], args[1], args[2], args[3]
 
 
 
@@ -53,20 +53,26 @@ def assemble(args):
 
     #Map to coding genome, do ncrna depletion
     else:
+        if args_dict['type'].upper() == 'RIBOSEQ':
+            reference = 'genome_trunc'
+        elif args_dict['type'].upper() == 'RNASEQ':
+            reference = 'genome_mrna'
+        else:
+            pass
         if args_dict['program'] == 'STAR':
             #STAR -- align curated reads to reference, uses default parameters
-            os.system("STAR --runThreadN 1 --genomeDir " + str(dir_dict['reference']) + "genome_trunc/ --readFilesIn " + str(dir_dict['trimdir']) + file + " --outFileNamePrefix " + str(dir_dict['aligndir']) + file[:-6] + "_genome_")
+            os.system("STAR --runThreadN 1 --genomeDir " + str(dir_dict['reference']) + reference + "/ --readFilesIn " + str(dir_dict['trimdir']) + file + " --outFileNamePrefix " + str(dir_dict['aligndir']) + file[:-6] + "_genome_")
 
         elif args_dict['program'] == 'HISAT2':
             #hisat2 -- align curated reads to references
-            os.system("hisat2 --quiet -x " + str(dir_dict['reference']) + "genome_trunc -U " + str(dir_dict['trimdir']) + file + " -S " + str(dir_dict['aligndir']) + file[:-6] + "_hisat2_out.sam")
+            os.system("hisat2 --quiet -x " + str(dir_dict['reference']) + reference + " -U " + str(dir_dict['trimdir']) + file + " -S " + str(dir_dict['aligndir']) + file[:-6] + "_hisat2_out.sam")
 
         else:
             sys.exit(1)
 
     #samtools -- sort, count, tabulate alignment output
     os.system("samtools sort " + dir_dict['aligndir'] + file[:-6] + "_hisat2_out.sam -o " + dir_dict['aligndir'] + file[:-6] + "_hisat2_sorted.sam")
-    os.system("htseq-count " + dir_dict['aligndir'] + file[:-6] + "_hisat2_sorted.sam " + dir_dict['reference'] + transcripts + " >> " + dir_dict['aligndir'] + file[:-6] + "_pre.csv")
+    os.system("htseq-count " + dir_dict['aligndir'] + file[:-6] + "_hisat2_sorted.sam " + dir_dict['reference'] + "transcripts.gtf >> " + dir_dict['aligndir'] + file[:-6] + "_pre.csv")
     os.system("cat " + dir_dict['aligndir'] + file[:-6] + "_pre.csv | tr -s '[:blank:]' ',' > " + dir_dict['countsdir'] + file[:-6] + ".csv")
 
     #create a sorted bam, bed, and bigwig file for meta analyses
@@ -78,11 +84,11 @@ def assemble(args):
 """
 MAIN
 """
-def align(args_dict, dir_dict, directory, transcripts):
+def align(args_dict, dir_dict, directory):
 
     #Make list of files to process alignment and package input data for multiprocessing
     align_list = file_list(directory)
-    args_iter = ([file, dir_dict, args_dict, transcripts] for file in align_list)
+    args_iter = ([file, dir_dict, args_dict] for file in align_list)
 
     #Execute multiprocessed alignment of files
     with concurrent.futures.ProcessPoolExecutor(max_workers=args_dict['max_processors']) as executor:
