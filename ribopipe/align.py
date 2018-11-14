@@ -40,11 +40,11 @@ def assemble(args):
 
     #Map to full genome, do ncrna depletion
     if 'full_genome' in args_dict and args_dict['full_genome'] == True:
-        if args_dict['program'].upper() == 'STAR':
+        if str(args_dict['program']).upper() == 'STAR':
             #STAR -- align curated reads to reference, uses default parameters
             os.system("STAR --runThreadN 1 --genomeDir " + str(dir_dict['reference']) + "genome/ --readFilesIn " + str(dir_dict['trimdir']) + file + " --outFileNamePrefix " + str(dir_dict['aligndir']) + file[:-6] + "_genome_")
 
-        elif args_dict['program'].upper() == 'HISAT2':
+        elif str(args_dict['program']).upper() == 'HISAT2':
             #hisat2 -- align curated reads to references
             os.system("hisat2 --quiet -x " + str(dir_dict['reference']) + "genome -U " + str(dir_dict['trimdir']) + file + " -S " + str(dir_dict['aligndir']) + file[:-6] + "_hisat2_out.sam")
 
@@ -53,15 +53,16 @@ def assemble(args):
 
     #Map to coding genome, do ncrna depletion
     else:
-        if args_dict['program'].upper() == 'STAR':
+        if str(args_dict['program']).upper() == 'STAR':
             #STAR -- in silico rRNA removal, uses default parameters
             os.system("STAR --runThreadN 1 --genomeDir " + str(dir_dict['reference']) + "ncrna --readFilesIn " + str(dir_dict['trimdir']) + file + " --outReadsUnmapped " + str(dir_dict['aligndir']) + file[:-6] + "_norrna.fastq --outFileNamePrefix " + str(dir_dict['aligndir']) + file[:-6] + "_norrna_")
 
             #STAR -- align curated reads to reference, uses default parameters
             os.system("STAR --runThreadN 1 --genomeDir " + str(dir_dict['reference']) + "genome/ --readFilesIn " + str(dir_dict['aligndir']) + file[:-6] + "_norrna.fastq --outFileNamePrefix " + str(dir_dict['aligndir']) + file[:-6] + "_genome_")
 
-        elif args_dict['program'].upper() == 'HISAT2':
+        elif str(args_dict['program']).upper() == 'HISAT2':
             #hisat2 -- in silico rRNA removal
+            print('am i getting here')
             os.system("hisat2 --quiet -x " + str(dir_dict['reference']) + "ncrna --un=" + str(dir_dict['aligndir']) + file[:-6] + "_norrna.fastq -U " + str(dir_dict['trimdir']) + file)
 
             #hisat2 -- align curated reads to references
