@@ -53,22 +53,29 @@ def assemble(args):
 
     #Map to coding genome, do ncrna depletion
     else:
-        if args_dict['type'].upper() == 'RIBOSEQ':
-            reference = 'genome_trunc'
-        elif args_dict['type'].upper() == 'RNASEQ':
-            reference = 'genome_mrna'
-        else:
-            pass
         if args_dict['program'] == 'STAR':
+            #STAR -- in silico rRNA removal, uses default parameters
+            os.system("STAR --runThreadN 1 --genomeDir " + str(dir_dict['reference']) + "ncrna --readFilesIn " + str(dir_dict['trimdir']) + file + " --outReadsUnmapped " + str(dir_dict['aligndir']) + file[:-6] + "_norrna.fastq --outFileNamePrefix " + str(dir_dict['aligndir']) + file[:-6] + "_norrna_")
+
             #STAR -- align curated reads to reference, uses default parameters
-            os.system("STAR --runThreadN 1 --genomeDir " + str(dir_dict['reference']) + reference + "/ --readFilesIn " + str(dir_dict['trimdir']) + file + " --outFileNamePrefix " + str(dir_dict['aligndir']) + file[:-6] + "_genome_")
+            os.system("STAR --runThreadN 1 --genomeDir " + str(dir_dict['reference']) + "genome/ --readFilesIn " + str(dir_dict['aligndir']) + file[:-6] + "_norrna.fastq --outFileNamePrefix " + str(dir_dict['aligndir']) + file[:-6] + "_genome_")
 
         elif args_dict['program'] == 'HISAT2':
+            #hisat2 -- in silico rRNA removal
+            os.system("hisat2 --quiet -x " + str(dir_dict['reference']) + "ncrna --un=" + str(dir_dict['aligndir']) + file[:-6] + "_norrna.fastq -U " + str(dir_dict['trimdir']) + file)
+
             #hisat2 -- align curated reads to references
-            os.system("hisat2 --quiet -x " + str(dir_dict['reference']) + reference + " -U " + str(dir_dict['trimdir']) + file + " -S " + str(dir_dict['aligndir']) + file[:-6] + "_hisat2_out.sam")
+            os.system("hisat2 --quiet -x " + str(dir_dict['reference']) + "genome -U " + str(dir_dict['aligndir']) + file[:-6] + "_norrna.fastq -S " + str(dir_dict['aligndir']) + file[:-6] + "_hisat2_out.sam")
 
         else:
             sys.exit(1)
+
+    if args_dict['type'].upper() == 'RIBOSEQ':
+        reference = 'genome_trunc'
+    elif args_dict['type'].upper() == 'RNASEQ':
+        reference = 'genome_mrna'
+    else:
+        pass
 
     #samtools -- sort, count, tabulate alignment output
     os.system("samtools sort " + dir_dict['aligndir'] + file[:-6] + "_hisat2_out.sam -o " + dir_dict['aligndir'] + file[:-6] + "_hisat2_sorted.sam")
