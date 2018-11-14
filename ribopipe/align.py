@@ -70,13 +70,6 @@ def assemble(args):
         else:
             sys.exit(1)
 
-    if args_dict['type'].upper() == 'RIBOSEQ':
-        reference = 'genome_trunc'
-    elif args_dict['type'].upper() == 'RNASEQ':
-        reference = 'genome_mrna'
-    else:
-        pass
-
     #samtools -- sort, count, tabulate alignment output
     os.system("samtools sort " + dir_dict['aligndir'] + file[:-6] + "_hisat2_out.sam -o " + dir_dict['aligndir'] + file[:-6] + "_hisat2_sorted.sam")
     os.system("htseq-count " + dir_dict['aligndir'] + file[:-6] + "_hisat2_sorted.sam " + dir_dict['reference'] + "transcripts.gtf >> " + dir_dict['aligndir'] + file[:-6] + "_pre.csv")
