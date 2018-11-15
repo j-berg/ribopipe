@@ -34,7 +34,7 @@ FUNCTIONS
 def assemble(args):
 
     #Unpackage file data and check which transcript ref files to use
-    file, dir_dict, args_dict = args[0], args[1], args[2], args[3]
+    file, dir_dict, args_dict = args[0], args[1], args[2]
 
 
 
@@ -90,6 +90,10 @@ def align(args_dict, dir_dict, directory):
     #Make list of files to process alignment and package input data for multiprocessing
     align_list = file_list(directory)
     args_iter = ([file, dir_dict, args_dict] for file in align_list)
+
+    print(align_list)
+    print(args_dict)
+    print(dir_dict)
 
     #Execute multiprocessed alignment of files
     with concurrent.futures.ProcessPoolExecutor(max_workers=args_dict['max_processors']) as executor:
