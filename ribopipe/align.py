@@ -91,10 +91,6 @@ def align(args_dict, dir_dict, directory):
     align_list = file_list(directory)
     args_iter = ([file, dir_dict, args_dict] for file in align_list)
 
-    print(align_list)
-    print(args_dict)
-    print(dir_dict)
-
     #Execute multiprocessed alignment of files
     with concurrent.futures.ProcessPoolExecutor(max_workers=args_dict['max_processors']) as executor:
         for file in zip(args_iter, executor.map(assemble, args_iter)):

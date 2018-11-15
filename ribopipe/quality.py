@@ -230,7 +230,7 @@ def quality(df, plotdir, type):
 def meta_run(args):
 
     #Get variables
-    file, dir_dict, args_dict = args[0], args[1], args[2], args[3]
+    file, dir_dict, args_dict = args[0], args[1], args[2]
 
     #Perform meta ORF analysis for each file
     os.system("picard CollectRnaSeqMetrics QUIET=true REF_FLAT=" + dir_dict['reference'] + "transcripts_refFlat.txt STRAND_SPECIFICITY=NONE INPUT=" + dir_dict['bamdir'] + file + " OUTPUT=" + dir_dict['picarddir'] + file[:-4] + "_rna_metrics")
