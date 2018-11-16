@@ -219,11 +219,11 @@ def quality(df, plotdir, type):
 
     #Save graph
     if type == 'riboseq':
-        fig.savefig(plotdir + 'RPFvsRNA_correlation_summary.pdf', dpi=600, bbox_inches="tight")
+        fig.savefig(plotdir + 'RPFvsRNA_correlation_log10counts_summary.pdf', dpi=600, bbox_inches="tight")
     elif type == 'rnaseq':
-        fig.savefig(plotdir + 'RNA_replicates_correlation_summary.pdf', dpi=600, bbox_inches="tight")
+        fig.savefig(plotdir + 'RNA_replicates_correlation_log10counts_summary.pdf', dpi=600, bbox_inches="tight")
     elif type == 'custom':
-        fig.savefig(plotdir + 'custom_correlation_summary.pdf', dpi=600, bbox_inches="tight")
+        fig.savefig(plotdir + 'custom_correlation_log10counts_summary.pdf', dpi=600, bbox_inches="tight")
     else:
         sys.exit(1)
 #Run Picard and Plastid meta-analyses file-wise
