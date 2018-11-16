@@ -55,10 +55,10 @@ def assemble(args):
     else:
         if str(args_dict['program']).upper() == 'STAR':
             #STAR -- in silico rRNA removal, uses default parameters
-            os.system("STAR --runThreadN 1 --genomeDir " + str(dir_dict['reference']) + "ncrna --readFilesIn " + str(dir_dict['trimdir']) + file + " --outReadsUnmapped " + str(dir_dict['aligndir']) + file[:-6] + "_norrna.fastq --outFileNamePrefix " + str(dir_dict['aligndir']) + file[:-6] + "_norrna_")
+            os.system("STAR --runThreadN 1 --genomeDir " + str(dir_dict['reference']) + "ncrna --readFilesIn " + str(dir_dict['trimdir']) + file + " --outReadsUnmapped Fastx --outFileNamePrefix " + str(dir_dict['aligndir']) + file[:-6] + "_norrna_")
 
             #STAR -- align curated reads to reference, uses default parameters
-            os.system("STAR --runThreadN 1 --genomeDir " + str(dir_dict['reference']) + "genome --readFilesIn " + str(dir_dict['aligndir']) + file[:-6] + "_norrna.fastq --outFileNamePrefix " + str(dir_dict['aligndir']) + file[:-6] + "_star_out")
+            os.system("STAR --runThreadN 1 --genomeDir " + str(dir_dict['reference']) + "genome --readFilesIn " + str(dir_dict['aligndir']) + file[:-6] + "_norrna_Unmapped.out.mate1 --outFileNamePrefix " + str(dir_dict['aligndir']) + file[:-6] + "_star_out")
 
         elif str(args_dict['program']).upper() == 'HISAT2':
             #hisat2 -- in silico rRNA removal
