@@ -100,14 +100,9 @@ def main(args=None):
         #Run ASSEMBLE
         msg_align()
         #Prep transcripts reference to pull from
-        if args.cmd == 'riboseq':
-            transcripts = 'transcripts_45.gtf'
-            transcripts_flat = 'transcripts_refFlat_45.txt'
-        elif args.cmd == 'rnaseq':
-            transcripts = 'transcripts.gtf'
-            transcripts_flat = 'transcripts_refFlat.txt'
-        else:
-            sys.exit(1)
+        transcripts = 'transcripts.gtf'
+        transcripts_flat = 'transcripts_refFlat.txt'
+
         align(args_dict, dir_dict, dir_dict['trimdir'], transcripts)
 
         #Run CATENATE COUNTS
