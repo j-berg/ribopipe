@@ -22,16 +22,24 @@ gzip -d *.gz
 cp Saccharomyces_cerevisiae.R64-1-1.94.gtf ../transcripts.gtf
 cd ../
 
+#Remove any ncrna from gtf file
+
+
+
 #Make refFlat file
-conda install ucsc-gtftogenepred
-gtftogenepred transcripts.gtf yeast_refFlat.txt
+conda install -y ucsc-gtftogenepred
+gtftogenepred transcripts.gtf transcripts_refFlat.txt
+
+#remove this and update scipy again to be able to run plastid
+conda uninstall -y ucsc-gtftogenepred
+conda install -y scipy
 
 #metagene prep
 metagene generate transcripts_cds_start --landmark cds_start --annotation_files transcripts.gtf --downstream 200
 
 #Build
-mkdir genome 
-STAR --runThreadN 2 --runMode genomeGenerate --genomeDir genome/ --genomeFastaFiles source_files/*dna.chromosome.*.fa --sjdbGTFfile Saccharomyces_cerevisiae.R64-1-1.94.gtf --genomeSAindexNbases 11
+mkdir genome
+STAR --runThreadN 2 --runMode genomeGenerate --genomeDir genome/ --genomeFastaFiles source_files/*dna.chromosome.*.fa --sjdbGTFfile transcripts.gtf --genomeSAindexNbases 11
 
 mkdir ncrna
 STAR --runThreadN 2 --runMode genomeGenerate --genomeDir ncrna/ --genomeFastaFiles source_files/Saccharomyces_cerevisiae.R64-1-1.ncrna.fa --genomeSAindexNbases 7
