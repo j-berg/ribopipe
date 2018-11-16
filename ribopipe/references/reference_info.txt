@@ -88,7 +88,8 @@ Build code:
     STAR:
         STAR --runThreadN 2 --runMode genomeGenerate --genomeDir ../yeast_reference/genome \
             --genomeFastaFiles ~/scripts/ribopipe_deps/yeast_source/*.fa \
-            --sjdbGTFfile ~/scripts/ribopipe_deps/Saccharomyces_cerevisiae.R64-1-1.94.gtf
+            --sjdbGTFfile ~/scripts/ribopipe_deps/Saccharomyces_cerevisiae.R64-1-1.94.gtf \
+            --genomeSAindexNbases 11
             #--sjdbOverhang is x-1, where x is max read length of sequencing run
         STAR --runThreadN 2 --runMode genomeGenerate --genomeDir ../yeast_reference/rrna \
             --genomeFastaFiles ~/scripts/ribopipe_deps/yeast_rrna.fa \
