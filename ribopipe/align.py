@@ -40,11 +40,11 @@ def assemble(args):
 
     #Map to full genome, do ncrna depletion
     if 'full_genome' in args_dict and args_dict['full_genome'] == True:
-        if args_dict['program'] == 'STAR':
+        if str(args_dict['program']).upper() == 'STAR':
             #STAR -- align curated reads to reference, uses default parameters
-            os.system("STAR --runThreadN 1 --genomeDir " + str(dir_dict['reference']) + "genome/ --readFilesIn " + str(dir_dict['trimdir']) + file + " --outFileNamePrefix " + str(dir_dict['aligndir']) + file[:-6] + "_genome_")
+            os.system("STAR --runThreadN 1 --genomeDir " + str(dir_dict['reference']) + "genome --readFilesIn " + str(dir_dict['trimdir']) + file + " --outFileNamePrefix " + str(dir_dict['aligndir']) + file[:-6] + "_star_out")
 
-        elif args_dict['program'] == 'HISAT2':
+        elif str(args_dict['program']).upper() == 'HISAT2':
             #hisat2 -- align curated reads to references
             os.system("hisat2 --quiet -x " + str(dir_dict['reference']) + "genome -U " + str(dir_dict['trimdir']) + file + " -S " + str(dir_dict['aligndir']) + file[:-6] + "_hisat2_out.sam")
 
@@ -53,14 +53,14 @@ def assemble(args):
 
     #Map to coding genome, do ncrna depletion
     else:
-        if args_dict['program'] == 'STAR':
+        if str(args_dict['program']).upper() == 'STAR':
             #STAR -- in silico rRNA removal, uses default parameters
             os.system("STAR --runThreadN 1 --genomeDir " + str(dir_dict['reference']) + "ncrna --readFilesIn " + str(dir_dict['trimdir']) + file + " --outReadsUnmapped " + str(dir_dict['aligndir']) + file[:-6] + "_norrna.fastq --outFileNamePrefix " + str(dir_dict['aligndir']) + file[:-6] + "_norrna_")
 
             #STAR -- align curated reads to reference, uses default parameters
-            os.system("STAR --runThreadN 1 --genomeDir " + str(dir_dict['reference']) + "genome/ --readFilesIn " + str(dir_dict['aligndir']) + file[:-6] + "_norrna.fastq --outFileNamePrefix " + str(dir_dict['aligndir']) + file[:-6] + "_genome_")
+            os.system("STAR --runThreadN 1 --genomeDir " + str(dir_dict['reference']) + "genome --readFilesIn " + str(dir_dict['aligndir']) + file[:-6] + "_norrna.fastq --outFileNamePrefix " + str(dir_dict['aligndir']) + file[:-6] + "_star_out")
 
-        elif args_dict['program'] == 'HISAT2':
+        elif str(args_dict['program']).upper() == 'HISAT2':
             #hisat2 -- in silico rRNA removal
             os.system("hisat2 --quiet -x " + str(dir_dict['reference']) + "ncrna --un=" + str(dir_dict['aligndir']) + file[:-6] + "_norrna.fastq -U " + str(dir_dict['trimdir']) + file)
 
@@ -71,15 +71,30 @@ def assemble(args):
             sys.exit(1)
 
     #samtools -- sort, count, tabulate alignment output
-    os.system("samtools sort " + dir_dict['aligndir'] + file[:-6] + "_hisat2_out.sam -o " + dir_dict['aligndir'] + file[:-6] + "_hisat2_sorted.sam")
-    os.system("htseq-count " + dir_dict['aligndir'] + file[:-6] + "_hisat2_sorted.sam " + dir_dict['reference'] + transcripts + " >> " + dir_dict['aligndir'] + file[:-6] + "_pre.csv")
-    os.system("cat " + dir_dict['aligndir'] + file[:-6] + "_pre.csv | tr -s '[:blank:]' ',' > " + dir_dict['countsdir'] + file[:-6] + ".csv")
+    if str(args_dict['program']).upper() == 'STAR':
+        os.system("samtools sort " + dir_dict['aligndir'] + file[:-6] + "_star_outAligned.out.sam -o " + dir_dict['aligndir'] + file[:-6] + "_star_sorted.sam")
+        os.system("htseq-count " + dir_dict['aligndir'] + file[:-6] + "_star_sorted.sam " + dir_dict['reference'] + transcripts + " >> " + dir_dict['aligndir'] + file[:-6] + "_pre.csv")
+        os.system("cat " + dir_dict['aligndir'] + file[:-6] + "_pre.csv | tr -s '[:blank:]' ',' > " + dir_dict['countsdir'] + file[:-6] + ".csv")
 
-    #create a sorted bam, bed, and bigwig file for meta analyses
-    os.system("samtools view -S -b " + dir_dict['aligndir'] + file[:-6] + "_hisat2_sorted.sam > " + dir_dict['bamdir'] + file[:-6] + "_hisat2_sorted.bam")
-    os.system("samtools index " + dir_dict['bamdir'] + "/" + file[:-6] + "_hisat2_sorted.bam")
-    os.system("bedtools bamtobed -i " + dir_dict['bamdir'] + file[:-6] + "_hisat2_sorted.bam > " + dir_dict['beddir'] + file[:-6] + "_hisat2_sorted.bed")
-    os.system("bamCoverage -b " + dir_dict['bamdir'] + file[:-6] + "_hisat2_sorted.bam -o " + dir_dict['bwdir'] + file[:-6] + "_sorted_coverage.bw")
+        #create a sorted bam, bed, and bigwig file for meta analyses
+        os.system("samtools view -S -b " + dir_dict['aligndir'] + file[:-6] + "_star_sorted.sam > " + dir_dict['bamdir'] + file[:-6] + "_star_sorted.bam")
+        os.system("samtools index " + dir_dict['bamdir'] + "/" + file[:-6] + "_star_sorted.bam")
+        os.system("bedtools bamtobed -i " + dir_dict['bamdir'] + file[:-6] + "_star_sorted.bam > " + dir_dict['beddir'] + file[:-6] + "_star_sorted.bed")
+        os.system("bamCoverage -b " + dir_dict['bamdir'] + file[:-6] + "_star_sorted.bam -o " + dir_dict['bwdir'] + file[:-6] + "_star_sorted.bw")
+
+    elif str(args_dict['program']).upper() == 'HISAT2':
+        os.system("samtools sort " + dir_dict['aligndir'] + file[:-6] + "_hisat2_out.sam -o " + dir_dict['aligndir'] + file[:-6] + "_hisat2_sorted.sam")
+        os.system("htseq-count " + dir_dict['aligndir'] + file[:-6] + "_hisat2_sorted.sam " + dir_dict['reference'] + transcripts + " >> " + dir_dict['aligndir'] + file[:-6] + "_pre.csv")
+        os.system("cat " + dir_dict['aligndir'] + file[:-6] + "_pre.csv | tr -s '[:blank:]' ',' > " + dir_dict['countsdir'] + file[:-6] + ".csv")
+
+        #create a sorted bam, bed, and bigwig file for meta analyses
+        os.system("samtools view -S -b " + dir_dict['aligndir'] + file[:-6] + "_hisat2_sorted.sam > " + dir_dict['bamdir'] + file[:-6] + "_hisat2_sorted.bam")
+        os.system("samtools index " + dir_dict['bamdir'] + "/" + file[:-6] + "_hisat2_sorted.bam")
+        os.system("bedtools bamtobed -i " + dir_dict['bamdir'] + file[:-6] + "_hisat2_sorted.bam > " + dir_dict['beddir'] + file[:-6] + "_hisat2_sorted.bed")
+        os.system("bamCoverage -b " + dir_dict['bamdir'] + file[:-6] + "_hisat2_sorted.bam -o " + dir_dict['bwdir'] + file[:-6] + "_sorted_coverage.bw")
+    else:
+        sys.exit(1)
+
 
 """
 MAIN
