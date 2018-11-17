@@ -176,6 +176,7 @@ def quality(df, plotdir, type):
     fig, axes = plt.subplots(nrows=plot_rows, ncols=2, figsize=fig_size)
     plt.subplots_adjust(bottom = .3)
 
+    print("Processing files: ", sample_list)
     while x < len(sample_list):
         #to prevent the divide by 0 error, loss of R2 value
         df += 1e-01
