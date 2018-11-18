@@ -41,7 +41,25 @@ conda install -y scipy
 metagene generate transcripts_cds_start --landmark cds_start --annotation_files transcripts.gtf --downstream 200
 
 #Build
-hisat2-build source_files/Saccharomyces_cerevisiae.R64-1-1.dna.chromosome.*.fa genome
+hisat2-build source_files/Saccharomyces_cerevisiae.R64-1-1.dna.chromosome.I.fa,\
+              source_files/Saccharomyces_cerevisiae.R64-1-1.dna.chromosome.II.fa,\
+              source_files/Saccharomyces_cerevisiae.R64-1-1.dna.chromosome.III.fa,\
+              source_files/Saccharomyces_cerevisiae.R64-1-1.dna.chromosome.IV.fa,\
+              source_files/Saccharomyces_cerevisiae.R64-1-1.dna.chromosome.V.fa,\
+              source_files/Saccharomyces_cerevisiae.R64-1-1.dna.chromosome.VI.fa,\
+              source_files/Saccharomyces_cerevisiae.R64-1-1.dna.chromosome.VII.fa,\
+              source_files/Saccharomyces_cerevisiae.R64-1-1.dna.chromosome.VIII.fa,\
+              source_files/Saccharomyces_cerevisiae.R64-1-1.dna.chromosome.IX.fa,\
+              source_files/Saccharomyces_cerevisiae.R64-1-1.dna.chromosome.X.fa,\
+              source_files/Saccharomyces_cerevisiae.R64-1-1.dna.chromosome.XI.fa,\
+              source_files/Saccharomyces_cerevisiae.R64-1-1.dna.chromosome.XII.fa,\
+              source_files/Saccharomyces_cerevisiae.R64-1-1.dna.chromosome.XIII.fa,\
+              source_files/Saccharomyces_cerevisiae.R64-1-1.dna.chromosome.XIV.fa,\
+              source_files/Saccharomyces_cerevisiae.R64-1-1.dna.chromosome.XV.fa,\
+              source_files/Saccharomyces_cerevisiae.R64-1-1.dna.chromosome.XVI.fa,\
+              source_files/Saccharomyces_cerevisiae.R64-1-1.dna.chromosome.Mito.fa \
+              genome
+              
 hisat2-build source_files/Saccharomyces_cerevisiae.R64-1-1.ncrna.fa ncrna
 
 cd ../
