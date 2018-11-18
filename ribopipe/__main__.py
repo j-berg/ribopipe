@@ -166,7 +166,20 @@ def main(args=None):
         args_dict['input'], args_dict['output'], dir_dict = create_assemble_directories(args_dict['input'], args_dict['output'])
 
         #Run ASSEMBLE
-        align(args_dict, dir_dict, args_dict['input'])
+        if 'full_genome' in args_dict and args_dict['full_genome'] == True:
+            transcripts = 'transcripts.gtf'
+            transcripts_flat = 'transcripts_refFlat.txt'
+        else:
+            if args['type'] == 'riboseq':
+                transcripts = 'transcripts_truncated.gtf'
+                transcripts_flat = 'transcripts_truncated_refFlat.txt'
+            elif args['type'] == 'rnaseq':
+                transcripts = 'transcripts_coding.gtf'
+                transcripts_flat = 'transcripts_coding_refFlat.txt'
+            else:
+                pass
+
+        align(args_dict, dir_dict, args_dict['input'], transcripts)
 
         #Run CATENATE COUNTS
         msg_count()
@@ -224,7 +237,7 @@ def main(args=None):
 
     elif args.cmd == 'truncate':
 
-        #Run truncation script to create coding only and truncated coding reference file 
+        #Run truncation script to create coding only and truncated coding reference file
         truncate(args_dict)
         sys.exit(1)
 
