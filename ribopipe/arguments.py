@@ -665,6 +665,16 @@ def get_arguments(args, __version__):
         default=DEFAULT_DE_EQUATION
         )
 
+    #Truncate GTF/GFF module
+    gtf_parser = subparser.add_parser('truncate', description='Truncate first 45 nt from input gtf/gff file exons', add_help=False)
+    #Required arguments
+    gtf_reqs = gtf_parser.add_argument_group('required arguments')
+    gtf_reqs.add_argument(
+        "-i", "--input",
+        help="Input file (must be gtf or gff file)",
+        required=True
+        )
+
     """
     COLLECT PARSED ARGUMENTS AND PREPARE FOR DOWNSTREAM USE
     """

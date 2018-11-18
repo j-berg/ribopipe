@@ -34,6 +34,7 @@ from .align import align
 from .format import format
 from .normalize import *
 from .quality import quality, meta_analysis
+from .truncate_gtf import truncate
 from .messages import *
 
 """
@@ -219,6 +220,12 @@ def main(args=None):
             #add info to csv output by de
             print('Feature coming soon')
 
+        sys.exit(1)
+
+    elif args.cmd == 'truncate':
+
+        #Run truncation script to create coding only and truncated coding reference file 
+        truncate(args_dict)
         sys.exit(1)
 
     #Run local install of dependencies
