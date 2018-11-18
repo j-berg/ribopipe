@@ -70,11 +70,6 @@ def assemble(args):
         else:
             sys.exit(1)
 
-    if 'full_genome' in args_dict and args_dict['full_genome'] == True:
-        transcripts = 'transcripts.gtf'
-    else:
-        transcripts = 'transcripts_truncated.gtf'
-
     #samtools -- sort, count, tabulate alignment output
     if str(args_dict['program']).upper() == 'STAR':
         os.system("samtools sort " + dir_dict['aligndir'] + file[:-6] + "_star_outAligned.out.sam -o " + dir_dict['aligndir'] + file[:-6] + "_star_sorted.sam")

@@ -100,8 +100,18 @@ def main(args=None):
         #Run ASSEMBLE
         msg_align()
         #Prep transcripts reference to pull from
-        transcripts = 'transcripts.gtf'
-        transcripts_flat = 'transcripts_refFlat.txt'
+        if 'full_genome' in args_dict and args_dict['full_genome'] == True:
+            transcripts = 'transcripts.gtf'
+            transcripts_flat = 'transcripts_refFlat.txt'
+        else:
+            if args.cmd == 'riboseq':
+                transcripts = 'transcripts_truncated.gtf'
+                transcripts_flat = 'transcripts_truncated_refFlat.txt'
+            elif args.cmd == 'rnaseq':
+                transcripts = 'transcripts_coding.gtf'
+                transcripts_flat = 'transcripts_coding_refFlat.txt'
+            else:
+                pass
 
         align(args_dict, dir_dict, dir_dict['trimdir'], transcripts)
 
