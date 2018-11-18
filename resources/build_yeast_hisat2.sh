@@ -41,8 +41,8 @@ conda install -y scipy
 metagene generate transcripts_cds_start --landmark cds_start --annotation_files transcripts.gtf --downstream 200
 
 #Build
-hisat2-build source_files/Saccharomyces_cerevisiae.R64-1-1.dna.chromosome.*.fa ncrna
+hisat2-build source_files/Saccharomyces_cerevisiae.R64-1-1.dna.chromosome.*.fa genome
 hisat2-build source_files/Saccharomyces_cerevisiae.R64-1-1.ncrna.fa ncrna
 
 cd ../
-zip -r yeast_reference_hisat2.zip yeast_reference_hisat2_star/
+zip -r yeast_reference_hisat2.zip yeast_reference_hisat2/
