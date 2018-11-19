@@ -6,7 +6,7 @@ pd.options.mode.chained_assignment = None
 
 def truncate(args_dict):
     #Import gtf reference file to
-    if str(args_dict['input']).endswith('.gtf') or str(args_dict['input']).endswith('.gff'):
+    if str(args_dict['input']).endswith('.gtf'):
         df = pd.read_csv(args_dict['input'], sep="\t", header=None, comment='#')
     else:
         sys.exit(1)

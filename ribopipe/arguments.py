@@ -99,6 +99,14 @@ diffex [--help]
     headless .csv table with information as follows:
     Column1 data -> Systematic names
     Column2 data -> Information to be added (common names, descriptions, etc.)
+
+truncate [--help]
+    Create coding-only and truncated transcript reference file (gtf) from input
+    gtf file
+    Coding-only takes all genes beginning with gene_ids starting with Y
+    Truncated takes coding-only file and removes first 45 nt from each first
+    exon of each transcript
+    Only compatible with yeast genome at present (18 Nov 2018)
 """
 
 """
