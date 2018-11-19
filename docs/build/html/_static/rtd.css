@@ -788,7 +788,7 @@ p {
 .toctree-wrapper a,
 .indextable a,
 #indices-and-tables a {
-    color: #444444;
+    color: {{ theme_dark_gray }};
     text-decoration: none;
     border-bottom: none;
 }
@@ -798,26 +798,26 @@ a:hover,
 div.toctree-wrapper a:hover,
 .indextable a:hover,
 #indices-and-tables a:hover {
-    color: #111111;
+    color: {{ theme_black }};
     text-decoration: none;
-    border-bottom: 1px solid #111111;
+    border-bottom: 1px solid {{ theme_black }};
 }
 
 /* Footer links */
 div.footer a {
-    color: #86989b;
+    color: {{ theme_background_text_link }};
     text-decoration: none;
     border: none;
 }
 div.footer a:hover {
-    color: #a6b8bb;
+    color: {{ theme_medium_color_link_hover }};
     text-decoration: underline;
     border: none;
 }
 
 /* Permalink anchor (subtle grey with a red hover) */
 div.body a.headerlink {
-    color: #cccccc;
+    color: {{ theme_lighter_gray }};
     font-size: 1em;
     margin-left: 6px;
     padding: 0 4px 0 4px;
@@ -825,7 +825,7 @@ div.body a.headerlink {
     border: none;
 }
 div.body a.headerlink:hover {
-    color: #c60f0f;
+    color: {{ theme_negative_text }};
     border: none;
 }
 
@@ -841,7 +841,7 @@ div.related ul li {
     padding: 0.65em 0;
     float: left;
     display: block;
-    color: #ffffff; /* For the >> separators */
+    color: {{ theme_background_link_half }}; /* For the >> separators */
     font-size: 0.8em;
 }
 
@@ -858,7 +858,7 @@ div.related ul li a {
     font-weight: bold;
     margin: 6px 0 6px 4px;
     line-height: 1.75em;
-    color: #ffffff;
+    color: {{ theme_background_link }};
     text-shadow: 0 1px rgba(0, 0, 0, 0.5);
     padding: 0.4em 0.8em;
     border: none;
@@ -867,7 +867,7 @@ div.related ul li a {
 /* previous / next / modules / index links look more like buttons */
 div.related ul li.right a {
     margin: 0.375em 0;
-    background-color: #697983;
+    background-color: {{ theme_medium_color_hover }};
     text-shadow: 0 1px rgba(0, 0, 0, 0.5);
     border-radius: 3px;
     -webkit-border-radius: 3px;
@@ -875,8 +875,8 @@ div.related ul li.right a {
 }
 /* All navbar links light up as buttons when hovered */
 div.related ul li a:hover {
-    background-color: #8ca1af;
-    color: #ffffff;
+    background-color: {{ theme_medium_color }};
+    color: {{ theme_white }};
     text-decoration: none;
     border-radius: 3px;
     -webkit-border-radius: 3px;
@@ -906,7 +906,7 @@ div.sphinxsidebar {
     width: 14em;
     font-size: 1em;
     text-align: left;
-    background-color: #e8ecef;
+    background-color: {{ theme_light_color }};
 }
 
 div.sphinxsidebar img {
@@ -917,12 +917,12 @@ div.sphinxsidebar h3, div.sphinxsidebar h4 {
     margin: 1.2em 0 0.3em 0;
     font-size: 1em;
     padding: 0;
-    color: #222222;
+    color: {{ theme_gray_2 }};
     font-family: "ff-meta-web-pro-1", "ff-meta-web-pro-2", "Arial", "Helvetica Neue", sans-serif;
 }
 
 div.sphinxsidebar h3 a {
-    color: ;
+    color: {{ theme_grey_color }};
 }
 
 div.sphinxsidebar ul,
@@ -930,7 +930,7 @@ div.sphinxsidebar p {
     margin-top: 0;
     padding-left: 0;
     line-height: 130%;
-    background-color: #e8ecef;
+    background-color: {{ theme_light_color }};
 }
 
 /* No bullets for nested lists, but a little extra indentation */
@@ -967,7 +967,7 @@ div.sphinxsidebar p.topless:hover {
 #searchbox {
     margin-top: 2em;
     margin-bottom: 1em;
-    background: #dddddd;
+    background: {{ theme_dirtier_white }};
     padding: 0.5em;
     border-radius: 6px;
     -moz-border-radius: 6px;
@@ -980,7 +980,7 @@ div.sphinxsidebar p.topless:hover {
 /* Make search box and button abut and have a border */
 input,
 div.sphinxsidebar input {
-    border: 1px solid #999999;
+    border: 1px solid {{ theme_gray_9 }};
     float: left;
 }
 
@@ -1001,8 +1001,8 @@ input[type="text"] {
 input[type="submit"] {
     margin: 0 0 0 -1px; /* -1px prevents a double-border with textbox */
     height: 22px;
-    color: #444444;
-    background-color: #e8ecef;
+    color: {{ theme_dark_gray }};
+    background-color: {{ theme_light_color }};
     padding: 1px 4px;
     font-weight: bold;
     border-top-right-radius: 3px;
@@ -1013,22 +1013,22 @@ input[type="submit"] {
     -webkit-border-bottom-right-radius: 3px;
 }
 input[type="submit"]:hover {
-    color: #ffffff;
-    background-color: #8ecc4c;
+    color: {{ theme_white }};
+    background-color: {{ theme_green_highlight }};
 }
 
 div.sphinxsidebar p.searchtip {
     clear: both;
     padding: 0.5em 0 0 0;
-    background: #dddddd;
-    color: #666666;
+    background: {{ theme_dirtier_white }};
+    color: {{ theme_gray }};
     font-size: 0.9em;
 }
 
 /* Sidebar links are unusual */
 div.sphinxsidebar li a,
 div.sphinxsidebar p a {
-    background: #e8ecef; /* In case links overlap main content */
+    background: {{ theme_light_color }}; /* In case links overlap main content */
     border-radius: 3px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
@@ -1037,9 +1037,9 @@ div.sphinxsidebar p a {
 }
 div.sphinxsidebar li a:hover,
 div.sphinxsidebar p a:hover {
-    color: #111111;
+    color: {{ theme_black }};
     text-decoration: none;
-    border: 1px solid #888888;
+    border: 1px solid {{ theme_light_gray }};
 }
 
 /* Tweak any link appearing in a heading */
@@ -1059,8 +1059,8 @@ cite, code, tt {
 }
 
 tt {
-    background-color: ;
-    color: #444444;
+    background-color: {{ theme_code_background }};
+    color: {{ theme_dark_gray }};
 }
 
 tt.descname, tt.descclassname, tt.xref {
@@ -1068,7 +1068,7 @@ tt.descname, tt.descclassname, tt.xref {
 }
 
 hr {
-    border: 1px solid #abc;
+    border: 1px solid {{ theme_ruler }};
     margin: 2em;
 }
 
@@ -1080,8 +1080,8 @@ pre, #_fontwidthtest {
     letter-spacing: 0.015em;
     line-height: 120%;
     padding: 0.5em;
-    border: 1px solid #cccccc;
-    background-color: ;
+    border: 1px solid {{ theme_lighter_gray }};
+    background-color: {{ theme_code_background }};
     border-radius: 6px;
     -moz-border-radius: 6px;
     -webkit-border-radius: 6px;
@@ -1097,15 +1097,15 @@ td.linenos pre {
 }
 
 div.quotebar {
-    background-color: #f8f8f8;
+    background-color: {{ theme_almost_white }};
     max-width: 250px;
     float: right;
     padding: 2px 7px;
-    border: 1px solid #cccccc;
+    border: 1px solid {{ theme_lighter_gray }};
 }
 
 div.topic {
-    background-color: #f8f8f8;
+    background-color: {{ theme_almost_white }};
 }
 
 table {
@@ -1164,24 +1164,24 @@ div.sidebar ul, div.sidebar ol {
 
 /* Admonitions and sidebars only */
 div.admonition, div.sidebar {
-    border: 1px solid #609060;
-    background-color: #e9ffe9;
+    border: 1px solid {{ theme_positive_dark }};
+    background-color: {{ theme_positive_light }};
 }
 div.admonition p.admonition-title,
 div.sidebar p.sidebar-title {
-    background-color: #70a070;
-    border-bottom: 1px solid #609060;
+    background-color: {{ theme_positive_medium }};
+    border-bottom: 1px solid {{ theme_positive_dark }};
 }
 
 
 /* Warnings only */
 div.warning {
-    border: 1px solid #900000;
-    background-color: #ffe9e9;
+    border: 1px solid {{ theme_negative_dark }};
+    background-color: {{ theme_negative_light }};
 }
 div.warning p.admonition-title {
-    background-color: #b04040;
-    border-bottom: 1px solid #900000;
+    background-color: {{ theme_negative_medium }};
+    border-bottom: 1px solid {{ theme_negative_dark }};
 }
 
 
@@ -1194,8 +1194,8 @@ div.sidebar {
 
 div.versioninfo {
     margin: 1em 0 0 0;
-    border: 1px solid #cccccc;
-    background-color: #DDEAF0;
+    border: 1px solid {{ theme_lighter_gray }};
+    background-color: {{ theme_light_medium_color }};
     padding: 8px;
     line-height: 1.3em;
     font-size: 0.9em;
@@ -1207,9 +1207,9 @@ div.versioninfo {
 }
 
 div.viewcode-block:target {
-    background-color: #f4debf;
-    border-top: 1px solid #ac9;
-    border-bottom: 1px solid #ac9;
+    background-color: {{ theme_viewcode_bg }};
+    border-top: 1px solid {{ theme_viewcode_border }};
+    border-bottom: 1px solid {{ theme_viewcode_border }};
 }
 
 dl {
@@ -1218,7 +1218,7 @@ dl {
 
 /* Highlight target when you click an internal link */
 dt:target {
-    background: #ffe080;
+    background: {{ theme_highlight }};
 }
 /* Don't highlight whole divs */
 div.highlight {
@@ -1226,12 +1226,12 @@ div.highlight {
 }
 /* But do highlight spans (so search results can be highlighted) */
 span.highlight {
-    background: #ffe080;
+    background: {{ theme_highlight }};
 }
 
 div.footer {
-    background-color: #465158;
-    color: #eeeeee;
+    background-color: {{ theme_background }};
+    color: {{ theme_background_text }};
     padding: 0 2em 2em 2em;
     clear: both;
     font-size: 0.8em;
@@ -1260,7 +1260,7 @@ p {
     }
 
     div.bodywrapper a.headerlink, #indices-and-tables h1 a {
-        color: #e6e6e6;
+        color: {{ theme_almost_dirty_white }};
         font-size: 80%;
         float: right;
         line-height: 1.8;
@@ -1288,19 +1288,19 @@ p {
 
     div.related ul li {
         clear: both;
-        color: #465158;
+        color: {{ theme_dark_color }};
         padding: 0.2em 0;
     }
 
     div.related ul li:last-child {
-        border-bottom: 1px dotted #8ca1af;
+        border-bottom: 1px dotted {{ theme_medium_color }};
         padding-bottom: 0.4em;
         margin-bottom: 1em;
         width: 100%;
     }
 
     div.related ul li a {
-        color: #465158;
+        color: {{ theme_dark_color }};
         padding-right: 0;
     }
 
@@ -1316,12 +1316,12 @@ p {
     }
 
     div.related ul li.right a {
-        color: #ffffff;
+        color: {{ theme_white }};
         padding-right: 0.8em;
     }
 
     div.related ul li.right a:hover {
-        background-color: #8ca1af;
+        background-color: {{ theme_medium_color }};
     }
 
     div.body {

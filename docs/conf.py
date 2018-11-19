@@ -64,7 +64,7 @@ language = None
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path .
-exclude_patterns = []
+exclude_patterns = ['build']
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
@@ -109,7 +109,10 @@ html_favicon = 'ribopipe.png'
 # default: ``['localtoc.html', 'relations.html', 'sourcelink.html',
 # 'searchbox.html']``.
 #
-# html_sidebars = {'index': ['sidebar.html', 'sourcelink.html', 'searchbox.html']}
+html_sidebars = {'index': ['sidebar.html', 'searchbox.html']}
+
+# If true, "Created using Sphinx" is shown in the HTML footer. Default is True.
+html_show_sphinx = False
 
 
 # -- Options for HTMLHelp output ---------------------------------------------
