@@ -21,7 +21,7 @@ this program.  If not, see <https://www.gnu.org/licenses/>.
 
 from setuptools import setup
 import re
-import os
+import os, sys
 
 with open('ribopipe/__init__.py', 'r') as fd:
     version = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]',
