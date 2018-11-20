@@ -90,7 +90,7 @@ def prep_reference(args_dict, dir_dict, __path__):
         else:
             pass
     else:
-        pass
+        pass 
 
     return dir_dict['reference']
 
