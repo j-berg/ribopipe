@@ -49,4 +49,4 @@ RiboPipe is freely available under a GNU General Public License (v3.0).
 ============
 Mailing list
 ============
-If you have questions, requests, or bugs to report, please use the Github issues forum.
+If you have questions, requests, or bugs to report, please use the `Github issues <https://github.com/j-berg/ribopipe/issues>`_ forum.
