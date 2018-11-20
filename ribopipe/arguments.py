@@ -635,6 +635,13 @@ def get_arguments(args, __version__):
         type=lambda file:check_csv(file)
         )
     de_reqs.add_argument(
+        "-d", "--descriptions",
+        help="Add common names, descriptions, or other information to DESeq output table (must be a .csv file, see ribopipe --help for more information)",
+        metavar="<str>",
+        type=check_csv,
+        required=False
+        )
+    de_reqs.add_argument(
         "-o", "--output",
         help="Output file prefix",
         required=True
@@ -651,13 +658,6 @@ def get_arguments(args, __version__):
         "-h", "--help",
         action="help",
         help="show this help message and exit"
-        )
-    de_opts.add_argument(
-        "-d", "--descriptions",
-        help="Add common names, descriptions, or other information to DESeq output table (must be a .csv file, see ribopipe --help for more information)",
-        metavar="<str>",
-        type=check_csv,
-        required=False
         )
     de_opts.add_argument(
         "--replicates",
