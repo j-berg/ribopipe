@@ -3,128 +3,192 @@ Installation
 ############
 
 ===================
-Local Installation:
+MacOS Installation:
 ===================
-1)  Make sure Python3, git, and wget are installed.
-2)  In order to access the reference files, git-lfs also needs to be installed through brew
+
+See local_install.sh in the `resources <https://github.com/j-berg/ribopipe/resources/>`_ folder for interactive script.
+
+1)  RiboPipe requires use of command line. Execute the following lines of code in `Terminal <https://www.imore.com/how-use-terminal-mac-when-you-have-no-idea-where-start>`_ (on Mac, open Spotlight and type 'Terminal'):
+
+2)  Install python3, wget, git, and git-lfs if not already done. You can check in command line by typing in the name of the package and checking if your system recognizes the package name.
 
 .. code-block:: shell
 
   $ sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
   $ echo "export PATH='$(brew --prefix)/bin:$(brew --prefix)/sbin'":'"$PATH"' >> ~/.bash_profile
-  $ brew install git-lfs
+  $ brew install python3 wget git git-lfs
   $ git lfs install
 
-3)  Download `Conda <https://www.anaconda.com/download/#macos>`_, a package manager, for your operating system. Double click the `.pkg` file if on MacOS, the `.exe` file on Windows, or follow these `instructions <https://conda.io/docs/user-guide/install/linux.html#install-linux-silent>`_ on Linux.
-4)  Execute the following lines of code in `Terminal <https://www.imore.com/how-use-terminal-mac-when-you-have-no-idea-where-start>`_ (on Mac, open Spotlight and type 'Terminal'):
-5)  Download current repository:
+3)  You may need to manually point your system to python3. You can check this by typing :data:`python` in the command line and seeing if it is running python3. At this time, RiboPipe only works when Python3 is set as the default. If it is not, do the following:
+
+.. code-block:: shell
+
+  $ echo "alias python="python3" >> ~/.bash_profile
+
+4)  Download `Conda <https://www.anaconda.com/download/#macos>`_, a package manager, for your operating system. Double click the `.pkg` file if on MacOS, the `.exe` file on Windows, or follow these `instructions <https://conda.io/docs/user-guide/install/linux.html#install-linux-silent>`_ on Linux.
+
+5)  Download RiboPipe dependencies via conda:
+
+.. code-block:: shell
+
+  $ conda install -y -c bioconda setuptools fastqc fastx_toolkit htseq picard samtools hisat2 star bedtools deeptools scipy plastid pandas numpy matplotlib seaborn pysam=0.14
+
+6)  Install RiboPipe dependencies via pip (should have come pre-installed with python3.4 or greater):
+
+.. code-block:: shell
+
+  $ pip install multiqc
+
+7)  Download RiboPipe:
 
 .. code-block:: shell
 
   $ git clone https://github.com/j-berg/ribopipe.git
-  $ cd ribopipe/ribopipe/references
+  $ cd ribopipe
+  $ cd python setup.py install
 
-6)  To download specific version
+8)  Or, to download specific version:
 
 .. code-block:: shell
 
   $ tag='v0.1.4-beta'
   $ wget https://github.com/j-berg/ribopipe/archive/$tag.zip
   $ unzip ribopipe-${tag:1}.zip
-  $ cd ribopipe-${tag:1}/ribopipe/references
+  $ mv ribopipe-${tag:1} ribopipe
+  $ cd ribopipe
+  $ cd python setup.py install
 
-7)  Get reference
-
-.. code-block:: shell
-
-  $ model='yeast'
-  $ program='hisat2'
-  $ wget https://sourceforge.net/projects/ribopipe/files/${program}_references/${model}_reference_${program}.zip
-  $ unzip ${model}_reference_${program}.zip
-  $ rm ${model}_reference_${program}.zip
-  $ cd ../../
-  $ python3 setup.py install --prefix ~/.local
-
-8) add script installation location given near the end of the setup scripting output to ~/.bashrc or ~/.bash_profile
-add to .bashrc
+9)  At the end of the installation instructions, an installation location will be given. Add this to your $PATH:
 
 .. code-block:: shell
 
-  $ echo "PATH='/path/to/scripts/:$PATH'" >> ~/.bashrc
+  ...
+  Installing ribopipe script to /Users/$USERNAME/anaconda3/bin
 
-add to .bash_profile
+  Installed /Users/$USERNAME/anaconda3/lib/python3.6/site-packages/RiboPipe-0.1.5b0-py3.6.egg
+  Processing dependencies for RiboPipe==0.1.5b0
+  Finished processing dependencies for RiboPipe==0.1.5b0
 
-.. code-block:: shell
+  $ echo "export PATH='/Users/$USERNAME/anaconda3/bin:$PATH' >> ~/.bash_profile
 
-  $ echo "PATH='/path/to/scripts/:$PATH'" >> ~/.bash_profile
-
-9) Test by typing the following:
+10) Test installation:
 
 .. code-block:: shell
 
   $ ribopipe --help
-
-10) Install conda dependencies:
-
-.. code-block:: shell
-
-  $ ribopipe install
-
-See local_install.sh in the `resources <https://github.com/j-berg/ribopipe/resources/>`_ folder for interactive script
 
 
 =================
 HPC Installation:
 =================
-1)  Make sure Python3, git, and wget are installed.
-2)  Execute the following lines of code:
 
-3)  To download current repository:
+See hpc_install.sh in the `resources <https://github.com/j-berg/ribopipe/resources/>`_ folder for interactive script. While the resource manager can install these for you, we will show you how to manually install all dependencies. These instructions may vary slightly from HPC to HPC.
+
+1)  Remove all pre-loaded software:
+
+.. code-block:: shell
+
+  $ module purge
+
+2)  Install brew and related dependencies:
+Install python3, wget, git, and git-lfs if not already done. You can check in command line by typing in the name of the package and checking if your system recognizes the package name.
+
+  $ $ sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+  $ echo "export PATH='$(brew --prefix)/bin:$(brew --prefix)/sbin'":'"$PATH"' >> ~/.bash_profile
+  $ brew install python3 wget git git-lfs
+  $ git lfs install
+
+3)  You may need to manually point your system to python3. You can check this by typing :data:`python` in the command line and seeing if it is running python3. At this time, RiboPipe only works when Python3 is set as the default. If it is not, do the following:
+
+.. code-block:: shell
+
+  $ echo "alias python="python3" >> ~/.bash_profile
+
+4)  Install anaconda (instructions retrieves most recent version as of time of writing):
+
+.. code-block:: shell
+
+  $ wget https://repo.anaconda.com/archive/Anaconda3-5.3.0-Linux-x86_64.sh
+  $ chmod 700 Anaconda3-5.3.0-Linux-x86_64.sh
+  $ ./Anaconda3-5.3.0-Linux-x86_64.sh -b -p $HOME/.local/bin -s
+  $ export PATH="/uufs/chpc.utah.edu/common/home/$USER/.local/bin:$PATH"
+  $ conda install -y -c bioconda setuptools fastqc fastx_toolkit htseq picard samtools star bedtools deeptools scipy plastid pandas numpy matplotlib seaborn pysam=0.14
+
+5)  Install pip related dependencies (should have come pre-installed with python3.4 or greater):
+
+.. code-block:: shell
+
+  $ pip install multiqc
+
+6)  To download current repository:
 
 .. code-block:: shell
 
   $ git clone https://github.com/j-berg/ribopipe.git
-  $ cd ribopipe/ribopipe/references
+  $ cd ribopipe
+  $ python setup.py install --prefix ~/.local
 
-4)  To download specific version
+7)  Or, to download specific version
 
 .. code-block:: shell
 
   $ tag='v0.1.4-beta'
   $ wget https://github.com/j-berg/ribopipe/archive/$tag.zip
   $ unzip ribopipe-${tag:1}.zip
-  $ cd ribopipe-${tag:1}/ribopipe/references
+  $ mv ribopipe-${tag:1} ribopipe
+  $ cd ribopipe
+  $ cd python setup.py install --prefix ~/.local
 
-5)  Get reference
-
-.. code-block:: shell
-
-  $ model='yeast'
-  $ program='hisat2'
-  $ wget https://sourceforge.net/projects/ribopipe/files/${program}_references/${model}_reference_${program}.zip
-  $ unzip ${model}_reference_${program}.zip
-  $ rm ${model}_reference_${program}.zip
-  $ cd ../../
-  $ module load python3
-  $ python setup.py install --prefix ~/.local
-
-6)  Add script installation location given near the end of the setup scripting output to ~/.bashrc or ~/.bash_profile
-add to .bashrc
+8)  At the end of the installation instructions, an installation location will be given. Add this to your $PATH:
 
 .. code-block:: shell
 
-  $ echo "PATH='/path/to/scripts/:$PATH'" >> ~/.bashrc
+  ...
+  Installing ribopipe script to /uufs/chpc.utah.edu/common/home/$USER/.local/bin
 
-add to .bash_profile
+  Installed /uufs/chpc.utah.edu/common/home/$USER/.local/lib/python3.5/site-packages/RiboPipe-0.1.5b0-py3.5.egg
+  Processing dependencies for RiboPipe==0.1.5b0
+  Finished processing dependencies for RiboPipe==0.1.5b0
 
-.. code-block:: shell
+  $ echo "export PATH='/uufs/chpc.utah.edu/common/home/$USER/.local/bin:$PATH' >> ~/.bash_profile
 
-  $ echo "PATH='/path/to/scripts/:$PATH'" >> ~/.bash_profile
-
-7) Test by typing the following:
+9) Test installation:
 
 .. code-block:: shell
 
   $ ribopipe --help
 
-See hpc_install.sh in the `resources <https://github.com/j-berg/ribopipe/resources/>`_ folder for interactive script
+
+================
+Additional Help:
+================
+
+Manually installing a package:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Sometimes a package may need to be manually installed. In these cases, a pattern as follows may be used (example given is loading on HPC).
+
+.. code-block:: shell
+
+  $ wget https://github.com/simon-anders/htseq/archive/release_0.11.0.zip
+  $ unzip htseq-release_0.11.0.zip
+  $ rm htseq-release_0.11.0.zip
+  $ cd htseq-release_0.11.0
+  $ python setup.py install --prefix ~/.local
+  $ cd ../
+  $ echo "export PATH='/uufs/chpc.utah.edu/common/home/$USER/.local/bin:$PATH' >> ~/.bash_profile"
+
+  Or...
+
+.. code-block:: shell
+
+  $ git clone https://github.com/simon-anders/htseq.git
+  $ cd htseq
+  $ python setup.py install --prefix ~/.local
+  $ cd ../
+  $ echo "export PATH='/uufs/chpc.utah.edu/common/home/$USER/.local/bin:$PATH' >> ~/.bash_profile"
+
+Getting publicly available raw data from GEO:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Raw data from previous studies that have been made publicly available can be accessed through the `GEO database <https://www.ncbi.nlm.nih.gov/geo/>`_
+
+Please see `this example script <https://github.com/j-berg/ribopipe/blob/master/resources/run_riboseq_GSE66411_test.sh>`_ for examples of how to retrieve this data. This `thread <https://www.biostars.org/p/111040/>`_ is also helpful.
