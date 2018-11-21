@@ -2,7 +2,10 @@
 Quickstart
 ##########
 
-1) `Install <installation>`_ RiboPipe.
+To do a full install, see `Install <installation>`_ RiboPipe.
+
+1) `Singularity <https://www.sylabs.io/docs/>`_ offers a fast, reproducible way of running RiboPipe where
+  Singularity images for RiboPipe are hosted `here <https://github.com/j-berg/ribopipe-singularity>`_
 
 Local
 ^^^^^
