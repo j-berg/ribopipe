@@ -244,7 +244,7 @@ def get_arguments(args, __version__):
         )
     riboseq_opts.add_argument(
         "--full_genome",
-        help="Select this option to map reads to full genome. If false, will not map to first 45 nt of all transcripts for ribosome profiling <riboseq>, or will just map to transcripts for <rnaseq> (it is recommended to NOT include this option as ribosome profiling data for this region is often unreliable\nSpecify as False if running [align] with non-Ribosome Profiling data",
+        help="Add this option to map reads to full genome. If false, will not map to first 45 nt of all transcripts for ribosome profiling <riboseq>, or will just map to transcripts for <rnaseq> (it is recommended to NOT include this option as ribosome profiling data for this region is often unreliable\nSpecify as False if running [align] with non-Ribosome Profiling data",
         action='store_true',
         required=False
         )
@@ -353,7 +353,7 @@ def get_arguments(args, __version__):
         )
     rnaseq_opts.add_argument(
         "--full_genome",
-        help="Select this option to map reads to full genome. If false, will not map to first 45 nt of all transcripts for ribosome profiling <riboseq>, or will just map to transcripts for <rnaseq> (it is recommended to NOT include this option as ribosome profiling data for this region is often unreliable\nSpecify as False if running [align] with non-Ribosome Profiling data",
+        help="Add this option to map reads to full genome. If false, will not map to first 45 nt of all transcripts for ribosome profiling <riboseq>, or will just map to transcripts for <rnaseq> (it is recommended to NOT include this option as ribosome profiling data for this region is often unreliable\nSpecify as False if running [align] with non-Ribosome Profiling data",
         action='store_true',
         required=False
         )
