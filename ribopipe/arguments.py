@@ -244,7 +244,7 @@ def get_arguments(args, __version__):
         )
     riboseq_opts.add_argument(
         "--full_genome",
-        help="Add this option to map reads to full genome. If false, will not map to first 45 nt of all transcripts for ribosome profiling <riboseq>, or will just map to transcripts for <rnaseq> (it is recommended to NOT include this option as ribosome profiling data for this region is often unreliable\nSpecify as False if running [align] with non-Ribosome Profiling data",
+        help="Add this option to map reads to full genome. If not provided, will not map to first 45 nt of all transcripts for ribosome profiling datasets. It is recommended to NOT include this option as ribosome profiling data for this region is often unreliable.",
         action='store_true',
         required=False
         )
@@ -353,7 +353,7 @@ def get_arguments(args, __version__):
         )
     rnaseq_opts.add_argument(
         "--full_genome",
-        help="Add this option to map reads to full genome. If false, will not map to first 45 nt of all transcripts for ribosome profiling <riboseq>, or will just map to transcripts for <rnaseq> (it is recommended to NOT include this option as ribosome profiling data for this region is often unreliable\nSpecify as False if running [align] with non-Ribosome Profiling data",
+        help="Add this option to map reads to full genome. If not provided, will only map reads to transcripts.",
         action='store_true',
         required=False
         )
@@ -434,12 +434,6 @@ def get_arguments(args, __version__):
     #Required arguments
     align_reqs = align_parser.add_argument_group('required arguments')
     align_reqs.add_argument(
-        "-t", "--type",
-        help="Sequencing type -- ribosome profiling <riboseq> or single-end short read sequence data <rnaseq>",
-        required=True,
-        metavar="<riboseq>, <rnaseq>"
-        )
-    align_reqs.add_argument(
         "-i", "--input",
         help="Specify full PATH to input directory",
         required=True
@@ -468,6 +462,12 @@ def get_arguments(args, __version__):
         nargs="+",
         required=True
         )
+    align_reqs.add_argument(
+        "-t", "--type",
+        help="Sequencing type -- ribosome profiling <riboseq> or single-end short read sequence data <rnaseq>",
+        required=True,
+        metavar="<riboseq>, <rnaseq>"
+        )
     #Optional arguments
     align_opts = align_parser.add_argument_group('optional arguments')
     align_opts.add_argument(
@@ -491,7 +491,7 @@ def get_arguments(args, __version__):
         )
     align_opts.add_argument(
         "--full_genome",
-        help="Select this option to map reads to full genome. If false, will not map to first 45 nt of all transcripts for ribosome profiling <riboseq>, or will just map to transcripts for <rnaseq> (it is recommended to NOT include this option as ribosome profiling data for this region is often unreliable\nSpecify as False if running [align] with non-Ribosome Profiling data",
+        help="Select this option to map reads to full genome. If false, will not map to first 45 nt of all transcripts for ribosome profiling <riboseq>, or will just map to transcripts for <rnaseq> (it is recommended to NOT include this option as ribosome profiling data for this region is often unreliable.",
         action='store_true',
         required=False
         )

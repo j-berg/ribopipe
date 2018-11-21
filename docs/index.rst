@@ -20,7 +20,6 @@ Table of contents
    content/installation
    content/quickstart
    content/general-usage
-   content/example-usage
    content/advanced-usage
 
 
