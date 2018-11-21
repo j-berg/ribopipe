@@ -133,6 +133,11 @@ def main(args=None):
 
         #Rezip raw files
         msg_cleaning()
+
+        #Create multiqc summary report
+        os.system("multiqc " + args_dict['trimdir'] + " " + args_dict['aligndir'] + " " + args_dict['countsdir'] + " " + args_dict['postqcdir'] + " -i " + args_dict['experiment'] + " -o " + args_dict['highlights'] + " -b If HISAT2 was used to aligned, these will be reported as Bowtie2 metrics by MultiQC.")
+
+        #Rezip starting files
         os.system("gzip " + args_dict['input'] + "*.fastq")
         msg_finish()
 

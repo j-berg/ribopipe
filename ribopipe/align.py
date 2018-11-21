@@ -46,7 +46,7 @@ def assemble(args):
 
         elif str(args_dict['program']).upper() == 'HISAT2':
             #hisat2 -- align curated reads to references
-            os.system("hisat2 --quiet -x " + str(dir_dict['reference']) + "genome -U " + str(dir_dict['trimdir']) + file + " -S " + str(dir_dict['aligndir']) + file[:-6] + "_hisat2_out.sam")
+            os.system("hisat2 --quiet -x " + str(dir_dict['reference']) + "genome -U " + str(dir_dict['trimdir']) + file + " -S " + str(dir_dict['aligndir']) + file[:-6] + "_hisat2_out.sam 2> " + str(dir_dict['aligndir']) + file[:-6] + "_genome_report.txt")
 
         else:
             sys.exit(1)
@@ -62,10 +62,10 @@ def assemble(args):
 
         elif str(args_dict['program']).upper() == 'HISAT2':
             #hisat2 -- in silico rRNA removal
-            os.system("hisat2 --quiet -x " + str(dir_dict['reference']) + "ncrna --un=" + str(dir_dict['aligndir']) + file[:-6] + "_norrna.fastq -U " + str(dir_dict['trimdir']) + file)
+            os.system("hisat2 --quiet -x " + str(dir_dict['reference']) + "ncrna --un=" + str(dir_dict['aligndir']) + file[:-6] + "_norrna.fastq -U " + str(dir_dict['trimdir']) + file + " 2> " + str(dir_dict['aligndir']) + file[:-6] + "_ncrna_report.txt"")
 
             #hisat2 -- align curated reads to references
-            os.system("hisat2 --quiet -x " + str(dir_dict['reference']) + "genome -U " + str(dir_dict['aligndir']) + file[:-6] + "_norrna.fastq -S " + str(dir_dict['aligndir']) + file[:-6] + "_hisat2_out.sam")
+            os.system("hisat2 --quiet -x " + str(dir_dict['reference']) + "genome -U " + str(dir_dict['aligndir']) + file[:-6] + "_norrna.fastq -S " + str(dir_dict['aligndir']) + file[:-6]+"_hisat2_out.sam 2> "+str(dir_dict['aligndir'])+file[:-6]+"_genome_report.txt")
 
         else:
             sys.exit(1)
