@@ -246,12 +246,6 @@ def main(args=None):
         truncate(args_dict)
         sys.exit(1)
 
-    #Run local install of dependencies
-    elif args.cmd == 'local_install':
-
-        #Run bash script
-        sys.exit(1)
-
     #Display submodule error information
     else:
         print('Invalid selection, must specify RiboPipe module to run')

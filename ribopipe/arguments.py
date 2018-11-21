@@ -69,9 +69,6 @@ align [--help]
 quality [--help]
     Perform quality analyses on a table <.csv> of sequence counts
 
-local_install [--help]
-    Install RiboPipe dependencies needed for running any of the other submodules
-
 rrna_prober [--help]
     Run rrna_prober, a tool that identified over-represented sequences in
     footprint data for rRNA depletion in the Ribosome Profiling protocol
@@ -539,9 +536,6 @@ def get_arguments(args, __version__):
         action='store_true',
         default=False
         )
-
-    #LOCAL INSTALL subparser program
-    local_install_parser = subparser.add_parser('local_install', description='Local install submodule. Install or update dependencies required for RiboPipe')
 
     #RRNA PROBER subparser program
     probe_parser = subparser.add_parser('rrna_prober', description='rRNA prober submodule', add_help=False)
