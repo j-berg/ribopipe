@@ -6,16 +6,25 @@ Installation
 Local Installation:
 ===================
 1)  Make sure Python3, git, and wget are installed.
-2)  Download `Conda <https://www.anaconda.com/download/#macos>`_, a package manager, for your operating system. Double click the `.pkg` file if on MacOS, the `.exe` file on Windows, or follow these `instructions <https://conda.io/docs/user-guide/install/linux.html#install-linux-silent>`_ on Linux.
-3)  Execute the following lines of code in `Terminal <https://www.imore.com/how-use-terminal-mac-when-you-have-no-idea-where-start>`_ (on Mac, open Spotlight and type 'Terminal'):
-4)  Download current repository:
+2)  In order to access the reference files, git-lfs also needs to be installed through brew
+
+.. code-block:: shell
+
+  $ sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+  $ echo "export PATH='$(brew --prefix)/bin:$(brew --prefix)/sbin'":'"$PATH"' >> ~/.bash_profile
+  $ brew install git-lfs
+  $ git lfs install
+
+3)  Download `Conda <https://www.anaconda.com/download/#macos>`_, a package manager, for your operating system. Double click the `.pkg` file if on MacOS, the `.exe` file on Windows, or follow these `instructions <https://conda.io/docs/user-guide/install/linux.html#install-linux-silent>`_ on Linux.
+4)  Execute the following lines of code in `Terminal <https://www.imore.com/how-use-terminal-mac-when-you-have-no-idea-where-start>`_ (on Mac, open Spotlight and type 'Terminal'):
+5)  Download current repository:
 
 .. code-block:: shell
 
   $ git clone https://github.com/j-berg/ribopipe.git
   $ cd ribopipe/ribopipe/references
 
-5)  To download specific version
+6)  To download specific version
 
 .. code-block:: shell
 
@@ -24,7 +33,7 @@ Local Installation:
   $ unzip ribopipe-${tag:1}.zip
   $ cd ribopipe-${tag:1}/ribopipe/references
 
-6)  Get reference
+7)  Get reference
 
 .. code-block:: shell
 
@@ -36,7 +45,7 @@ Local Installation:
   $ cd ../../
   $ python3 setup.py install --prefix ~/.local
 
-7) add script installation location given near the end of the setup scripting output to ~/.bashrc or ~/.bash_profile
+8) add script installation location given near the end of the setup scripting output to ~/.bashrc or ~/.bash_profile
 add to .bashrc
 
 .. code-block:: shell
@@ -49,13 +58,13 @@ add to .bash_profile
 
   $ echo "PATH='/path/to/scripts/:$PATH'" >> ~/.bash_profile
 
-8) Test by typing the following:
+9) Test by typing the following:
 
 .. code-block:: shell
 
   $ ribopipe --help
 
-9) Install conda dependencies:
+10) Install conda dependencies:
 
 .. code-block:: shell
 

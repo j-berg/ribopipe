@@ -20,3 +20,10 @@ chmod 700 Anaconda3-5.3.0-Linux-x86_64.sh
 
 #Install dependencies
 conda install -y -c bioconda setuptools fastqc fastx_toolkit htseq picard samtools hisat2 star bedtools deeptools scipy plastid pandas numpy matplotlib seaborn pysam=0.14
+
+pip install multiqc
+
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+echo "export PATH='$(brew --prefix)/bin:$(brew --prefix)/sbin'":'"$PATH"' >> ~/.bash_profile
+brew install git-lfs
+git lfs install
