@@ -179,7 +179,7 @@ Sometimes a package may need to be manually installed. In these cases, a pattern
   $ cd ../
   $ echo "export PATH='/uufs/chpc.utah.edu/common/home/$USER/.local/bin:$PATH' >> ~/.bash_profile"
 
-  Or...
+Or...
 
 .. code-block:: shell
 
