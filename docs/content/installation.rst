@@ -93,7 +93,9 @@ See hpc_install.sh in the `resources <https://github.com/RiboPipe/ribopipe/tree/
 2)  Install brew and related dependencies:
 Install python3, wget, git, and git-lfs if not already done. You can check in command line by typing in the name of the package and checking if your system recognizes the package name.
 
-  $ $ sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+.. code-block:: shell
+
+  $ sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
   $ echo "export PATH='$(brew --prefix)/bin:$(brew --prefix)/sbin'":'"$PATH"' >> ~/.bash_profile
   $ brew install python3 wget git git-lfs
   $ git lfs install
