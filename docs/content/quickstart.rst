@@ -2,12 +2,12 @@
 Quickstart
 ##########
 
-To do a full install on a local machine or HPC, see `Install <installation>`_ RiboPipe.
+To do a full install on a local machine or HPC, see the `Installation <installation.html>`_ page.
 
 
 Singularity
 ^^^^^^^^^^^
-For a faster way to get started, consider using a Singularity image for RiboPipe, hosted `here <https://github.com/RiboPipe/ribopipe-singularity>`_
+For a faster way to get started, consider using a Singularity image for RiboPipe, hosted `here <https://github.com/RiboPipe/ribopipe-singularity>`_.
 
 1)  `Singularity <https://www.sylabs.io/docs/>`_ offers a fast, reproducible way of running RiboPipe where all dependencies and OS are bundled into a single disk image. These singularity "containers" are widely used in cloud computing.
 `Download <https://www.sylabs.io/guides/3.0/user-guide/quick_start.html#quick-installation-steps>`_ if you do not already have it (must be on a Linux OS). Often, cloud computing environments come with this software pre-installed.
