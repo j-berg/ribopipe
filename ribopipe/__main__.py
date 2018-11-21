@@ -135,7 +135,7 @@ def main(args=None):
         msg_cleaning()
 
         #Create multiqc summary report
-        os.system("multiqc " + dir_dict['trimdir'] + " " + dir_dict['aligndir'] + " " + dir_dict['countsdir'] + " " + dir_dict['postqcdir'] + " -i " + args_dict['experiment'] + " -o " + dir_dict['highlights'] + " -b If HISAT2 was used to aligned, these will be reported as Bowtie2 metrics by MultiQC.")
+        os.system("multiqc " + dir_dict['trimdir'] + " " + dir_dict['aligndir'] + " " + dir_dict['countsdir'] + " " + dir_dict['postqcdir'] + " -i " + str(args_dict['experiment']) + " -o " + dir_dict['highlights'] + " -b 'If HISAT2 was used to aligned, these will be reported as Bowtie2 metrics by MultiQC.'")
 
         #Rezip starting files
         os.system("gzip " + args_dict['input'] + "*.fastq")
