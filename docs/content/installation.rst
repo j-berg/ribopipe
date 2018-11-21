@@ -6,7 +6,7 @@ Installation
 MacOS Installation:
 ===================
 
-See local_install.sh in the `resources <https://github.com/j-berg/ribopipe/resources/>`_ folder for interactive script.
+See local_install.sh in the `resources <https://github.com/RiboPipe/ribopipe/tree/master/resources>`_ folder for interactive script.
 
 1)  RiboPipe requires use of command line. Execute the following lines of code in `Terminal <https://www.imore.com/how-use-terminal-mac-when-you-have-no-idea-where-start>`_ (on Mac, open Spotlight and type 'Terminal'):
 
@@ -43,7 +43,7 @@ See local_install.sh in the `resources <https://github.com/j-berg/ribopipe/resou
 
 .. code-block:: shell
 
-  $ git clone https://github.com/j-berg/ribopipe.git
+  $ git clone https://github.com/RiboPipe/ribopipe.git
   $ cd ribopipe
   $ cd python setup.py install
 
@@ -52,7 +52,7 @@ See local_install.sh in the `resources <https://github.com/j-berg/ribopipe/resou
 .. code-block:: shell
 
   $ tag='v0.1.4-beta'
-  $ wget https://github.com/j-berg/ribopipe/archive/$tag.zip
+  $ wget https://github.com/RiboPipe/ribopipe/archive/$tag.zip
   $ unzip ribopipe-${tag:1}.zip
   $ mv ribopipe-${tag:1} ribopipe
   $ cd ribopipe
@@ -82,7 +82,7 @@ See local_install.sh in the `resources <https://github.com/j-berg/ribopipe/resou
 HPC Installation:
 =================
 
-See hpc_install.sh in the `resources <https://github.com/j-berg/ribopipe/resources/>`_ folder for interactive script. While the resource manager can install these for you, we will show you how to manually install all dependencies. These instructions may vary slightly from HPC to HPC.
+See hpc_install.sh in the `resources <https://github.com/RiboPipe/ribopipe/tree/master/resources>`_ folder for interactive script. While the resource manager can install these for you, we will show you how to manually install all dependencies. These instructions may vary slightly from HPC to HPC.
 
 1)  Remove all pre-loaded software:
 
@@ -124,7 +124,7 @@ Install python3, wget, git, and git-lfs if not already done. You can check in co
 
 .. code-block:: shell
 
-  $ git clone https://github.com/j-berg/ribopipe.git
+  $ git clone https://github.com/RiboPipe/ribopipe.git
   $ cd ribopipe
   $ python setup.py install --prefix ~/.local
 
@@ -133,7 +133,7 @@ Install python3, wget, git, and git-lfs if not already done. You can check in co
 .. code-block:: shell
 
   $ tag='v0.1.4-beta'
-  $ wget https://github.com/j-berg/ribopipe/archive/$tag.zip
+  $ wget https://github.com/RiboPipe/ribopipe/archive/$tag.zip
   $ unzip ribopipe-${tag:1}.zip
   $ mv ribopipe-${tag:1} ribopipe
   $ cd ribopipe
@@ -191,4 +191,4 @@ Getting publicly available raw data from GEO:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Raw data from previous studies that have been made publicly available can be accessed through the `GEO database <https://www.ncbi.nlm.nih.gov/geo/>`_
 
-Please see `this example script <https://github.com/j-berg/ribopipe/blob/master/resources/run_riboseq_GSE66411_test.sh>`_ for examples of how to retrieve this data. This `thread <https://www.biostars.org/p/111040/>`_ is also helpful.
+Please see `this example script <https://github.com/RiboPipe/ribopipe/blob/master/resources/run_riboseq_GSE66411_test.sh>`_ for examples of how to retrieve this data. This `thread <https://www.biostars.org/p/111040/>`_ is also helpful.

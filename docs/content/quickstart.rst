@@ -5,7 +5,7 @@ Quickstart
 To do a full install, see `Install <installation>`_ RiboPipe.
 
 1) `Singularity <https://www.sylabs.io/docs/>`_ offers a fast, reproducible way of running RiboPipe where
-  Singularity images for RiboPipe are hosted `here <https://github.com/j-berg/ribopipe-singularity>`_
+  Singularity images for RiboPipe are hosted `here <https://github.com/RiboPipe/ribopipe-singularity>`_
 
 Local
 ^^^^^
@@ -20,7 +20,7 @@ Local
   $ output_data=/path/to/output/data
   $ ribopipe riboseq -i $raw_data -o $output_data
 
-5) Collect raw_counts.csv output in $output_data/assembly/counts and edit `sample_info.csv <https://github.com/j-berg/ribopipe/blob/master/resources/diffex_template.csv>`_
+5) Collect raw_counts.csv output in $output_data/assembly/counts and edit `sample_info.csv <https://github.com/RiboPipe/ribopipe/blob/master/resources/diffex_template.csv>`_
 6) Run diffex:
 
 .. code-block:: shell
@@ -32,7 +32,7 @@ Local
 HPC
 ^^^
 
-2) Modify hpc_run_template.sh in the `resources <https://github.com/j-berg/ribopipe/resources/>`_
+2) Modify hpc_run_template.sh in the `resources <https://github.com/RiboPipe/ribopipe/tree/master/resources>`_
 folder for an example script for submitting the pipeline job to the HPC and make sure dependencies
 listed in this script are on the HPC system, else they need to be locally installed
 3)  Run the script by executing the following:
