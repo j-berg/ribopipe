@@ -154,7 +154,7 @@ def get_arguments(args, __version__):
         )
     riboseq_reqs.add_argument(
         "-r", "--reference",
-        help="Specifiy model organism used for experiments. Pipeline will align sequence data to a current reference file for the given organism",
+        help="Specify model organism used for experiments. Pipeline will align sequence data to a current reference file for the given organism",
         metavar="<yeast>, <human>, <mouse>",
         required=True
         )
@@ -271,7 +271,7 @@ def get_arguments(args, __version__):
         )
     rnaseq_reqs.add_argument(
         "-r", "--reference",
-        help="Specifiy model organism used for experiments. Pipeline will align sequence data to a current reference file for the given organism",
+        help="Specify model organism used for experiments. Pipeline will align sequence data to a current reference file for the given organism",
         metavar="<yeast>, <human>, <mouse>",
         required=True
         )
