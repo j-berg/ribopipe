@@ -32,11 +32,13 @@ Video walkthrough coming soon! See the `Quickstart <content/quickstart>`_ guide 
 ===============
 Important notes
 ===============
+See the `Important File Naming Conventions <content/general-usage>`_ heading of the General Usage page for more information.
 
 
 ===========
 Performance
 ===========
+Coming soon
 
 
 =======
@@ -48,4 +50,4 @@ RiboPipe is freely available under a GNU General Public License (v3.0).
 ==========
 Questions?
 ==========
-If you have questions, requests, or bugs to report, please use the `Github issues <https://github.com/RiboPipe/ribopipe/issues>`_ forum.
+If you have questions, requests, or bugs to report, please use the `Github issues forum <https://github.com/RiboPipe/ribopipe/issues>`_.
