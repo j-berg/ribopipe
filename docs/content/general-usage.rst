@@ -353,7 +353,8 @@ The :data:`rrna_prober` module can be run as follows:
 
 .. code-block:: shell
 
-  $ ribopipe rrna_prober -i $DATA_PATH/sample1.zip $DATA_PATH/sample2.zip ... -o $DATA_PATH/output_location/ \
+  $ ribopipe rrna_prober -i $DATA_PATH/sample1.zip $DATA_PATH/sample2.zip ... \
+                          -o $DATA_PATH/output_location/
 
 An explanation of the :data:`rrna_prober` submodule commands can be found in the following tables:
 
