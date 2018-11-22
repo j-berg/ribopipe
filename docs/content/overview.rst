@@ -20,3 +20,4 @@ for a recent discussion and detailed protocol of the technique.
 
 .. image:: riboseq_overview.png
    :width: 600
+   :align: center

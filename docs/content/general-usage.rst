@@ -291,7 +291,7 @@ An explanation of the :data:`align` submodule commands can be found in the follo
      - Sequencing type -- :data:`riboseq` for ribosome profiling or :data:`rnaseq` for single-end short read sequence data.
 
 
-.. list-table:: :data:`trim` optional arguments
+.. list-table:: :data:`align` optional arguments
    :widths: 35 50
    :header-rows: 1
 
@@ -310,12 +310,70 @@ An explanation of the :data:`align` submodule commands can be found in the follo
 ======================
 :data:`quality` module
 ======================
+Takes a table of raw counts generates paired scatter plots.
 
+The :data:`quality` module can be run as follows:
+
+.. code-block:: shell
+
+  $ ribopipe quality -i $DATA_PATH/raw_counts.csv -o $DATA_PATH/output_location/ \
+                    -t riboseq
+
+An explanation of the :data:`quality` submodule commands can be found in the following tables:
+
+.. list-table:: :data:`quality` required arguments
+   :widths: 35 50
+   :header-rows: 1
+
+   * - Argument
+     - Description
+   * - :data:`-i INPUT, --input INPUT`
+     - Input table (must be .csv file) of raw counts
+   * - :data:`-o OUTPUT, --output OUTPUT`
+     - Specify full PATH to output directory
+   * - :data:`-t \<riboseq\>, \<rnaseq\>`, :data:`--type \<riboseq\>, \<rnaseq\>`
+     - Sequencing type -- :data:`riboseq` for ribosome profiling or :data:`rnaseq` for single-end short read sequence data.
+
+Additional information:
+^^^^^^^^^^^^^^^^^^^^^^^
+Table must have samples set as columns and must be ordered as sample1_FP, sample1_RNA, sample2_FP, sample2_RNA, etc. or as sample1_rep1_RNA, sample1_rep2_RNA, sample2_rep1_RNA, sample2_rep2_RNA.
 
 
 ===============================
 :data:`rrna_prober` module
 ===============================
+As the bulk of total cellular RNA consists mostly of ribosomal RNA that is often not of interest and crowds out measurement of other RNAs, an rRNA depletion step is commonly performed before
+creating a cDNA sequencing library. Several commercial kits are available that can effectively deplete samples of full length rRNAs. However, inherent in ribosome profiling protocols, samples are
+treated with an RNase, which degrades full length rRNAs, making them more difficult to deplete before creating the cDNA library. One way to better deplete these rRNA fragments in ribosome profiling
+samples is to create biotinylated RNA probes for overrepresented rRNA fragments to extract these fragments (see this `paper <https://www.ncbi.nlm.nih.gov/pubmed/28579404>`_ for a recent discussion).
+:data:`rrna_prober` automates the identification of overrepresented species and outputs a table with these sequences ordered by abundance for ease of probe generation. This table is output in stdout
+in this module, or as a :data:`.txt` file in the :data:`highlights/` output folder when running the full :data:`riboseq` submodule.
+
+The :data:`rrna_prober` module can be run as follows:
+
+.. code-block:: shell
+
+  $ ribopipe rrna_prober -i $DATA_PATH/sample1.zip $DATA_PATH/sample2.zip ... -o $DATA_PATH/output_location/ \
+
+An explanation of the :data:`rrna_prober` submodule commands can be found in the following tables:
+
+.. list-table:: :data:`rrna_prober` required arguments
+   :widths: 35 50
+   :header-rows: 1
+
+   * - Argument
+     - Description
+   * - :data:`-i \<string\> [\<string\> ...]`, :data:`--input \<string\> [\<string\> ...]`
+     - Space delimited list of zipped files (include full paths to these files)
+   * - :data:`-o \<string\>, --output \<string\>`
+     - Output file name to write output to
+
+.. list-table:: :data:`rrna_prober` optional arguments
+   :widths: 35 50
+   :header-rows: 1
+
+   * - :data:`--min_overlap \<integer\>`
+     - Minimum number of bases that must match on a side to combine sequences
 
 
 ===============================
@@ -334,11 +392,11 @@ An explanation of the :data:`align` submodule commands can be found in the follo
 ===============================
 
 
-===============================
-:data:`gene_dictionary` module
-===============================
-
-
 ===========
 Data Output
 ===========
+Running :data:`riboseq` or :data:`rnaseq` will output all intermediate and final data files in a tree structure as seen below:
+
+.. image:: ribopipe_overview.png
+   :width: 600
+   :align: center

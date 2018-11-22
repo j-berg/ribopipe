@@ -1,4 +1,4 @@
-<p><img src="https://github.com/j-berg/ribopipe/blob/master/ribopipe_logo_v4.png" class="center" width="17%" height="17%" align="right">
+<p><img src="https://github.com/RiboPipe/ribopipe/blob/master/docs/content/ribopipe.png" class="center" width="17%" height="17%" align="right">
 
 <b><u>RiboPipe v0.1.5-beta</u></b>   
 <i>A Flexible Sequence Assembly and Analysis Pipeline</i>  
@@ -19,7 +19,7 @@ Berg, JA, ..., Rutter, JP. (XXXX) RiboPipe: A Flexible Sequence Assembly and Ana
 See this <a href="https://www.ncbi.nlm.nih.gov/pubmed/28579404">paper</a> for a recent discussion and detailed protocol of the technique.   
 
 
-<img src="https://github.com/j-berg/ribopipe/blob/master/riboseq_overview.png" class="center">
+<img src="https://github.com/RiboPipe/ribopipe/blob/master/docs/content/riboseq_overview.png" class="center">
 
 <b>RiboPipe</b> is a ribosome profiling raw data assembly and preliminary analysis pipeline intended to ease the process of analyzing ribosome profiling data. It alleviates the pain of having to manually pass each raw read file through the appropriate quality trimming and assembly software. Additionally, it mitigates any potential stress by outputting the necessary quality checking analysis so the user can verify the quality of their run. It also offers the benefit of multiprocessing to make full use of computational resources, as well as faster assemblers to speed up this assembly process.   
 
@@ -156,7 +156,7 @@ Watch this <a href=""><b>video</b></a> for a walkthrough of how to use Ribopipe.
       ribopipe --help
       ```
 5)  After the pipeline is finished processing, the data (in the case of the RIBOSEQ option) can be accessed along the following path tree:   
-<img src="https://github.com/j-berg/ribopipe/blob/master/ribopipe_overview.png" align="center">
+<img src="https://github.com/RiboPipe/ribopipe/blob/master/docs/content/ribopipe_overview.png" align="center">
 
 
 <b><u>INTERPRETING THE OUTPUT:</u></b>   
