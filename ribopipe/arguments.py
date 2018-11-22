@@ -508,7 +508,7 @@ def get_arguments(args, __version__):
     quality_reqs = quality_parser.add_argument_group('required arguments')
     quality_reqs.add_argument(
         "-i", "--input",
-        help="Input table (must be .csv file) of raw counts",
+        help="Input table (must be .csv file) of raw counts, requires samples to be columns and ordered as paired FP and RNA samples or replicates.",
         required=True,
         type=lambda file:check_csv(file)
         )
@@ -529,12 +529,6 @@ def get_arguments(args, __version__):
         "-h", "--help",
         action="help",
         help="show this help message and exit"
-        )
-    quality_opts.add_argument(
-        "--replicates",
-        help="Select this option if samples are replicates (do not use if 3+ replicates). Make sure when passing the argument to list samples these are sorted so replicates are next to each other in this list",
-        action='store_true',
-        default=False
         )
 
     #RRNA PROBER subparser program

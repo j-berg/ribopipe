@@ -199,10 +199,7 @@ def main(args=None):
         df = read_df(args['input'])
 
         #Run quality analyses
-        meta_analysis(args_dict, dir_dict)
-
-        if bool(args['replicates']) == True:
-            quality(df, dir_dict['highlights'], 'custom')
+        quality(df, dir_dict['highlights'], 'custom')
 
     #Run rRNA prober module
     elif args.cmd == 'rrna_prober':
