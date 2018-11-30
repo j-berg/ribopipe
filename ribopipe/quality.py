@@ -165,7 +165,7 @@ def quality(df, plotdir, type):
     ax_y = 0
 
     #Initiate plotting necessities
-    if len(sample_list)/2 < 2:
+    if len(sample_list)/2 <= 2:
         plot_rows = 2
         fig_size = (15,16)
     else:
