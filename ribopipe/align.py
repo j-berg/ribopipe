@@ -24,7 +24,7 @@ IMPORT DEPENDENCIES
 """
 import os
 import sys
-from .utils import file_list
+from .utils import file_list, compile_size_distribution
 import concurrent.futures
 
 """
@@ -35,8 +35,6 @@ def assemble(args):
 
     #Unpackage file data and check which transcript ref files to use
     file, dir_dict, args_dict, transcripts = args[0], args[1], args[2], args[3]
-
-
 
     #Map to full genome, do ncrna depletion
     if 'full_genome' in args_dict and args_dict['full_genome'] == True:
@@ -56,6 +54,7 @@ def assemble(args):
         if str(args_dict['program']).upper() == 'STAR':
             #STAR -- in silico rRNA removal, uses default parameters
             os.system("STAR --runThreadN 1 --genomeDir " + str(dir_dict['reference']) + "ncrna --readFilesIn " + str(dir_dict['trimdir']) + file + " --outReadsUnmapped Fastx --outFileNamePrefix " + str(dir_dict['aligndir']) + file[:-6] + "_norrna_")
+            os.system("fastqc -q " + str(dir_dict['aligndir']) + file[:-6] + "_norrna_Unmapped.out.mate1 -o " + str(dir_dict['postncdir']))
 
             #STAR -- align curated reads to reference, uses default parameters
             os.system("STAR --runThreadN 1 --genomeDir " + str(dir_dict['reference']) + "genome --readFilesIn " + str(dir_dict['aligndir']) + file[:-6] + "_norrna_Unmapped.out.mate1 --outFileNamePrefix " + str(dir_dict['aligndir']) + file[:-6] + "_star_out")
@@ -63,6 +62,7 @@ def assemble(args):
         elif str(args_dict['program']).upper() == 'HISAT2':
             #hisat2 -- in silico rRNA removal
             os.system("hisat2 --quiet -x " + str(dir_dict['reference']) + "ncrna --un=" + str(dir_dict['aligndir']) + file[:-6] + "_norrna.fastq -U " + str(dir_dict['trimdir']) + file + " 2> " + str(dir_dict['aligndir']) + file[:-6] + "_ncrna_report.txt")
+            os.system("fastqc -q " + str(dir_dict['aligndir']) + file[:-6] + "_norrna.fastq -o " + str(dir_dict['postncdir']))
 
             #hisat2 -- align curated reads to references
             os.system("hisat2 --quiet -x " + str(dir_dict['reference']) + "genome -U " + str(dir_dict['aligndir']) + file[:-6] + "_norrna.fastq -S " + str(dir_dict['aligndir']) + file[:-6]+"_hisat2_out.sam 2> "+str(dir_dict['aligndir'])+file[:-6]+"_genome_report.txt")
@@ -109,3 +109,6 @@ def align(args_dict, dir_dict, directory, transcripts):
     with concurrent.futures.ProcessPoolExecutor(max_workers=args_dict['max_processors']) as executor:
         for file in zip(args_iter, executor.map(assemble, args_iter)):
             print(file, "has been aligned and counted.")
+
+    if 'full_genome' in args_dict and args_dict['full_genome'] == False:
+        compile_size_distribution(dir_dict, 'postncdir', 'fastqc_post_ncRNA_depletion_distribution_summary.pdf')

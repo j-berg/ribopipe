@@ -57,6 +57,7 @@ def create_assemble_directories(inputDir, outputDir):
     os.system('mkdir ' + outputDir + 'assembly')
     os.system("""mkdir """ + outputDir + """assembly/alignment_output |
                 mkdir """ + outputDir + """assembly/counts |
+                mkdir """ + outputDir + """assembly/post-ncRNA_depletion |
                 mkdir """ + outputDir + """assembly/bam_files |
                 mkdir """ + outputDir + """assembly/bed_files |
                 mkdir """ + outputDir + """assembly/bigwig_files"""
@@ -67,6 +68,7 @@ def create_assemble_directories(inputDir, outputDir):
         'inputDir': inputDir,
         'aligndir': str(outputDir + 'assembly/alignment_output/'),
         'countsdir': str(outputDir + 'assembly/counts/'),
+        'postncdir': str(outputDir + 'assembly/post-ncRNA_depletion/'),
         'bamdir': str(outputDir + 'assembly/bam_files/'),
         'beddir': str(outputDir + 'assembly/bed_files/'),
         'bwdir': str(outputDir + 'assembly/bigwig_files/')
@@ -93,7 +95,8 @@ def create_directories(inputDir, outputDir):
                 mkdir """ + outputDir + """highlights/_metrics"""
     )
     os.system("""mkdir """ + outputDir + """analysis/quality_control/pre-trim_fastqc |
-                mkdir """ + outputDir + """analysis/quality_control/post-trim_fastqc"""
+                mkdir """ + outputDir + """analysis/quality_control/post-trim_fastqc |
+                mkdir """ + outputDir + """analysis/quality_control/post-ncRNA_depletion"""
     )
 
     #create dictionary with output directory paths
@@ -109,6 +112,7 @@ def create_directories(inputDir, outputDir):
         'qualdir': str(outputDir + 'analysis/quality_control/'),
         'preqcdir': str(outputDir + 'analysis/quality_control/pre-trim_fastqc/'),
         'postqcdir': str(outputDir + 'analysis/quality_control/post-trim_fastqc/'),
+        'postncdir': str(outputDir + 'analysis/quality_control/post-ncRNA_depletion/'),
         'picarddir': str(outputDir + 'analysis/metaORF/'),
         'highlights': str(outputDir + 'highlights/'),
         'metrics': str(outputDir + 'highlights/_metrics/')
