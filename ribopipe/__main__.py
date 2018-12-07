@@ -138,7 +138,7 @@ def main(args=None):
         if str(args_dict['program']).upper() == 'HISAT2':
             os.system("multiqc " + dir_dict['trimdir'] + " " + dir_dict['aligndir'] + " " + dir_dict['countsdir'] + " -i " + str(args_dict['experiment']) + " -o " + dir_dict['highlights'] + " -b 'If HISAT2 was used to aligned, these will be reported as Bowtie2 metrics by MultiQC.'")
         else:
-            os.system("multiqc " + dir_dict['trimdir'] + " " + dir_dict['aligndir'] + " " + dir_dict['countsdir'] + " -i " + str(args_dict['experiment']) + " -o " + dir_dict['highlights']
+            os.system("multiqc " + dir_dict['trimdir'] + " " + dir_dict['aligndir'] + " " + dir_dict['countsdir'] + " -i " + str(args_dict['experiment']) + " -o " + dir_dict['highlights'])
             
         #Rezip starting files
         os.system("gzip " + args_dict['input'] + "*.fastq")
