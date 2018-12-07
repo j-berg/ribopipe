@@ -25,7 +25,6 @@ IMPORT DEPENDENCIES
 import os, sys
 import pandas as pd
 import argparse
-from .utils import file_list
 from math import ceil
 import matplotlib
 matplotlib.use('agg') #remove need for -X server connect
@@ -62,7 +61,7 @@ def file_list(directory):
     #Walk through raw data files within given directory
     for subdir, dirs, files in os.walk(directory):
         for f in files:
-            if f.startswith('.') or f.endswith('.bai') or f.endswith('.html') or f.endswith('.png') or f.endswith('.pdf'): #ignore hidden files and other uninterested files (particular for some submodules)
+            if f.startswith('.') or f.endswith('.bai') or f.endswith('.html') or f.endswith('.json') or f.endswith('.png') or f.endswith('.pdf'): #ignore hidden files and other uninterested files (particular for some submodules)
                 pass
             else:
                 file_list.append(f)
@@ -171,6 +170,7 @@ def compile_size_distribution(dir_dict, location, title):
     for file in zip_files:
         if file.endswith('.zip'):
             os.system('unzip -q ' + dir_dict[location] + file + ' -d ' + dir_dict[location])
+            print(dir_dict[location])
 
             with open(dir_dict[location] + file[:-4] + '/fastqc_data.txt', 'r') as f:
                 for line in f:

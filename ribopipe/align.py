@@ -111,4 +111,4 @@ def align(args_dict, dir_dict, directory, transcripts):
             print(file, "has been aligned and counted.")
 
     if 'full_genome' in args_dict and args_dict['full_genome'] == False:
-        compile_size_distribution(dir_dict, 'postncdir', 'fastqc_post_ncRNA_depletion_distribution_summary.pdf')
+        compile_size_distribution(dir_dict, 'postncdir', 'post_ncRNA_depletion_read_distribution_summary.pdf')

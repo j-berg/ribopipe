@@ -173,7 +173,7 @@ def get_arguments(args, __version__):
         )
     riboseq_reqs.add_argument(
         "-a", "--adaptor",
-        help="Sequence of 3' linker (only supports one 3' linker currently) (default: %s). If no adaptor was used, specify 'None'" % DEFAULT_LINKER,
+        help="Sequence of 3' linker (only supports one 3' linker currently) (default: %s). If no adaptor was used, specify 'None', if polyA tailing was used in adaptorless ligation, specify 'polyA'" % DEFAULT_LINKER,
         metavar="<string>",
         nargs="+",
         default=DEFAULT_LINKER,
@@ -290,7 +290,7 @@ def get_arguments(args, __version__):
         )
     rnaseq_reqs.add_argument(
         "-a", "--adaptor",
-        help="Sequence of 3' linker (only supports one 3' linker currently) (default: %s). If no adaptor was used, specify 'None'" % DEFAULT_LINKER,
+        help="Sequence of 3' linker (only supports one 3' linker currently) (default: %s). If no adaptor was used, specify 'None', if polyA tailing was used in adaptorless ligation, specify 'polyA'" % DEFAULT_LINKER,
         metavar="<string>",
         nargs="+",
         default=DEFAULT_LINKER,
@@ -380,7 +380,7 @@ def get_arguments(args, __version__):
         )
     trim_reqs.add_argument(
         "-a", "--adaptor",
-        help="Sequence of 3' linker (only supports one 3' linker currently) (default: %s). If no adaptor was used, specify 'None'" % DEFAULT_LINKER,
+        help="Sequence of 3' linker (only supports one 3' linker currently) (default: %s). If no adaptor was used, specify 'None', if polyA tailing was used in adaptorless ligation, specify 'polyA'" % DEFAULT_LINKER,
         metavar="<string>",
         nargs="+",
         default=DEFAULT_LINKER,

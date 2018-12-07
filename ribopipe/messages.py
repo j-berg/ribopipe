@@ -151,8 +151,7 @@ def msg_finish():
     vary from organism to organism.
     This information can be found in the
     .../outputDir/assembly/counts/XXX_raw_counts_compiled.csv output file.
-    \nPlease refer to the following python library for additional plotting
-    analysis capabilities:\nhttps://github.com/j-berg/plotfun
+    \nPlease refer to the diffex sub-module for differential expression analysis: 'ribopipe diffex --help'
     \nOther programs for differential expression analysis in ribosome profiling
     data include Xtail and RiboDiff
     https://www.ncbi.nlm.nih.gov/pubmed/27041671

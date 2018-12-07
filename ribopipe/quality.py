@@ -236,6 +236,9 @@ def meta_run(args):
     #Perform meta ORF analysis for each file
     os.system("picard CollectRnaSeqMetrics QUIET=true REF_FLAT=" + dir_dict['reference'] + transcripts_flat + " STRAND_SPECIFICITY=NONE INPUT=" + dir_dict['bamdir'] + file + " OUTPUT=" + dir_dict['picarddir'] + file[:-4] + "_rna_metrics")
 
+    #For incoming picard syntax
+    #os.system("CollectRnaSeqMetrics -QUIET true -REF_FLAT " + dir_dict['reference'] + transcripts_flat + " -STRAND_SPECIFICITY NONE -INPUT " + dir_dict['bamdir'] + file + " -OUTPUT " + dir_dict['picarddir'] + file[:-4] + "_rna_metrics")
+
     #Perform periodicity analysis for each file
     if 'type' in args_dict and args_dict['type'] == 'riboseq':
         os.system('metagene count -q ' + dir_dict['reference'] + 'cds_start_200_rois.txt ' + dir_dict['plastdir'] + file[:-4] + '_periodicity --count_files ' + dir_dict['bamdir'] + file + ' --fiveprime --offset 14 --normalize_over 30 200 --min_counts 50 --cmap Blues --title ' + file[:-4])
