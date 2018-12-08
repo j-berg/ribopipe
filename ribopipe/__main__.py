@@ -127,11 +127,9 @@ def main(args=None):
         if (args.cmd == 'riboseq' and 'footprints_only' in args_dict and args_dict['footprints_only'] == False) or (args.cmd == 'rnaseq' and 'replicates' in args_dict and args_dict['replicates'] == True):
             quality(df, dir_dict['highlights'], args.cmd)
 
+        #Run meta-analyses ANALYSIS
         meta_analysis(args_dict, dir_dict, transcripts_flat)
 
-        #Output metrics to csv in outputDir
-
-        #Rezip raw files
         msg_cleaning()
 
         #Create multiqc summary report
@@ -139,9 +137,17 @@ def main(args=None):
             os.system("multiqc " + dir_dict['trimdir'] + " " + dir_dict['aligndir'] + " " + dir_dict['countsdir'] + " -i " + str(args_dict['experiment']) + " -o " + dir_dict['highlights'] + " -b 'If HISAT2 was used to aligned, these will be reported as Bowtie2 metrics by MultiQC.'")
         else:
             os.system("multiqc " + dir_dict['trimdir'] + " " + dir_dict['aligndir'] + " " + dir_dict['countsdir'] + " -i " + str(args_dict['experiment']) + " -o " + dir_dict['highlights'])
-            
+
+        #Remove completed files
+        if "full_output" not in args_dict:
+            os.system("rm -r " + str(dir_dict['outputdir']) + "analysis/")
+            os.system("rm -r " + str(dir_dict['trimdir']))
+            os.system("rm -r " + str(dir_dict['aligndir']))
+            os.system("rm -r " + str(dir_dict['beddir']))
+
         #Rezip starting files
         os.system("gzip " + args_dict['input'] + "*.fastq")
+
         msg_finish()
 
     #Run trimming module

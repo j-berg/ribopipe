@@ -71,6 +71,9 @@ def trim_adaptor(args):
             adaptor1 = ''.join(args_dict['adaptor'])
             os.system("fastp -f 1 -i " + str(args_dict['input']) + file + " -o " + str(args_dict['output']) + "trimmed_" + file + " -a " + adaptor1 + " -l " + str(args_dict['read_length_min']) + " -q " + str(args_dict['read_quality']) + " -j " + str(dir_dict['trimdir']) + file[:-6] + "fastp.json -h " + str(dir_dict['trimdir']) + file[:-6] + "fastp.html")
 
+        if "full_output" not in args_dict and args_dict['cmd'] == 'riboseq' or args_dict['cmd'] == 'rnaseq':
+            os.system("rm " + str(dir_dict['trimdir']) + file[:-6] + "fastp.html")
+
         else:
             counter = 1
 
