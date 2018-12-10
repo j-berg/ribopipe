@@ -682,6 +682,13 @@ def get_arguments(args, __version__):
         help="Input file (must be gtf or gff file)",
         required=True
         )
+    #Optional arguments
+    gtf_reqs = gtf_parser.add_argument_group('optional arguments')
+    gtf_reqs.add_argument(
+        "-h", "--help",
+        action="help",
+        help="show this help message and exit"
+        )
 
     """
     COLLECT PARSED ARGUMENTS AND PREPARE FOR DOWNSTREAM USE
