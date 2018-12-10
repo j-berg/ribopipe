@@ -249,6 +249,12 @@ def get_arguments(args, __version__):
         required=False
         )
     riboseq_opts.add_argument(
+        "--full_output",
+        help="If argument is provided, full output will be saved. If not provided, only essential files will be saved after needed.",
+        action='store_true',
+        required=False
+        )
+    riboseq_opts.add_argument(
         "--count_cutoff",
         help="Minimum counts threshold. Will remove any row in the final count tables if any sample does not meet this cutoff threshold",
         metavar="<int>",
@@ -354,6 +360,12 @@ def get_arguments(args, __version__):
     rnaseq_opts.add_argument(
         "--full_genome",
         help="Add this option to map reads to full genome. If not provided, will only map reads to transcripts.",
+        action='store_true',
+        required=False
+        )
+    rnaseq_opts.add_argument(
+        "--full_output",
+        help="If argument is provided, full output will be saved. If not provided, only essential files will be saved after needed.",
         action='store_true',
         required=False
         )
