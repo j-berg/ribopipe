@@ -12,16 +12,13 @@ def truncate(args_dict):
         sys.exit(1)
 
     #Check that every df.iloc[:,8] contains 'gene_id'
-    df_id = df.iloc[:, 8].str.contains('gene_id')
-
-    #Not all are for coding sequences -- remove
-    df_id = df.iloc[:, 8].str.contains('gene_id \"Y')
+    df_id = df.iloc[:, 8].str.contains('protein_coding')
 
     #Remove rows where "gene_id \"Y" is not present
-    df_coding = df[df.iloc[:, 8].str.contains('gene_id \"Y') == True]
+    df_coding = df[df.iloc[:, 8].str.contains('protein_coding') == True]
 
     #See what fell out
-    df_noncoding = df[df.iloc[:, 8].str.contains('gene_id \"Y') != True]
+    df_noncoding = df[df.iloc[:, 8].str.contains('protein_coding') != True]
 
     #Save to .gtf file (tsv)
     df_coding.to_csv(str(args_dict['input'])[:-4] + "_coding.gtf",sep="\t",header=None, index=False, quoting=csv.QUOTE_NONE)
@@ -34,7 +31,7 @@ def truncate(args_dict):
     naughty_genes = []
 
     for index, row in df_copy.iterrows():
-        if "exon_number \"1\"" in row[8] and "exon_number \"11\"" not in row[8]:
+        if "exon_number \"1\"" in row[8]:
             if row[6] == "+":
                 if row[2] == "exon" and (row[3] + 45) <= row[4]:
                     df_copy.loc[index, 3] = row[3] + 45
