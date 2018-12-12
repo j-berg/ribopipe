@@ -69,4 +69,4 @@ def truncate(args_dict):
     data = parallelize(df_coding_copy, truncate_chunk)
 
     print("saving truncated reference")
-    data.to_csv(str(args_dict['input'])[:-4] + "_coding_truncated.gtf",sep="\t",header=None, index=False, quoting=csv.QUOTE_NONE)
+    data.to_csv(str(args_dict['input'])[:-4] + "_truncated.gtf",sep="\t",header=None, index=False, quoting=csv.QUOTE_NONE)
