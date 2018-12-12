@@ -50,8 +50,6 @@ def truncate(args_dict):
     #Import gtf reference file to
     print("reading in reference...")
     if str(args_dict['input']).endswith('.gtf'):
-        print(str(args_dict['input']))
-        print(args_dict['input'])
         df = pd.read_csv(args_dict['input'], sep="\t", header=None, comment='#', low_memory=False)
     else:
         sys.exit(1)
