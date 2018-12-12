@@ -65,7 +65,7 @@ def truncate(args_dict):
     print("deep copying coding genes")
     df_coding_copy = df_coding.copy()
 
-    print("multiprocessing reference chunks")
+    print("multiprocessing reference chunks -- this may take a while...")
     data = parallelize(df_coding_copy, truncate_chunk)
 
     print("saving truncated reference")
