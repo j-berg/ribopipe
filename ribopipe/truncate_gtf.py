@@ -31,6 +31,10 @@ def truncate_chunk(df_copy):
     return df_copy
 
 def parallelize(data, func):
+
+    cores = cpu_count() #Number of CPU cores on your system
+    partitions = cpu_count() #Define as many partitions as you want
+
     data_split = np.array_split(data, partitions)
     pool = Pool(cores)
     data = pd.concat(pool.map(func, data_split))
@@ -42,9 +46,6 @@ def parallelize(data, func):
 MAIN
 """
 def truncate(args_dict):
-
-    cores = cpu_count() #Number of CPU cores on your system
-    partitions = cpu_count() #Define as many partitions as you want
 
     #Import gtf reference file to
     print("reading in reference")
