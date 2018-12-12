@@ -44,7 +44,7 @@ MAIN
 def truncate(args_dict):
 
     cores = cpu_count() #Number of CPU cores on your system
-    partitions = cores #Define as many partitions as you want
+    partitions = cpu_count() #Define as many partitions as you want
 
     #Import gtf reference file to
     print("reading in reference")
