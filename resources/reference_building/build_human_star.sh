@@ -1,4 +1,8 @@
 #!/bin/bash
+#SBATCH --time=72:00:00
+#SBATCH --nodes=1
+#SBATCH -o slurmjob-%j
+#SBATCH --partition=kingspeak
 
 #Create reference folder
 mkdir human_reference_star
