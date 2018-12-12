@@ -31,15 +31,15 @@ ribopipe truncate -i transcripts.gtf
 
 #Make refFlat file
 #conda install -y -c bioconda ucsc-gtftogenepred
-gtftogenepred transcripts.gtf transcripts_refFlat.txt.tmp
+gtfToGenePred transcripts.gtf transcripts_refFlat.txt.tmp
 awk '{print $1 "\t" $1 "\t" $2 "\t" $3 "\t" $4 "\t" $5 "\t" $6 "\t" $7 "\t" $8 "\t" $9 "\t" $10}' transcripts_refFlat.txt.tmp > transcripts_refFlat.txt
 rm transcripts_refFlat.txt.tmp
 
-gtftogenepred transcripts_coding.gtf transcripts_coding_refFlat.txt.tmp
+gtfToGenePred transcripts_coding.gtf transcripts_coding_refFlat.txt.tmp
 awk '{print $1 "\t" $1 "\t" $2 "\t" $3 "\t" $4 "\t" $5 "\t" $6 "\t" $7 "\t" $8 "\t" $9 "\t" $10}' transcripts_coding_refFlat.txt.tmp > transcripts_coding_refFlat.txt
 rm transcripts_coding_refFlat.txt.tmp
 
-gtftogenepred transcripts_truncated.gtf transcripts_truncated_refFlat.txt.tmp
+gtfToGenePred transcripts_truncated.gtf transcripts_truncated_refFlat.txt.tmp
 awk '{print $1 "\t" $1 "\t" $2 "\t" $3 "\t" $4 "\t" $5 "\t" $6 "\t" $7 "\t" $8 "\t" $9 "\t" $10}' transcripts_truncated_refFlat.txt.tmp > transcripts_truncated_refFlat.txt
 rm transcripts_truncated_refFlat.txt.tmp
 
