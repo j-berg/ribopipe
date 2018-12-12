@@ -39,10 +39,14 @@ import concurrent.futures
 FUNCTIONS
 """
 #Determine best peak in read distribution
-def get_peak(bamfile)
+def get_peak(bamfile):
 
     #outputs @ dir_dict['bamdir'] + 'best_peak_' + file
-    
+    print('coming soon')
+    #Read in corresponding read_dist txt file, find max
+
+    #Use max to select all reads/rows of bam file with that size and save to new file with prefix "best_peak_"
+
 
 #Compile all images of a given analysis into one PDF
 def compile_images(directory, plotdir, summary_name):
