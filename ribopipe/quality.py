@@ -38,6 +38,12 @@ import concurrent.futures
 """
 FUNCTIONS
 """
+#Determine best peak in read distribution
+def get_peak(bamfile)
+
+    #outputs @ dir_dict['bamdir'] + 'best_peak_' + file
+    
+
 #Compile all images of a given analysis into one PDF
 def compile_images(directory, plotdir, summary_name):
 
@@ -241,7 +247,10 @@ def meta_run(args):
 
     #Perform periodicity analysis for each file
     if 'type' in args_dict and args_dict['type'] == 'riboseq':
-        os.system('metagene count -q ' + dir_dict['reference'] + 'cds_start_200_rois.txt ' + dir_dict['plastdir'] + file[:-4] + '_periodicity --count_files ' + dir_dict['bamdir'] + file + ' --fiveprime --offset 14 --normalize_over 30 200 --min_counts 50 --cmap Blues --title ' + file[:-4])
+        #determine dominant read size in sample
+        get_peak(dir_dict['bamdir'] + file)
+        #Run plastid on best-peak bam file
+        os.system('metagene count -q ' + dir_dict['reference'] + 'cds_start_200_rois.txt ' + dir_dict['plastdir'] + file[:-4] + '_periodicity --count_files ' + dir_dict['bamdir'] + 'best_peak_' + file + ' --fiveprime --offset 14 --normalize_over 30 200 --min_counts 50 --cmap Blues --title ' + file[:-4])
 
 """
 MAIN
