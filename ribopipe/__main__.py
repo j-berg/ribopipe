@@ -73,7 +73,8 @@ def main(args=None):
         #Initialize directories for output
         args_dict['input'], args_dict['output'], dir_dict = make_directories(args_dict['input'], args_dict['output'])
         dir_dict['reference'] = prep_reference(args_dict, dir_dict, __path__)
-
+        dir_dict['reference'] = check_directory(dir_dict['reference'])
+        
         #CHECK ARGUMENTS FOR EXCEPTIONS AND FORMATTING
         check_files(args_dict)
         check_length(args_dict)
