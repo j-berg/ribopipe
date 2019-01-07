@@ -97,30 +97,33 @@ def curate_reference(args_dict, __path__):
 #Gather reference information based on user input
 def prep_reference(args_dict, dir_dict, __path__):
 
-    #Specify reference directory path based on given model organism name
-    if str(args_dict['program']).upper() == 'HISAT2':
-        if str(args_dict['reference']).upper() == 'YEAST':
-            dir_dict['reference'] = str(__path__) + '/references/yeast_reference_hisat2/'
-        elif str(args_dict['reference']).upper() == 'MOUSE':
-            dir_dict['reference'] = str(__path__) + '/references/mouse_reference_hisat2/'
-        elif str(args_dict['reference']).upper() == 'HUMAN':
-            dir_dict['reference'] = str(__path__) + '/references/human_reference_hisat2/'
-        else:
-            pass
-    elif str(args_dict['program']).upper() == 'STAR':
-        if str(args_dict['reference']).upper() == 'YEAST':
-            dir_dict['reference'] = str(__path__) + '/references/yeast_reference_star/'
-        elif str(args_dict['reference']).upper() == 'MOUSE':
-            dir_dict['reference'] = str(__path__) + '/references/mouse_reference_star/'
-        elif str(args_dict['reference']).upper() == 'HUMAN':
-            dir_dict['reference'] = str(__path__) + '/references/human_reference_star/'
-        else:
-            pass
-    #allow for custom path to reference file
-    elif args_dict['custom'] == True:
+    #Allow for custom path to reference file
+    if args_dict['custom'] == True:
         dir_dict['reference'] = str(args_dict['reference'])
+
+    #Specify reference directory path based on given model organism name
     else:
-        pass
+        if str(args_dict['program']).upper() == 'HISAT2':
+            if str(args_dict['reference']).upper() == 'YEAST':
+                dir_dict['reference'] = str(__path__) + '/references/yeast_reference_hisat2/'
+            elif str(args_dict['reference']).upper() == 'MOUSE':
+                dir_dict['reference'] = str(__path__) + '/references/mouse_reference_hisat2/'
+            elif str(args_dict['reference']).upper() == 'HUMAN':
+                dir_dict['reference'] = str(__path__) + '/references/human_reference_hisat2/'
+            else:
+                pass
+        elif str(args_dict['program']).upper() == 'STAR':
+            if str(args_dict['reference']).upper() == 'YEAST':
+                dir_dict['reference'] = str(__path__) + '/references/yeast_reference_star/'
+            elif str(args_dict['reference']).upper() == 'MOUSE':
+                dir_dict['reference'] = str(__path__) + '/references/mouse_reference_star/'
+            elif str(args_dict['reference']).upper() == 'HUMAN':
+                dir_dict['reference'] = str(__path__) + '/references/human_reference_star/'
+            else:
+                pass
+
+        else:
+            pass
 
     return dir_dict['reference']
 

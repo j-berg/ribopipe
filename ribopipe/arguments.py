@@ -155,7 +155,7 @@ def get_arguments(args, __version__):
     riboseq_reqs.add_argument(
         "-r", "--reference",
         help="Specify model organism used for experiments. Pipeline will align sequence data to a current reference file for the given organism",
-        metavar="<yeast>, <human>, <mouse>",
+        metavar="<yeast>, <human>, <mouse>, <custom_path>",
         required=True
         )
     riboseq_reqs.add_argument(
@@ -216,7 +216,8 @@ def get_arguments(args, __version__):
         )
     riboseq_opts.add_argument(
         "-c", "--custom",
-        help="Provide custom reference directory (provide full path)",
+        help="Provide if using custom reference directory -- specify full path within the -r/--reference argument",
+        action='store_true',
         required=False
         )
     riboseq_opts.add_argument(
@@ -283,7 +284,7 @@ def get_arguments(args, __version__):
     rnaseq_reqs.add_argument(
         "-r", "--reference",
         help="Specify model organism used for experiments. Pipeline will align sequence data to a current reference file for the given organism",
-        metavar="<yeast>, <human>, <mouse>",
+        metavar="<yeast>, <human>, <mouse>, <custom_path>",
         required=True
         )
     rnaseq_reqs.add_argument(
@@ -332,6 +333,12 @@ def get_arguments(args, __version__):
         help="Alignment software to be used to align reads to reference (default: %s)" % DEFAULT_PROGRAM,
         metavar="<HISAT2>, <STAR>",
         default=DEFAULT_PROGRAM,
+        required=False
+        )
+    rnaseq_opts.add_argument(
+        "-c", "--custom",
+        help="Provide if using custom reference directory -- specify full path within the -r/--reference argument",
+        action='store_true',
         required=False
         )
     rnaseq_opts.add_argument(
