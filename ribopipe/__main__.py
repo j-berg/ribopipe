@@ -252,6 +252,11 @@ def main(args=None):
         truncate(args_dict)
         sys.exit(1)
 
+    elif args.cmd == 'curate':
+
+        #Run curation
+        curate_reference(args_dict, __path__)
+
     #Display submodule error information
     else:
         print('Invalid selection, must specify RiboPipe module to run')
