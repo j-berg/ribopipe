@@ -71,7 +71,7 @@ def file_list(directory):
 
     return tuple(file_list)
 
-def curate_reference(args_dict, dir_dict, __path__):
+def curate_reference(args_dict, __path__):
 
     print('Creating custom curated reference for RiboPipe...')
 
