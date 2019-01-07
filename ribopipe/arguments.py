@@ -215,6 +215,11 @@ def get_arguments(args, __version__):
         required=False
         )
     riboseq_opts.add_argument(
+        "-c", "--custom",
+        help="Provide custom reference directory (provide full path)",
+        required=False
+        )
+    riboseq_opts.add_argument(
         "--read_length_min",
         help="Minimum read length threshold to keep for reads (default: %s)" % DEFAULT_READ_MIN,
         metavar="<int>",
@@ -683,11 +688,47 @@ def get_arguments(args, __version__):
         required=True
         )
     #Optional arguments
-    gtf_reqs = gtf_parser.add_argument_group('optional arguments')
-    gtf_reqs.add_argument(
+    gtf_opts = gtf_parser.add_argument_group('optional arguments')
+    gtf_opts.add_argument(
         "-h", "--help",
         action="help",
         help="show this help message and exit"
+        )
+
+    #Curate reference
+    curate_parser = subparser.add_parser('curate', description='Curate reference for organism for use with RiboPipe', add_help=False)
+    #Required arguments
+    curate_reqs = curate_parser.add_argument_group('required arguments')
+    curate_reqs.add_argument(
+        "-l", "--location",
+        help="Location where curated reference will be stored (provide full path)",
+        required=True
+        )
+    curate_reqs.add_argument(
+        "-p", "--program",
+        help="Alignment software to be used to align reads to reference (default: %s)",
+        metavar="<HISAT2>, <STAR>",
+        required=True
+        )
+    curate_reqs.add_argument(
+        "-r", "--reference",
+        help="Specify model organism used for experiments. Pipeline will align sequence data to a current reference file for the given organism",
+        metavar="<yeast>, <human>, <mouse>",
+        required=True
+        )
+    #Optional arguments
+    curate_opts = curate_parser.add_argument_group('optional arguments')
+    curate_opts.add_argument(
+        "-h", "--help",
+        action="help",
+        help="show this help message and exit"
+        )
+    curate_opts.add_argument(
+        "-c", "--cores",
+        help="Number of cores to use in curation",
+        default=1,
+        type=int,
+        required=False
         )
 
     """

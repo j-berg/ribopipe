@@ -71,6 +71,29 @@ def file_list(directory):
 
     return tuple(file_list)
 
+def curate_reference(args_dict, dir_dict, __path__):
+
+    print('Creating custom curated reference for RiboPipe...')
+
+    if str(args_dict['program']).upper() == 'HISAT2':
+        if str(args_dict['reference']).upper() == 'YEAST':
+            print('Option not currently available...')
+        elif str(args_dict['reference']).upper() == 'MOUSE':
+            print('Option not currently available...')
+        elif str(args_dict['reference']).upper() == 'HUMAN':
+            print('Option not currently available...')
+        else:
+            pass
+    elif str(args_dict['program']).upper() == 'STAR':
+        if str(args_dict['reference']).upper() == 'YEAST':
+            print('Option not currently available...')
+        elif str(args_dict['reference']).upper() == 'MOUSE':
+            print('Option not currently available...')
+        elif str(args_dict['reference']).upper() == 'HUMAN':
+            os.system('sh ' + str(__path__) + '/references/building/build_human_star.sh ' + str(args_dict['location']) + ' ' + str(__path__) + ' ' + str(args_dict['cores']))
+        else:
+            pass
+
 #Gather reference information based on user input
 def prep_reference(args_dict, dir_dict, __path__):
 
@@ -93,6 +116,9 @@ def prep_reference(args_dict, dir_dict, __path__):
             dir_dict['reference'] = str(__path__) + '/references/human_reference_star/'
         else:
             pass
+    #allow for custom path to reference file
+    elif args_dict['custom'] == True:
+        dir_dict['reference'] = str(args_dict['reference'])
     else:
         pass
 
