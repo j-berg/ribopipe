@@ -161,9 +161,9 @@ Install python3, wget, git, and git-lfs if not already done. You can check in co
   $ ribopipe --help
 
 
-================
+==================
 Test Installation:
-================
+==================
 
 To test installation, run the following command:
 
