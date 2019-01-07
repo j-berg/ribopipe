@@ -162,6 +162,21 @@ Install python3, wget, git, and git-lfs if not already done. You can check in co
 
 
 ================
+Test Installation:
+================
+
+To test installation, run the following command:
+
+.. code-block:: shell
+
+  $ ribopipe riboseq -i /path/to/ribopipe/test/ -o /path/you/create/ -r yeast -e ingolia_2015 \
+  -p STAR -a CTGTAGGCACCATCAAT --platform ILLUMINA --count_cutoff 32 \
+  -s a_wild-type_DED1_replicate_1_15_deg c_ded1-cs_replicate_1_15_deg
+
+If no errors are produced by the output, the installation was successful.
+
+
+================
 Additional Help:
 ================
 
