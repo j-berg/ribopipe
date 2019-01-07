@@ -19,7 +19,7 @@ chmod 700 Anaconda3-5.3.0-Linux-x86_64.sh
 #Exit out of terminal and log in again
 
 #Install dependencies
-conda install -y -c bioconda setuptools fastqc fastx_toolkit htseq picard samtools hisat2 star bedtools deeptools scipy plastid pandas numpy matplotlib seaborn pysam=0.14 fastp
+conda install -y -c bioconda ucsc-gtftogenepred setuptools fastqc fastx_toolkit htseq picard samtools hisat2 star bedtools deeptools scipy plastid pandas numpy matplotlib seaborn pysam=0.14 fastp
 
 pip install multiqc
 
