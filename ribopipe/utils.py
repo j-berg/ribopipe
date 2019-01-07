@@ -106,22 +106,13 @@ def prep_reference(args_dict, dir_dict, __path__):
         if str(args_dict['program']).upper() == 'HISAT2':
             if str(args_dict['reference']).upper() == 'YEAST':
                 dir_dict['reference'] = str(__path__) + '/references/yeast_reference_hisat2/'
-            elif str(args_dict['reference']).upper() == 'MOUSE':
-                dir_dict['reference'] = str(__path__) + '/references/mouse_reference_hisat2/'
-            elif str(args_dict['reference']).upper() == 'HUMAN':
-                dir_dict['reference'] = str(__path__) + '/references/human_reference_hisat2/'
             else:
                 pass
         elif str(args_dict['program']).upper() == 'STAR':
             if str(args_dict['reference']).upper() == 'YEAST':
                 dir_dict['reference'] = str(__path__) + '/references/yeast_reference_star/'
-            elif str(args_dict['reference']).upper() == 'MOUSE':
-                dir_dict['reference'] = str(__path__) + '/references/mouse_reference_star/'
-            elif str(args_dict['reference']).upper() == 'HUMAN':
-                dir_dict['reference'] = str(__path__) + '/references/human_reference_star/'
             else:
                 pass
-
         else:
             pass
 
