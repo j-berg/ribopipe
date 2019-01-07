@@ -3,7 +3,7 @@ Installation
 ############
 
 ===================
-MacOS Installation:
+MacOS Installation
 ===================
 
 See local_install.sh in the `resources <https://github.com/RiboPipe/ribopipe/tree/master/resources>`_ folder for interactive script.
@@ -79,7 +79,7 @@ See local_install.sh in the `resources <https://github.com/RiboPipe/ribopipe/tre
 
 
 =================
-HPC Installation:
+HPC Installation
 =================
 
 See hpc_install.sh in the `resources <https://github.com/RiboPipe/ribopipe/tree/master/resources>`_ folder for interactive script. While the resource manager can install these for you, we will show you how to manually install all dependencies. These instructions may vary slightly from HPC to HPC.
@@ -162,7 +162,7 @@ Install python3, wget, git, and git-lfs if not already done. You can check in co
 
 
 ==================
-Test Installation:
+Test Installation
 ==================
 
 To test installation, run the following command:
@@ -177,7 +177,7 @@ If no errors are produced by the output, the installation was successful.
 
 
 ================
-Additional Help:
+Additional Help
 ================
 
 Manually installing a package:
