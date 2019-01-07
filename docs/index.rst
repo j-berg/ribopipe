@@ -18,6 +18,7 @@ Table of contents
 
    content/overview
    content/installation
+   contect/building-references
    content/quickstart
    content/general-usage
    content/advanced-usage
