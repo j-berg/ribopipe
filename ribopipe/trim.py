@@ -62,14 +62,14 @@ def trim_adaptor(args):
     elif args_dict['platform'].upper() == 'ILLUMINA':
         #add -Q33 flag for illumina encoded quality scoring
         if len(args_dict['adaptor']) == 1 and args_dict['adaptor'][0].upper() == "NONE":
-            os.system("fastp -f 1 -i " + str(args_dict['input']) + file + " -o " + str(args_dict['output']) + "trimmed_" + file + " -l " + str(args_dict['read_length_min']) + " -q " + str(args_dict['read_quality']) + " -j " + str(dir_dict['trimdir']) + file[:-6] + "fastp.json -h " + str(dir_dict['trimdir']) + file[:-6] + "fastp.html")
+            os.system("fastp -f 1 -a " + str(args_dict['adaptor']) + " -i " + str(args_dict['input']) + file + " -o " + str(args_dict['output']) + "trimmed_" + file + " -l " + str(args_dict['read_length_min']) + " -q " + str(args_dict['read_quality']) + " -j " + str(dir_dict['trimdir']) + file[:-6] + "fastp.json -h " + str(dir_dict['trimdir']) + file[:-6] + "fastp.html")
 
         elif len(args_dict['adaptor']) == 1 and args_dict['adaptor'][0].upper() == "POLYA":
-            os.system("fastp -f 1 -i " + str(args_dict['input']) + file + " -o " + str(args_dict['output']) + "trimmed_" + file + " --polyX -l " + str(args_dict['read_length_min']) + " -q " + str(args_dict['read_quality']) + " -j " + str(dir_dict['trimdir']) + file[:-6] + "fastp.json -h " + str(dir_dict['trimdir']) + file[:-6] + "fastp.html")
+            os.system("fastp -f 1 -a " + str(args_dict['adaptor']) + " -i " + str(args_dict['input']) + file + " -o " + str(args_dict['output']) + "trimmed_" + file + " --polyX -l " + str(args_dict['read_length_min']) + " -q " + str(args_dict['read_quality']) + " -j " + str(dir_dict['trimdir']) + file[:-6] + "fastp.json -h " + str(dir_dict['trimdir']) + file[:-6] + "fastp.html")
 
         elif len(args_dict['adaptor']) == 1:
             adaptor1 = ''.join(args_dict['adaptor'])
-            os.system("fastp -f 1 -i " + str(args_dict['input']) + file + " -o " + str(args_dict['output']) + "trimmed_" + file + " -a " + adaptor1 + " -l " + str(args_dict['read_length_min']) + " -q " + str(args_dict['read_quality']) + " -j " + str(dir_dict['trimdir']) + file[:-6] + "fastp.json -h " + str(dir_dict['trimdir']) + file[:-6] + "fastp.html")
+            os.system("fastp -f 1 -a " + str(args_dict['adaptor']) + " -i " + str(args_dict['input']) + file + " -o " + str(args_dict['output']) + "trimmed_" + file + " -a " + adaptor1 + " -l " + str(args_dict['read_length_min']) + " -q " + str(args_dict['read_quality']) + " -j " + str(dir_dict['trimdir']) + file[:-6] + "fastp.json -h " + str(dir_dict['trimdir']) + file[:-6] + "fastp.html")
 
         if "full_output" not in args_dict and args_dict['cmd'] == 'riboseq' or args_dict['cmd'] == 'rnaseq':
             os.system("rm " + str(dir_dict['trimdir']) + file[:-6] + "fastp.html")
